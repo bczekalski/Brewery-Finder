@@ -18,6 +18,19 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+CREATE TABLE breweries (
+        brewery_id int DEFAULT nextval() NOT NULL,
+        brewery_name varchar(50) NOT NULL,
+        contact_info varchar(50) NOT NULL,
+        brewery_history varchar(1000) NOT NULL,
+        operation_time varchar (50) NOT NULL,
+        address varchar(50) NOT NULL,
+        active boolean,
+        user_submitted boolean NOT NULL,
+        CONSTRAINT PK_breweries PRIMARY KEY (brewery_id)
+
+);
+
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
