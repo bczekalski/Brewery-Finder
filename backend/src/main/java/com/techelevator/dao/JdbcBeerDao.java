@@ -28,7 +28,6 @@ public class JdbcBeerDao implements BeerDao{
         }
         return beerList;
     }
-
     @Override
     public Beer getBeerById(int breweryId, int id) {
         String sql = "SELECT * FROM beers " +
@@ -39,7 +38,6 @@ public class JdbcBeerDao implements BeerDao{
         }
         return null;
     }
-
     @Override
     public long addBeer(Beer b) {
         String sql = "INSERT INTO beers (beer_name, beer_type, beer_description, abv, image, gluten_free, brewery_id)" +
@@ -49,19 +47,16 @@ public class JdbcBeerDao implements BeerDao{
                 b.getAbv(), b.getImageLink(), b.isGlutenFree(), b.getBreweryId());
         return newId;
     }
-
     @Override
     public void deleteBeer(int id) {
         String sql = "DELETE * FROM beers WHERE beer_id = ?;";
         jdbcTemplate.update(sql, id);
     }
-
     @Override
     public void deleteBeersByBrewery(int breweryId) {
         String sql = "DELETE * FROM beers WHERE brewery_id = ?;";
         jdbcTemplate.update(sql, breweryId);
     }
-
     @Override
     public void updateBeer(Beer b) {
         String sql = "UPDATE beers" +
@@ -71,7 +66,6 @@ public class JdbcBeerDao implements BeerDao{
         jdbcTemplate.update(sql, b.getName(), b.getBeerType(), b.getDescription(),
                 b.getAbv(), b.getImageLink(), b.isGlutenFree(), b.getBreweryId(), b.getBeerId());
     }
-
     public Beer mapRowSetToBeer(SqlRowSet rs){
         Beer b = new Beer();
         b.setBeerId(rs.getLong("beer_id"));

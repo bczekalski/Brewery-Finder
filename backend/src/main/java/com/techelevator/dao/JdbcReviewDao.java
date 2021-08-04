@@ -10,9 +10,7 @@ import java.util.List;
 
 @Service
 public class JdbcReviewDao implements ReviewDao{
-
     private JdbcTemplate jdbcTemplate;
-
     public JdbcReviewDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -34,7 +32,6 @@ public class JdbcReviewDao implements ReviewDao{
         }
         return reviews;
     }
-
     @Override
     public long createReview(Review r) {
         String sql = "INSERT INTO reviews (reviewer_name, review_text, review_stars, review_type, user_id) " +
@@ -43,7 +40,6 @@ public class JdbcReviewDao implements ReviewDao{
                 r.getType(), r.getUserId());
         return newId;
     }
-
     @Override
     public Review getReviewByReviewId(int reviewId) {
         String sql = "SELECT * FROM reviews WHERE review_id = ?;";
@@ -53,7 +49,6 @@ public class JdbcReviewDao implements ReviewDao{
         }
         return null;
     }
-
     @Override
     public void updateReview(Review r) {
         String sql = "UPDATE reviews SET reviewer_name = ?, review_text = ?, " +

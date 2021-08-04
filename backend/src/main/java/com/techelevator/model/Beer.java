@@ -22,6 +22,8 @@ public class Beer {
         this.breweryId = breweryId;
     }
 
+
+
     public long getBeerId() {
         return beerId;
     }

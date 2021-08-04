@@ -18,11 +18,6 @@ public class JdbcBreweryDao implements BreweryDao{
         this.jdbcTemplate = jdbcTemplate;
     }
     @Override
-    public List<Brewery> getAllBreweries() {
-        List <Brewery> breweryList = new ArrayList<>();
-        String sql = "SELECT * FROM breweries"; //order by for sorting order by breweries
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
-        while(result.next()){
             Brewery brewery = mapRowSetToBrewery(result);
             breweryList.add(brewery);
         }
