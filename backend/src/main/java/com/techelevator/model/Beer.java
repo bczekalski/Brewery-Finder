@@ -1,28 +1,24 @@
 package com.techelevator.model;
-
 public class Beer {
 
     private long beerId;
     private String name;
     private String description;
     private String beerType;
-    private Double abv;
+    private float abv;
     private String imageLink;
-    private boolean glutenFree;
+    private boolean glutenFree = false;
     private long breweryId;
 
     public Beer() {
-
     }
 
-    public Beer(long beerId, String name, String description, String beerType, Double abv, String imageLink, long breweryId) {
-        this.beerId = beerId;
+    public Beer(String name, String description, String beerType, float abv, String imageLink, long breweryId) {
         this.name = name;
         this.description = description;
         this.beerType = beerType;
         this.abv = abv;
         this.imageLink = imageLink;
-        this.glutenFree = false;
         this.breweryId = breweryId;
     }
 
@@ -60,11 +56,11 @@ public class Beer {
         this.beerType = beerType;
     }
 
-    public Double getAbv() {
+    public float getAbv() {
         return abv;
     }
 
-    public void setAbv(Double abv) {
+    public void setAbv(float abv) {
         this.abv = abv;
     }
 

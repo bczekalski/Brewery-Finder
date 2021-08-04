@@ -1,19 +1,22 @@
 package com.techelevator.dao;
+
 import com.techelevator.model.Beer;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Repository
+@Service
 public class JdbcBeerDao implements BeerDao{
+
     private JdbcTemplate jdbcTemplate;
+
     public JdbcBeerDao (JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
+
     @Override
     public List<Beer> getBeers() {
         List<Beer> beerList = new ArrayList<>();
@@ -69,7 +72,7 @@ public class JdbcBeerDao implements BeerDao{
         b.setName(rs.getString("beer_name"));
         b.setBeerType(rs.getString("beer_type"));
         b.setDescription(rs.getString("beer_description"));
-        b.setAbv(rs.getDouble("abv"));
+        b.setAbv(rs.getFloat("abv"));
         b.setImageLink(rs.getString("image"));
         b.setGlutenFree(rs.getBoolean("gluten_free"));
         b.setBreweryId(rs.getLong("brewery_id"));

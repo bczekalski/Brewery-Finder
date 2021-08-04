@@ -9,7 +9,6 @@ public class Review {
     private String type;
     private long userId;
 
-
     public Review(long id, String reviewName, String text, int starCount, String type, long userId) {
         this.id = id;
         this.reviewName = reviewName;
@@ -20,7 +19,6 @@ public class Review {
     }
 
     public Review() {
-
     }
 
     public long getId() {

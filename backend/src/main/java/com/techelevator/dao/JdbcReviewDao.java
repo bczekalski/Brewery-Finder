@@ -1,13 +1,14 @@
 package com.techelevator.dao;
+
 import com.techelevator.model.Review;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Service
 public class JdbcReviewDao implements ReviewDao{
     private JdbcTemplate jdbcTemplate;
     public JdbcReviewDao(JdbcTemplate jdbcTemplate){
@@ -59,7 +60,8 @@ public class JdbcReviewDao implements ReviewDao{
 
     @Override
     public void deleteReview(int reviewId) {
-
+        String sql = "DELETE * FROM reviews WHERE review_id = ?;";
+        jdbcTemplate.update(sql, reviewId);
     }
 
     @Override
@@ -73,13 +75,12 @@ public class JdbcReviewDao implements ReviewDao{
         return reviews;
     }
 
-   @Override
+    @Override
     public int deleteReviews(int userId) {
         String sql = "DELETE * FROM reviews WHERE userId = ?;";
         int count = jdbcTemplate.update(sql, userId);
         return count;
     }
-
 
     private Review mapRowSetToReview(SqlRowSet rs){
         Review r = new Review();

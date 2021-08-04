@@ -1,5 +1,4 @@
 package com.techelevator.model;
-
 public class Brewery {
 
     private long id;
@@ -30,7 +29,6 @@ public class Brewery {
     }
 
     public Brewery() {
-
     }
 
     public long getId() {
