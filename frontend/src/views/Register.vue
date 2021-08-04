@@ -1,11 +1,11 @@
 <template>
-  <div id="register" class="text-center">
+  <div id="register" class="text-center container-register">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only text">Username</label>
       <input
         type="text"
         id="username"
@@ -15,7 +15,8 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <br>
+      <label for="password" class="sr-only text">Password</label>
       <input
         type="password"
         id="password"
@@ -24,6 +25,7 @@
         v-model="user.password"
         required
       />
+      <br>
       <input
         type="password"
         id="confirmPassword"
@@ -32,12 +34,15 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
-      </button>
+      </button>      
+      <br>
+      <router-link :to="{ name: 'login' }" class="text">Have an account?</router-link>
     </form>
   </div>
+
 </template>
 
 <script>
@@ -90,4 +95,31 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+.container-register {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3vw;
+  text-align: center;
+  background-color: white;
+  display: block;
+  border-radius:3vw;
+  padding: 3vw;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+  margin-left: 20vw;
+  margin-right: 20vw;
+}
+
+.text {
+  padding: 2vw;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2vw;
+  text-align: center;
+}
+
+</style>
