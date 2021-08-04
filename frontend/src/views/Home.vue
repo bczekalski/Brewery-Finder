@@ -1,12 +1,85 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+  <section>
+
+    <figure class="image center">
+      <!-- <img src ="images/c61ca5bebd5fac190227f602ab0d6fe8.png" style="max-width: 128px;"> -->
+    </figure>
+    <div id="grid">
+    <div id="list" class="container-home">
+    <div>
+      List of Breweries
+    </div>
+    </div>    
+    <div id="beer" class="container-home">
+    <div>
+      Beer of the Day
+    </div>
   </div>
+    <br>
+    </div>
+  </section>
 </template>
+
+
 
 <script>
 export default {
   name: "home"
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+.container-home {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3vw;
+  text-align: center;
+  background-color: white;
+  display: block;
+  border-radius:3vw;
+  padding: 3vw;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+}
+
+
+#list {
+    grid-area: "list";
+}
+
+#register {
+    grid-area: "beer";
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "list beer";
+    row-gap: 20px;
+    column-gap: 1fr;
+    align-items: center;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+}
+
+@media screen and (max-width: 450px){
+    #main-grid{
+        display: grid;
+        row-gap: 20px;
+        column-gap: 20px;
+        align-items: center;
+        justify-content: space-evenly;
+        justify-items: center;
+        align-content: space-evenly;
+        grid-template-columns: 1fr;
+        grid-template-areas: "list"
+        "beer"
+        ;
+    }
+}
+
+</style>
