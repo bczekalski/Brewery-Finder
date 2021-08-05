@@ -1,23 +1,23 @@
 package com.techelevator.dao;
-
-
-import com.techelevator.model.Beer;
+import com.techelevator.model.Brewery;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.stereotype.Service;
-import com.techelevator.model.Brewery;
-
+import com.techelevator.model.Beer;
+import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
-
-
-@Service
+@Repository
 public class JdbcBreweryDao implements BreweryDao{
     private JdbcTemplate jdbcTemplate;
     public JdbcBreweryDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
     @Override
+    public List<Brewery> getAllBreweries() {
+        List <Brewery> breweryList = new ArrayList<>();
+        String sql = "SELECT * FROM breweries"; //order by for sorting order by breweries
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+        while(result.next()){
             Brewery brewery = mapRowSetToBrewery(result);
             breweryList.add(brewery);
         }
