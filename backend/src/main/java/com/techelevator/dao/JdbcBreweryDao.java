@@ -1,23 +1,27 @@
 package com.techelevator.dao;
-
-
-import com.techelevator.model.Beer;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techelevator.model.Brewery;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.stereotype.Service;
-import com.techelevator.model.Brewery;
-
+import com.techelevator.model.Beer;
+import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
-
-
-@Service
+@Repository
 public class JdbcBreweryDao implements BreweryDao{
     private JdbcTemplate jdbcTemplate;
+    private ObjectMapper mapper;
     public JdbcBreweryDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.mapper = new ObjectMapper();
     }
     @Override
+    public List<Brewery> getAllBreweries() {
+        List <Brewery> breweryList = new ArrayList<>();
+        String sql = "SELECT * FROM breweries"; //order by for sorting order by breweries
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+        while(result.next()){
             Brewery brewery = mapRowSetToBrewery(result);
             breweryList.add(brewery);
         }
@@ -73,17 +77,19 @@ public class JdbcBreweryDao implements BreweryDao{
     }
     private Brewery mapRowSetToBrewery(SqlRowSet result) {
         Brewery brewery = new Brewery();
-        brewery.setId(result.getInt("id"));
+        brewery.setId(result.getInt("brewery_id"));
         brewery.setActive(result.getBoolean("active"));
         brewery.setCity(result.getString("city"));
-        brewery.setHistory(result.getString("history"));
+        brewery.setHistory(result.getString("brewery_history"));
         brewery.setContactInfo(result.getString("contact_info"));
-        brewery.setName(result.getString("name"));
-        brewery.setState(result.getString("state"));
+        brewery.setName(result.getString("brewery_name"));
+        brewery.setState(result.getString("state_abrev"));
         brewery.setAddress(result.getString("address"));
         brewery.setWebsite(result.getString("website"));
-        brewery.setZipCode(result.getString("zip_code"));
+        brewery.setZipCode(result.getString("zip"));
+        brewery.setImage(result.getString("image"));
         brewery.setOperationTime(result.getString("operation_time"));
+        brewery.setFoodServedId(result.getLong("food_served"));
         return brewery;
     }
     private Beer mapResultToBeer(SqlRowSet result) {
