@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import java.util.List;
 
+import com.techelevator.dao.JdbcBreweryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,41 +22,50 @@ import com.techelevator.model.Brewery;
 @RestController
 @CrossOrigin
 public class BreweryController {
-    @Autowired
-    BreweryDao brewery;
+
+    private BreweryDao breweryDao;
+
+    public BreweryController (BreweryDao breweryDao) {
+        this.breweryDao = breweryDao;
+    }
 
     @GetMapping(path = {"/breweries"})
     public List<Brewery> getAllBreweries() {
-        List<Brewery> breweryList = brewery.getAllBreweries();
+        List<Brewery> breweryList = breweryDao.getAllBreweries();
         return breweryList;
     }
 
-    @DeleteMapping(path = "/breweries/{id}")
-    public void deleteBrewery(@PathVariable int id) {
-        brewery.deleteBrewery(id);
+    @GetMapping(path = "/breweries/{id}")
+    public Brewery getBreweryById(@PathVariable int id) {
+        return breweryDao.getBreweryById(id);
     }
+
+    /*@DeleteMapping(path = "/breweries/{id}")
+    public void deleteBrewery(@PathVariable int id) {
+        breweryDao.deleteBrewery(id);
+    }*/
 
     @PutMapping(path = "/updateBrewery")
     @ResponseStatus(HttpStatus.OK)
     public void updateBrewery(@RequestBody Brewery breweryToUpdate) {
-        brewery.updateBrewery(breweryToUpdate);
+        breweryDao.updateBrewery(breweryToUpdate);
     }
 
     @PostMapping(path = {"/breweries"})
     @ResponseStatus(HttpStatus.CREATED)
     public void addBrewery(@RequestBody Brewery newBrewery) {
-        brewery.createBrewery(newBrewery);
+        breweryDao.createBrewery(newBrewery);
     }
 
     @GetMapping(path = "/breweries/glutenfree")
     public List<Brewery> getAllBreweriesWithGFBeer() {
-        List<Brewery> glutenFreeBeers = brewery.getAllBreweriesWithGFBeer();
+        List<Brewery> glutenFreeBeers = breweryDao.getAllBreweriesWithGFBeer();
         return glutenFreeBeers;
     }
 
     @GetMapping(path = "/breweries/{breweryId}/beers")
     public List<Beer> getBeersByBreweryId(@PathVariable int breweryId) {
-        List<Beer> beerList = brewery.getBeersByBreweryId(breweryId);
+        List<Beer> beerList = breweryDao.getBeersByBreweryId(breweryId);
         return beerList;
     }
 }

@@ -7,7 +7,7 @@
     <div id="grid">
     <div id="list" class="container-home">
     <div>
-      List of Breweries
+      <router-link id="brewery-list-button" v-bind:to="{ name: 'breweries-display' }">List of Breweries</router-link>
     </div>
     </div>    
     <div id="beer" class="container-home">
@@ -64,6 +64,10 @@ export default {
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
+}
+
+#brewery-list-button {
+  color: black;
 }
 
 @media screen and (max-width: 450px){
