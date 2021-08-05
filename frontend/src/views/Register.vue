@@ -37,17 +37,14 @@
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
-      </button>      
+      </button>
       <br>
       <router-link :to="{ name: 'login' }" class="text">Have an account?</router-link>
     </form>
   </div>
-
 </template>
-
 <script>
 import authService from '../services/AuthService';
-
 export default {
   name: 'register',
   data() {
@@ -94,11 +91,8 @@ export default {
   },
 };
 </script>
-
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
-
 .container-register {
   font-family: 'Poppins', sans-serif;
   font-size: 3vw;
@@ -114,12 +108,10 @@ export default {
   margin-left: 20vw;
   margin-right: 20vw;
 }
-
 .text {
   padding: 2vw;
   font-family: 'Poppins', sans-serif;
   font-size: 2vw;
   text-align: center;
 }
-
 </style>

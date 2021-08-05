@@ -9,6 +9,8 @@
       <router-link id="button" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Login</router-link> &nbsp;|&nbsp;
 
       <router-link id="button" v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''">Register</router-link>
+
+      <router-link id="button" v-bind:to="{ name: 'account' }" v-if="$store.state.token != ''">My Account</router-link>
     
 
     </div>
