@@ -32,6 +32,10 @@ public class JdbcReviewDao implements ReviewDao{
         }
         return reviews;
     }
+
+
+
+
     @Override
     public long createReview(Review r) {
         String sql = "INSERT INTO reviews (reviewer_name, review_text, review_stars, review_type, user_id) " +

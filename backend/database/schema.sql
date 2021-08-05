@@ -39,6 +39,14 @@ CREATE TABLE breweries (
 
 );
 
+-- food_breweries (
+ --  food_id
+ --  brewey_id
+ --  CONSTRAINT pk_food_berweries PRIMARY KEY (food_id, brewery_id)
+ -- CONSTRAINT FK_food_breweries_food FOREIGN KEY (food_id) REFERENCES food(food_id)
+ -- CONSTRAINT FK_food_breweries_breweries FOREIGN KEY (brewery_id) REFERENCES breweries(brewery_id)
+
+
 CREATE TABLE user_breweries (
         user_id int NOT NULL,
         brewery_id int NOT NULL,
@@ -74,6 +82,7 @@ CREATE TABLE reviews (
 );
 
 CREATE TABLE review_of (
+--user_id instead of review_id
         review_id int NOT NULL,
         brewery_id int,
         beer_id int,

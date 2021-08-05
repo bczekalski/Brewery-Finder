@@ -13,8 +13,10 @@ public class Brewery {
     private String website;
     private boolean isActive = true;
     private long foodServedId;
+    private String image;
+    private Boolean active;
 
-    public Brewery(long id, String name, String contactInfo, String history, String operationTime, String address, String city, String state, String zipCode, String website, long foodServedId) {
+    public Brewery(long id, String name, String contactInfo, String history, String operationTime, String address, String city, String state, String zipCode, String website, String image, Boolean active, long foodServedId) {
         this.id = id;
         this.name = name;
         this.contactInfo = contactInfo;
@@ -26,6 +28,8 @@ public class Brewery {
         this.zipCode = zipCode;
         this.website = website;
         this.foodServedId = foodServedId;
+        this.image = image;
+        this.active = active;
     }
 
     public Brewery() {
@@ -125,5 +129,21 @@ public class Brewery {
 
     public void setFoodServedId(long foodServedId) {
         this.foodServedId = foodServedId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }
