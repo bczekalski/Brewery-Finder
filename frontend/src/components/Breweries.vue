@@ -17,7 +17,8 @@ export default {
     name: "breweries",
     data() {
         return {
-            allBreweries: []
+            allBreweries: [],
+            website: ''
         }
         },
         created(){
@@ -25,11 +26,46 @@ export default {
             .then(response => {
                 this.allBreweries = response.data;
             }); 
-            }
         }
+    }
+
+    
+
 </script>
 
 
 <style>
+.container-breweries {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3vw;
+  text-align: center;
+  background-color: white;
+  display: block;
+  border-radius:3vw;
+  padding: 5vw;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+  margin-left: 20vw;
+  margin-right: 20vw;
+}
+.brewery-details {
+    font-size: 1.5vw;
+}
+
+.brewery-history {
+    font-style:italic;
+    text-align: left;
+}
+
+.a {
+    padding: 1.5vw;
+}
+
+.logo-image {
+    width: 35vw;
+}
+
 
 </style>

@@ -5,17 +5,19 @@
       <!-- <img src ="images/c61ca5bebd5fac190227f602ab0d6fe8.png" style="max-width: 128px;"> -->
     </figure>
     <div id="grid">
-    <div id="list" class="container-home">
-    <div>
-      <router-link id="brewery-list-button" v-bind:to="{ name: 'breweries-display' }">List of Breweries</router-link>
-    </div>
-    </div>    
-    <div id="beer" class="container-home">
-    <div>
-      Beer of the Day
-    </div>
-  </div>
-    <br>
+      <div id="list" class="container-home">
+        <div>
+          <router-link id="home-page-button" v-bind:to="{ name: 'breweries-display' }">List of Breweries</router-link>
+        </div>
+      </div>    
+      <div id="beer" class="container-home">
+        <div>
+          <router-link id="home-page-button" v-bind:to="{ name: 'featured-beer' }">Featured Beer</router-link>
+        </div>
+      </div>
+      <div id="events" class="container-home">
+        <router-link id="home-page-button" v-bind:to="{ name: 'events' }">Brewery Events</router-link>
+      </div>
     </div>
   </section>
 </template>
@@ -50,14 +52,18 @@ export default {
     grid-area: "list";
 }
 
-#register {
+#beer {
     grid-area: "beer";
+}
+
+#events {
+    grid-area: "events";
 }
 
 #grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "list beer";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "list beer events";
     row-gap: 20px;
     column-gap: 1fr;
     align-items: center;
@@ -66,7 +72,7 @@ export default {
     align-content: space-evenly;
 }
 
-#brewery-list-button {
+#home-page-button {
   color: black;
 }
 
@@ -82,6 +88,7 @@ export default {
         grid-template-columns: 1fr;
         grid-template-areas: "list"
         "beer"
+        "events"
         ;
     }
 }
