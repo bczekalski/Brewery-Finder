@@ -2,6 +2,7 @@
   <div id="breweries">
     <div class="brewery-list" v-for="brewery in allBreweries" v-bind:key="brewery.id">
         <h2 class="brewery-name">{{ brewery.name }}</h2>
+        <router-link id="brewery-button" v-bind:to="{name: 'brewery-display', params: {breweryId: brewery.id}}">View details</router-link>
         <div class="brewery-details">
         <p class="brewery-history">{{ brewery.history }}</p>
         <p class="contact-info">{{ brewery.contactInfo }}</p>

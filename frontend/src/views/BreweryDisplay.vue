@@ -1,0 +1,19 @@
+<template>
+  <div id="brewery-details">
+      <brewery />
+  </div>
+</template>
+
+<script>
+import Brewery from '@/components/Brewery';
+export default {
+    name: 'brewery-display',
+    components: {
+        Brewery
+    }
+}
+</script>
+
+<style>
+
+</style>
