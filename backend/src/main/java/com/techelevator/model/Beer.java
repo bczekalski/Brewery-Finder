@@ -1,7 +1,7 @@
 package com.techelevator.model;
 public class Beer {
 
-    private long beerId;
+    private long id;
     private String name;
     private String description;
     private String beerType;
@@ -22,14 +22,12 @@ public class Beer {
         this.breweryId = breweryId;
     }
 
-
-
-    public long getBeerId() {
-        return beerId;
+    public long getId() {
+        return id;
     }
 
-    public void setBeerId(long beerId) {
-        this.beerId = beerId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

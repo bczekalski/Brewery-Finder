@@ -39,14 +39,6 @@ CREATE TABLE breweries (
 
 );
 
--- food_breweries (
- --  food_id
- --  brewey_id
- --  CONSTRAINT pk_food_berweries PRIMARY KEY (food_id, brewery_id)
- -- CONSTRAINT FK_food_breweries_food FOREIGN KEY (food_id) REFERENCES food(food_id)
- -- CONSTRAINT FK_food_breweries_breweries FOREIGN KEY (brewery_id) REFERENCES breweries(brewery_id)
-
-
 CREATE TABLE user_breweries (
         user_id int NOT NULL,
         brewery_id int NOT NULL,
@@ -57,9 +49,9 @@ CREATE TABLE user_breweries (
 
 CREATE TABLE beers (
         beer_id SERIAL,
-        beer_name varchar(100) NOT NULL,
+        beer_name varchar(255) NOT NULL,
         beer_type varchar(50) NOT NULL,
-        beer_description varchar(1000) NOT NULL,
+        beer_description varchar(255) NOT NULL,
         abv float NOT NULL,
         image varchar(1000) NOT NULL,
         gluten_free boolean DEFAULT FALSE,
@@ -76,19 +68,26 @@ CREATE TABLE reviews (
         review_stars int NOT NULL,
         review_type varchar(10),
         user_id int NOT NULL,
-        target_id int,
         CONSTRAINT PK_reviews PRIMARY KEY (review_id),
         CONSTRAINT FK_reviews_users FOREIGN KEY (user_id) REFERENCES users(user_id)
         
 );
 
+CREATE TABLE review_of (
+        review_id int NOT NULL,
+        brewery_id int,
+        beer_id int,
+        CONSTRAINT PK_review_of PRIMARY KEY (review_id, brewery_id, beer_id),
+        CONSTRAINT FK_review_of_reviews FOREIGN KEY (review_id) REFERENCES reviews(review_id),
+        CONSTRAINT FK_review_of_breweries FOREIGN KEY (brewery_id) REFERENCES breweries(brewery_id),
+        CONSTRAINT FK_review_of_beers FOREIGN KEY (beer_id) REFERENCES beers(beer_id)
+        
+);
 
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('brewer','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_BREWER');
-INSERT INTO users (username,password_hash,role) VALUES ('bcze','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('cel','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 
 INSERT INTO food (food_name) VALUES ('N/A'), ('Bar Food'), ('American'), ('Seafood'), ('Italian'), ('Vegan'), ('Global Cuisine'), ('Food Trucks');
 
@@ -103,40 +102,6 @@ Our knowledgeable beer staff will guide you through a great experience at both l
 Church Restored To Former Glory As much painstaking effort was taken in the original construction of the building, the same care was used when the renovation of the church and the rectory was undertaken. Attention to detail and the reuse of existing fixtures all help to create a spectacular atmosphere.' ,
 'Mon: 4-10:15PM, Tues: 4-10:15PM, Wed: 4-10:15PM, Thur: 4-10:15PM, Fri: 12:30-11PM, Sat: 12-11PM, Sun: 12:30-9PM', '3525 Liberty Ave','Pittsburgh','PA','15201',
 'https://churchbrew.com/', 'https://churchbrew.com/wp-content/themes/yeast/img/logo.png', true, 7);
-
-INSERT INTO user_breweries (user_id, brewery_id) VALUES 
-(3, 1),(3, 2),(3, 3);
-
-INSERT INTO beers (beer_name, beer_type, beer_description, abv, image, gluten_free, brewery_id) VALUES 
-('Cosmic Void', 'IPA', 'Brewed and dry hopped with Sabro. Notes of Pineapple, Coconut, Tropical Fruit, and Cedar.', 7.0, 
-'https://hitchhiker.beer/wp-content/uploads/HHBC_CosmicVoid_bc_01102019_CMYK.jpg', false, 1),
-('Theories Without Data', 'Double IPA', 'Brewed with Oats and Wheat. Hopped with Nelson Sauvin, Amarillo, and Simcoe.', 8.5,
-'https://hitchhiker.beer/wp-content/uploads/HHBC_TheorieswoDataDIPA_bc_49375x7-1200x757.jpg', false, 1),
-('Fruit Rush- Raspberry', 'Smoothie Sour Shandy', 'Brewed with Oats and Wheat. Conditioned on Lemon and Raspberry.', 4.8,
-'https://hitchhiker.beer/wp-content/uploads/HHBC_FruitRushRaspberry_bc_49375x7-1200x757.jpg', false, 1),
-('Dream Cannon No.3 Starburst', 'Gose', 'Dream Cannon No. 3 bursts out at you with a healthy dose of fresh strawberry, cherry, orange and lemon zest. This slightly tart, crisp sour ale is balanced by the addition of lactobacillus and pink himalayan sea salt. The resulting elixir is light, fruity and refreshing. At only 4.4% it is a perfect way to sip away the sunlight.', 4.4,
-'https://images.squarespace-cdn.com/content/v1/581b7f8f5016e11e7853bdb8/1625017619420-ER67IHDL4U7QT25SA1IZ/DC3+2.jpg?format=750w', false, 2), 
-('Alternate Course No.2 Watermelon', 'Sour Ale', 'Starting with burst of watermelon aroma, this sour ale features a sharp, tangy jolt of lemon that meanders across your tongue before finishing with a satisfying sweet and sour twang. A change of direction from our previous fruited sours, Alternate Course No. 2 also reveals a defined Lemon Drop hop character that amplifies the beer’s citrus notes. So grab a can and set off in a new direction... you might end up in a more pleasant place than where you started.', 7.0,
-'https://images.squarespace-cdn.com/content/v1/581b7f8f5016e11e7853bdb8/1627573087970-7QMUT5OS4CQWWRKFZ8VU/AltCrsWatermelon.jpg?format=750w', false, 2),
-('Paper Birds 2021', 'Sour, Farmhouse', 'Our newest edition of Paper Birds, we took a wonderful sour base fermented with a farmhouse strain and stuffed it full of Pineapple, Tangerine, Mango, Apricot, Raspberry & Blackberry. A crazy pastel color and a delicious edition to our lineup.', 5.7,
-'https://images.squarespace-cdn.com/content/v1/581b7f8f5016e11e7853bdb8/1623179594014-DZ6O9MY3WHAJWU8B72UE/COleBearSQncr.jpg?format=750w', false, 2),
-('Pious Monk Dunkel', 'German-Style Dunkel', 'Our flagship brew is dark in color, but clean & refreshing.  Caramel & Chocolate carry throughout with a slightly grassy finish.', 5.5,
-'https://churchbrew.com/wp-content/themes/yeast/img/logo.png', false, 3), 
-('Tropical Seltzer', 'Seltzer', 'A crisp mango infused seltzer.  One hundred calories of refreshment!', 4.8,
-'https://churchbrew.com/wp-content/themes/yeast/img/logo.png', false, 3), 
-('Southern Tier Nu Haze', 'IPA', 'Citrus and ripe melon notes in this hazy IPA', 6.0,
-'https://churchbrew.com/wp-content/themes/yeast/img/logo.png', false, 3);
-;
-
-INSERT INTO reviews (reviewer_name, review_text, review_stars, review_type, user_id, target_id) VALUES 
-('Brandon Czekalski', 'Hitchhiker is a really cool brewery.', 4, 'Brewery', 4, 1), 
-('Brandon Czekalski', 'Eleventh Hour has really interesting beers, but the atmosphere in the tap room sucks.', 3, 'Brewery', 4, 2), 
-('Brandon Czekalski', 'Church Brew has a really cool design. The beer is good too.', 5, 'Brewery', 4,3 ), 
-('Celeste', 'Church Brew sucks.', 1, 'Brewery', 5, 3), 
-('Brandon Czekalski', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 1), 
-('Brandon Czekalski', 'This years installment of Paper Birds is much better than last years', 4, 'Beer', 4, 6), 
-('Brandon Czekalski', 'This Tropical Seltzer is the greatest beer ever', 5, 'Beer', 4, 8), 
-('Celeste', 'This IPA could use some work', 1, 'Beer', 5, 9);
 
 
 

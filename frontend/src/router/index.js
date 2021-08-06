@@ -8,6 +8,9 @@ import store from '../store/index'
 import RegisterBrewer from '../views/RegisterBrewer.vue'
 import BreweriesDisplay from '../views/BreweriesDisplay.vue'
 import BreweryDisplay from '../views/BreweryDisplay.vue'
+import BeersDisplay from '../views/BeersDisplay.vue'
+import BeerDisplay from '../views/BeerDisplay.vue'
+import BreweryReviewDisplay from '../views/BreweryReviewDisplay'
 
 Vue.use(Router)
 
@@ -72,11 +75,34 @@ const router = new Router({
         requiresAuth: false
       }
     },
-
     {
-      path: "/breweries/:brewery{id}",
+      path: "/breweries/:breweryId",
       name: "brewery-display",
       component: BreweryDisplay,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/breweries/:breweryId/beers',
+      name: 'beers-display',
+      component: BeersDisplay,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/breweries/:breweryId/beers/:beerId',
+      name: 'beer-display',
+      component: BeerDisplay,
+      meta: {
+        requiresAuth: false
+      } 
+    },
+    {
+      path: '/breweries/:breweryId/reviews',
+      name: 'brewery-review-display',
+      component: BreweryReviewDisplay,
       meta: {
         requiresAuth: false
       }

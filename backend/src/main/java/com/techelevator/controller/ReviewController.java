@@ -24,8 +24,19 @@ public class ReviewController {
 
     @Autowired
     ReviewDao reviews;
+    @GetMapping(path="/breweries/{breweryId}/reviews")
+    public List<Review> getBreweryReviews(@PathVariable int breweryId){
+        String type = "Brewery";
+        return reviews.getAllReviewsByTargetId(breweryId, type);
+    }
 
-    @PutMapping(path="/editReview")
+    @GetMapping(path="/breweries/{breweryId}/beers/{beerId}/reviews")
+    public List<Review> getBeerReviews(@PathVariable int beerId){
+        String type = "Beer";
+        return reviews.getAllReviewsByTargetId(beerId, type);
+    }
+
+    @PutMapping(path="/editReview/{reviewId}")
     @ResponseStatus(HttpStatus.OK)
     public void updateReview(@RequestBody Review review) {
         reviews.updateReview(review);

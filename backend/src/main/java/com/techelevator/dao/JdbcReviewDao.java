@@ -16,16 +16,10 @@ public class JdbcReviewDao implements ReviewDao{
     }
 
     @Override
-    public List<Review> getAllReviewsByTargetId(long targetId, boolean beer) {
+    public List<Review> getAllReviewsByTargetId(long targetId, String type) {
         List<Review> reviews = new ArrayList<>();
-        String sql = "SELECT * FROM reviews r JOIN review_of ro ON r.review_id = ro.review_id " +
-                "WHERE ";
-        if (beer){
-            sql += "ro.beer_id = ?;";
-        }else{
-            sql += "ro.brewery_id = ?;";
-        }
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, targetId);
+        String sql = "SELECT * FROM reviews WHERE target_id = ? AND review_type = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, targetId, type);
         while(result.next()){
             Review review = mapRowSetToReview(result);
             reviews.add(review);

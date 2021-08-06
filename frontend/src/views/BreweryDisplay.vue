@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Brewery from '@/components/Brewery';
+import Brewery from '../components/Brewery'
 export default {
     name: 'brewery-display',
     components: {

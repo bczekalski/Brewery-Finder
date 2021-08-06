@@ -63,9 +63,5 @@ public class BreweryController {
         return glutenFreeBeers;
     }
 
-    @GetMapping(path = "/breweries/{breweryId}/beers")
-    public List<Beer> getBeersByBreweryId(@PathVariable int breweryId) {
-        List<Beer> beerList = breweryDao.getBeersByBreweryId(breweryId);
-        return beerList;
-    }
+
 }
