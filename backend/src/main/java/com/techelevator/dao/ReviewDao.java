@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ReviewDao {
 
-    List<Review> getAllReviewsByTargetId(long targetId, boolean isItBeer);
+    List<Review> getAllReviewsByTargetId(long targetId, String type);
 
     long createReview(Review newReview);
 

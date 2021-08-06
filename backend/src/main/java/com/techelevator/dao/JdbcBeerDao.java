@@ -29,14 +29,23 @@ public class JdbcBeerDao implements BeerDao{
         return beerList;
     }
     @Override
+    public List<Beer> getBeersByBreweryId(int breweryId) {
+        List<Beer> beerListbyBrewery = new ArrayList<>();
+        String sqlGetBeersByBrew = "SELECT * FROM beers WHERE brewery_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetBeersByBrew, breweryId);
+        while(result.next()) {
+            Beer beer = (mapRowSetToBeer(result));
+            beerListbyBrewery.add(beer);
+        }
+        return beerListbyBrewery;
+    }
+    @Override
     public Beer getBeerById(int breweryId, int id) {
         String sql = "SELECT * FROM beers " +
                 "WHERE beer_id = ? AND brewery_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id, breweryId);
-        if(result.next()){
-            return mapRowSetToBeer(result);
-        }
-        return null;
+        result.next();
+        return mapRowSetToBeer(result);
     }
     @Override
     public long addBeer(Beer b) {
@@ -64,11 +73,11 @@ public class JdbcBeerDao implements BeerDao{
                 "image = ?, gluten_free = ?, brewery_id = ? " +
                 "WHERE beer_id = ?;";
         jdbcTemplate.update(sql, b.getName(), b.getBeerType(), b.getDescription(),
-                b.getAbv(), b.getImageLink(), b.isGlutenFree(), b.getBreweryId(), b.getBeerId());
+                b.getAbv(), b.getImageLink(), b.isGlutenFree(), b.getBreweryId(), b.getId());
     }
     public Beer mapRowSetToBeer(SqlRowSet rs){
         Beer b = new Beer();
-        b.setBeerId(rs.getLong("beer_id"));
+        b.setId(rs.getLong("beer_id"));
         b.setName(rs.getString("beer_name"));
         b.setBeerType(rs.getString("beer_type"));
         b.setDescription(rs.getString("beer_description"));

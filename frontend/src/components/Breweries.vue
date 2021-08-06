@@ -1,22 +1,12 @@
 <template>
   <div id="breweries">
     <div class="brewery-list" v-for="brewery in allBreweries" v-bind:key="brewery.id">
-        <div class="container-breweries">
-            <h2 class="brewery-name">{{ brewery.name }}</h2>
-            <div class="brewery-details">
-                <div class="brewery-history a">History:     {{ brewery.history }}</div>
-                <div class="contact-info a">Contact Information: {{ brewery.contactInfo }}</div>
-                <div class="operation-time a">Hours: {{ brewery.operationTime }}</div>
-                <div class="full-address a">
-                <div class="address-line-1">Address: {{ brewery.address }}</div>
-                <div class="address-line-2"> 
-                    </div>
-                    {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
-                <div><a class="brewery-website a" :href="brewery.website" target="_blank" :alt="brewery-website" > Website</a></div>
-                <div><img class="logo-image a" :src="brewery.image" alt="Brewery Logo"></div>
-            </div>
-        </div>
-        <br><br><br>
+        
+        <h2 class="brewery-name">{{ brewery.name }}</h2>
+        
+        <router-link id="brewery-button" v-bind:to="{ name: 'brewery-display', params: {breweryId: brewery.id } }">View details</router-link>
+        <router-link id="beers-button" v-bind:to="{ name: 'beers-display', params: {breweryId: brewery.id } }">View beers</router-link>
+        
     </div>
   </div>
 </template>
