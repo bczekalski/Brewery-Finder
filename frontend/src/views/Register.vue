@@ -41,6 +41,7 @@
       <br>
       <router-link :to="{ name: 'login' }" class="text">Have an account?</router-link>
     </form>
+    <router-link :to="{ name: 'register-brewer' }" class="text">Click here to register a brewer account</router-link>
   </div>
 </template>
 <script>

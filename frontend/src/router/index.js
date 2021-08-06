@@ -63,6 +63,7 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
       path: "/breweries",
       name: "breweries-display",
       component: BreweriesDisplay,
