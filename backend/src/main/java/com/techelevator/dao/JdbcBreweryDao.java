@@ -1,6 +1,5 @@
 package com.techelevator.dao;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.techelevator.model.Brewery;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -8,18 +7,20 @@ import com.techelevator.model.Beer;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class JdbcBreweryDao implements BreweryDao{
+
     private JdbcTemplate jdbcTemplate;
-    private ObjectMapper mapper;
+
     public JdbcBreweryDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.mapper = new ObjectMapper();
     }
+
     @Override
     public List<Brewery> getAllBreweries() {
         List <Brewery> breweryList = new ArrayList<>();
-        String sql = "SELECT * FROM breweries"; //order by for sorting order by breweries
+        String sql = "SELECT * FROM breweries ORDER BY brewery_name"; //order by for sorting order by breweries
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
         while(result.next()){
             Brewery brewery = mapRowSetToBrewery(result);
@@ -29,7 +30,7 @@ public class JdbcBreweryDao implements BreweryDao{
     }
     @Override
     public Brewery getBreweryById(int id) {
-        String sqlGetBrewery = "SELECT * FROM breweries WHERE id = ?";
+        String sqlGetBrewery = "SELECT * FROM breweries WHERE brewery_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetBrewery, id);
         result.next();
         Brewery brewery = mapRowSetToBrewery(result);
@@ -50,20 +51,10 @@ public class JdbcBreweryDao implements BreweryDao{
     }
     @Override
     public void updateBrewery(Brewery oneBrewery) {
-        String sql = "UPDATE Breweries SET name =?, contactInfo =?, history =?, operationTime =?, address =?, city =?, state =?, zipCode =?, website =? WHERE brewery_id = ?";
+        String sql = "UPDATE Breweries SET brewery_name =?, contact_info =?, brewery_history =?, operation_time =?, " +
+                "address =?, city =?, state_abrev =?, zip =?, website =? WHERE brewery_id = ?";
         jdbcTemplate.update(sql, oneBrewery.getName(),oneBrewery.getContactInfo(), oneBrewery.getHistory(), oneBrewery.getHistory(), oneBrewery.getOperationTime(),
                 oneBrewery.getAddress(), oneBrewery.getCity(), oneBrewery.getState(), oneBrewery.getZipCode(), oneBrewery.getWebsite(), oneBrewery.getId());
-    }
-    @Override
-    public List<Beer> getBeersByBreweryId(int breweryId) {
-        List<Beer> beerListbyBrewery = new ArrayList<>();
-        String sqlGetBeersByBrew = "SELECT * FROM beers WHERE brewery_id = ?";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetBeersByBrew, breweryId);
-        while(result.next()) {
-            Beer beer = (mapResultToBeer(result));
-            beerListbyBrewery.add(beer);
-        }
-        return beerListbyBrewery;
     }
     @Override
     public List<Brewery> getAllBreweriesWithGFBeer() {
@@ -91,17 +82,5 @@ public class JdbcBreweryDao implements BreweryDao{
         brewery.setOperationTime(result.getString("operation_time"));
         brewery.setFoodServedId(result.getLong("food_served"));
         return brewery;
-    }
-    private Beer mapResultToBeer(SqlRowSet result) {
-        Beer theBeer = new Beer();
-        theBeer.setBeerId(result.getInt("beer_id"));
-        theBeer.setBreweryId(result.getInt("brewery_id"));
-        theBeer.setName(result.getString("name"));
-        theBeer.setDescription(result.getString("description"));
-        theBeer.setImageLink(result.getString("image_link"));
-        theBeer.setAbv(result.getFloat("abv"));
-        theBeer.setBeerType(result.getString("beer_type"));
-        theBeer.setGlutenFree(result.getBoolean("gluten_free"));
-        return theBeer;
     }
 }

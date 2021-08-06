@@ -16,7 +16,5 @@ public interface BreweryDao {
 
     void updateBrewery(Brewery aBrewery);
 
-    List<Beer> getBeersByBreweryId(int breweryId);
-
     List<Brewery> getAllBreweriesWithGFBeer();
 }
