@@ -24,40 +24,40 @@ import com.techelevator.model.Beer;
 public class BeerController {
 
     @Autowired
-    BeerDao Beer1;
+    BeerDao beerDao;
 
-    @GetMapping(path= {"/beers"})
-    public List<Beer> getListOfBeers(){
-        List<Beer> beerList = Beer1.getBeers();
+    @GetMapping(path = "/breweries/{breweryId}/beers")
+    public List<Beer> getBeersByBreweryId(@PathVariable int breweryId) {
+        List<Beer> beerList = beerDao.getBeersByBreweryId(breweryId);
         return beerList;
     }
 
     @GetMapping(path="/breweries/{breweryId}/beers/{id}")
     public Beer getBeerById(@PathVariable int breweryId, @PathVariable int id) {
-        Beer beer = Beer1.getBeerById(breweryId, id);
+        Beer beer = beerDao.getBeerById(breweryId, id);
         return beer;
     }
 
     @PostMapping(path= {"/beers"})
     @ResponseStatus(HttpStatus.CREATED)
     public void addBeer(@RequestBody Beer b) {
-        Beer1.addBeer(b);
+        beerDao.addBeer(b);
     }
 
     @DeleteMapping(path="/beers/{id}")
     public void deleteBeer(@PathVariable int id) {
-        Beer1.deleteBeer(id);
+        beerDao.deleteBeer(id);
     }
 
     @DeleteMapping(path="/beers/{breweryId}")
     public void deleteBeersByBrewery(@PathVariable int id) {
-        Beer1.deleteBeer(id);
+        beerDao.deleteBeer(id);
     }
 
     @PutMapping(path="/updateBeer")
     @ResponseStatus(HttpStatus.OK)
     public void updateBeer(@RequestBody Beer b) {
-        Beer1.updateBeer(b);
+        beerDao.updateBeer(b);
     }
 
 

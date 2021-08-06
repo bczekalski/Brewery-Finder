@@ -16,6 +16,8 @@ public interface BeerDao {
 
     //List<Beer> getAllGlutenFreeBeers();
 
+    List<Beer> getBeersByBreweryId(int breweryId);
+
     void updateBeer(Beer beerToUpdate);
 
 }
