@@ -1,6 +1,6 @@
 <template>
   <div id="breweries">
-    <div class="brewery-list" v-for="brewery in allBreweries" v-bind:key="brewery.id">
+    <div class="brewery-list">
         <div class="container-breweries">
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
@@ -14,6 +14,7 @@
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
                 <div><a class="brewery-website a" :href="brewery.website" target="_blank" :alt="brewery-website" >Website</a></div>
                 <div><img class="logo-image a" :src="brewery.image" alt="Brewery Logo"></div>
+            <router-link id="reviews-button" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
             </div>
         </div>
         <br><br><br>
@@ -27,14 +28,14 @@ export default {
     name: "breweries",
     data() {
         return {
-            allBreweries: [],
+            brewery: {},
             website: ''
         }
         },
         created(){
-            breweryService.getBreweries()
+            breweryService.getById(this.$route.params.breweryId)
             .then(response => {
-                this.allBreweries = response.data;
+                this.brewery = response.data;
             }); 
         }
     }
