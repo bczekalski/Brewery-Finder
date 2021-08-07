@@ -1,15 +1,18 @@
 import axios from 'axios';
 
 
-const http = axios.create({
-    baseURL: "http://localhost:8080"
-});
 
 export default {
     getBreweries(){
-        return http.get('/breweries');
+        return axios.get('/breweries');
     },
     getById(id){
-        return http.get(`/breweries/${id}`);
+        return axios.get(`/breweries/${id}`);
+    },
+    getByUserId(){
+        return axios.get('/account/breweries')
+    },
+    isUserOwner(id){
+        return axios.get(`/breweries/${id}/user`);
     }
 }

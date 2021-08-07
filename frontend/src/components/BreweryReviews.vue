@@ -1,9 +1,9 @@
 <template>
     <div id="brewery-reviews">
-    <div id='new-brewery-form-container'>
-         <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
-      <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
-          <div id = "review-details" v-for="newReview in allReviews" v-bind:key="newReview.id">
+    <h2 v-if="!allReviews.length">No Reviews! Be the first to write one!</h2>
+    <div id = "review-details" v-for="review in allReviews" v-bind:key="review.id">
+    <h2 id='reviewer-name'>{{review.name}}</h2>
+    </div>
     </div>
           <div class="form-element">
               <textarea class="review-text" placeholder="What did you think of this brewery?" v-model="newReview.text"/>

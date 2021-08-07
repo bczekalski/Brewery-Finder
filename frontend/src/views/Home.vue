@@ -77,7 +77,7 @@ export default {
 }
 
 @media screen and (max-width: 450px){
-    #main-grid{
+    #grid{
         display: grid;
         row-gap: 20px;
         column-gap: 20px;

@@ -10,6 +10,8 @@ public interface BreweryDao {
 
     Brewery getBreweryById(int id);
 
+    List<Brewery> getBreweryByUserId(int id);
+
     long createBrewery(Brewery newBrewery);
 
     void deleteBrewery(int id);

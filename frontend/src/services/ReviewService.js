@@ -1,19 +1,19 @@
 import axios from 'axios';
 
 
-const http = axios.create({
-    baseURL: "http://localhost:8080"
-});
 
 export default {
     getBreweryReviews(breweryId){
-        return http.get(`/breweries/${breweryId}/reviews`);
+        return axios.get(`/breweries/${breweryId}/reviews`);
     },
     getBeerReviews(breweryId, beerId){
-        return http.get(`/breweries/${breweryId}/beers/${beerId}/reviews`);
+        return axios.get(`/breweries/${breweryId}/beers/${beerId}/reviews`);
     },
-
-    createReview(review) {
-        return http.post('/reviews', review);
+    getUserReviews(userId){
+        return axios.get('/account/reviews', {
+            params: {
+                id: userId
+            }
+        });
     }
 }
