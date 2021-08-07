@@ -11,5 +11,9 @@ export default {
     },
     getBeerReviews(breweryId, beerId){
         return http.get(`/breweries/${breweryId}/beers/${beerId}/reviews`);
+    },
+
+    createReview(review) {
+        return http.post('/reviews', review);
     }
 }

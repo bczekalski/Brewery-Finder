@@ -3,15 +3,15 @@ package com.techelevator.model;
 public class Review {
 
     private long id;
-    private String reviewName;
+    private String name;
     private String text;
     private int starCount;
     private String type;
     private long userId;
 
-    public Review(long id, String reviewName, String text, int starCount, String type, long userId) {
+    public Review(long id, String name, String text, int starCount, String type, long userId) {
         this.id = id;
-        this.reviewName = reviewName;
+        this.name = name;
         this.text = text;
         this.starCount = starCount;
         this.type = type;
@@ -29,12 +29,12 @@ public class Review {
         this.id = id;
     }
 
-    public String getReviewName() {
-        return reviewName;
+    public String getName() {
+        return name;
     }
 
-    public void setReviewName(String reviewName) {
-        this.reviewName = reviewName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getText() {
