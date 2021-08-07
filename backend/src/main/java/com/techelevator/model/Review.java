@@ -3,20 +3,14 @@ package com.techelevator.model;
 public class Review {
 
     private long id;
-    private String reviewName;
+    private String name;
+    private String title;
     private String text;
     private int starCount;
     private String type;
     private long userId;
-
-    public Review(long id, String reviewName, String text, int starCount, String type, long userId) {
-        this.id = id;
-        this.reviewName = reviewName;
-        this.text = text;
-        this.starCount = starCount;
-        this.type = type;
-        this.userId = userId;
-    }
+    private long targetId;
+    private String targetName;
 
     public Review() {
     }
@@ -29,12 +23,12 @@ public class Review {
         this.id = id;
     }
 
-    public String getReviewName() {
-        return reviewName;
+    public String getName() {
+        return name;
     }
 
-    public void setReviewName(String reviewName) {
-        this.reviewName = reviewName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getText() {
@@ -67,5 +61,29 @@ public class Review {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public long getTargetId() {
+        return targetId;
+    }
+
+    public void setTargetId(long targetId) {
+        this.targetId = targetId;
+    }
+
+    public String getTargetName() {
+        return targetName;
+    }
+
+    public void setTargetName(String targetName) {
+        this.targetName = targetName;
     }
 }

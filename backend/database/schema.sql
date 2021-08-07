@@ -64,16 +64,35 @@ CREATE TABLE beers (
 CREATE TABLE reviews (
         review_id SERIAL NOT NULL,
         reviewer_name varchar(50) NOT NULL,
+        review_title varchar(100) NOT NULL,
         review_text varchar(1000) NOT NULL,
         review_stars int NOT NULL,
         review_type varchar(10),
         user_id int NOT NULL,
-        target_id int,
+        target_id int NOT NULL,
+        reviewee_name varchar(100) NOT NULL,
         CONSTRAINT PK_reviews PRIMARY KEY (review_id),
         CONSTRAINT FK_reviews_users FOREIGN KEY (user_id) REFERENCES users(user_id)
         
 );
 
+CREATE TABLE beer_reviews (
+        review_id int NOT NULL,
+        beer_id int NOT NULL,
+        CONSTRAINT PK_beer_reviews PRIMARY KEY (review_id, beer_id),
+        CONSTRAINT FK_beer_reviews_reviews FOREIGN KEY (review_id) REFERENCES reviews(review_id),
+        CONSTRAINT FK_beer_reviews_beers FOREIGN KEY (beer_id) REFERENCES beers(beer_id)
+
+);
+
+CREATE TABLE brewery_reviews (
+        review_id int NOT NULL,
+        brewery_id int NOT NULL,
+        CONSTRAINT PK_brewery_reviews PRIMARY KEY (review_id, brewery_id),
+        CONSTRAINT FK_brewery_reviews_reviews FOREIGN KEY (review_id) REFERENCES reviews(review_id),
+        CONSTRAINT FK_brewery_reviews_breweries FOREIGN KEY (brewery_id) REFERENCES breweries(brewery_id)
+
+);
 
 
 
@@ -90,7 +109,7 @@ VALUES ('HitchHiker', '(412) 343-1950', 'Our original pub (and our former brewer
 Our new brewery and taproom located in historic Sharpsburg, in a building once home to Fort Pitt Brewing Co., is an unique spot to enjoy all of our beers, as well as our pub fare.
 Our knowledgeable beer staff will guide you through a great experience at both locations. We remain committed to brewing the best beer possible with the lowest environmental impact.', 
 'Mon: Closed, Tues: 4-10PM, Wed: 4-10PM, Thur: 4-10PM, Fri: 4-10PM, Sat:12-10PM, Sun:12-8PM', '1500 S Canal St #2541', 'Pittsburgh', 'PA', '15215', 'https://hitchhiker.beer/', 'https://hitchhiker.beer/wp-content/uploads/hbbc-social-share-image.png', true, 8), 
-('Eleventh Hour', '(412) 676-8034', 'No History available.', 'Mon: Closed, Tues: Closed, Wed: 5-11PM, Thur: 5-11PM, Fri:5-11PM, Sat: 12-11PM, Sun: 1-7PM', '3711 Charlotte St','Pittsburgh','PA','15201',
+('Eleventh Hour', '(412) 676-8034', 'No History available.', 'Mon: Closed, Tues: Closed, Wed: 5-11PM, Thur: 5-11PM, Fri: 5-11PM, Sat: 12-11PM, Sun: 1-7PM', '3711 Charlotte St','Pittsburgh','PA','15201',
 'https://www.11thhourbrews.com/', 'https://lh3.googleusercontent.com/Fg-N3e4p6PI3df8y3zL1H3jl-2KHdZFqnl0bIxRhLlSbW5nONMXhn4vAofvcnrJv6RoeCoPnjmwQOcV41oHUA8Oj0azFIQ=s750', true, 8),
 ('The Church Brew Works', '(412) 688-8200', 'On the 6th of August in 1993, the church was put under an act of suppression by the Bishop of Pittsburgh. The building lay dormant until the construction began in early 1996. It was almost three years to the day when The Church Brew Works reopened the doors of St. John
 Church Restored To Former Glory As much painstaking effort was taken in the original construction of the building, the same care was used when the renovation of the church and the rectory was undertaken. Attention to detail and the reuse of existing fixtures all help to create a spectacular atmosphere.' ,
@@ -121,15 +140,21 @@ INSERT INTO beers (beer_name, beer_type, beer_description, abv, image, gluten_fr
 'https://churchbrew.com/wp-content/themes/yeast/img/logo.png', false, 3);
 ;
 
-INSERT INTO reviews (reviewer_name, review_text, review_stars, review_type, user_id, target_id) VALUES 
-('Brandon Czekalski', 'Hitchhiker is a really cool brewery.', 4, 'Brewery', 4, 1), 
-('Brandon Czekalski', 'Eleventh Hour has really interesting beers, but the atmosphere in the tap room sucks.', 3, 'Brewery', 4, 2), 
-('Brandon Czekalski', 'Church Brew has a really cool design. The beer is good too.', 5, 'Brewery', 4,3 ), 
-('Celeste', 'Church Brew sucks.', 1, 'Brewery', 5, 3), 
-('Brandon Czekalski', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 1), 
-('Brandon Czekalski', 'This years installment of Paper Birds is much better than last years', 4, 'Beer', 4, 6), 
-('Brandon Czekalski', 'This Tropical Seltzer is the greatest beer ever', 5, 'Beer', 4, 8), 
-('Celeste', 'This IPA could use some work', 1, 'Beer', 5, 9);
+INSERT INTO reviews (reviewer_name, review_title, review_text, review_stars, review_type, user_id, target_id, reviewee_name) VALUES 
+('Brandon Czekalski', 'I love this place', 'Hitchhiker is a really cool brewery.', 4, 'Brewery', 4, 1, 'HitchHiker'), 
+('Brandon Czekalski', 'This place is okay', 'Eleventh Hour has really interesting beers, but the atmosphere in the tap room sucks.', 3, 'Brewery', 4, 2, 'Eleventh Hour'), 
+('Brandon Czekalski', 'Amazing place', 'Church Brew has a really cool design. The beer is good too.', 5, 'Brewery', 4, 3, 'The Church Brew Works'), 
+('Celeste', 'Worst service ever', 'Church Brew sucks.', 1, 'Brewery', 5, 3, 'The Church Brew Works'), 
+('Brandon Czekalski', 'Do not recommend', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 1, 'Cosmic Void'), 
+('Brandon Czekalski', 'Heavy improvments', 'This years installment of Paper Birds is much better than last years', 4, 'Beer', 4, 6, 'Paper Birds 2021'), 
+('Brandon Czekalski', 'Top tier beer', 'This Tropical Seltzer is the greatest beer ever', 5, 'Beer', 4, 8, 'Tropical Seltzer'), 
+('Celeste', 'I have no taste buds', 'This IPA could use some work', 1, 'Beer', 5, 9, 'Southern Tier Nu Haze');
+
+INSERT INTO brewery_reviews (review_id, brewery_id) 
+VALUES (1, 1), (2, 2), (3, 3), (4, 3);
+
+INSERT INTO beer_reviews (review_id, beer_id) 
+VALUES (5, 1), (6, 6), (7, 8), (8, 9);
 
 
 

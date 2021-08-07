@@ -17,7 +17,7 @@ public interface ReviewDao {
 
     void deleteReview(int reviewId);
 
-    List<Review> getAllReviewsByUserId(int userId);
+    List<Review> getAllReviewsByUserId(long userId);
 
     //List<Beer> topRatedBeers();
 

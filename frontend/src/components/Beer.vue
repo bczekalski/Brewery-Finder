@@ -5,6 +5,7 @@
     <p id='beer-description'>{{beerDetails.description}}</p>
     <p id='abv'>Alcohol By Volume: {{beerDetails.abv}}%</p>
     <!--{{beer.imageLink}}-->
+    <router-link id="reviews-button" v-bind:to="{ name: 'beer-review-display', params: {breweryId: breweryDetails.id, beerId: beerDetails.id} }">View reviews</router-link>
   </div>
 </template>
 
