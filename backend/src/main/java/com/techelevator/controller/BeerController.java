@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import java.util.List;
 
+import com.techelevator.dao.FeaturedBeerDao;
+import com.techelevator.model.FeaturedBeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.dao.BeerDao;
 import com.techelevator.model.Beer;
 
+
 @RestController
 @CrossOrigin
 
@@ -25,6 +28,8 @@ public class BeerController {
 
     @Autowired
     BeerDao beerDao;
+    @Autowired
+    FeaturedBeerDao featuredBeerDao;
 
     @GetMapping(path = "/breweries/{breweryId}/beers")
     public List<Beer> getBeersByBreweryId(@PathVariable int breweryId) {
@@ -58,6 +63,12 @@ public class BeerController {
     @ResponseStatus(HttpStatus.OK)
     public void updateBeer(@RequestBody Beer b) {
         beerDao.updateBeer(b);
+    }
+
+    @GetMapping(path ="/beers/random")
+    public FeaturedBeer getRandomBeer() {
+        FeaturedBeer featuredBeer = featuredBeerDao.getRandomBeer();
+        return featuredBeer;
     }
 
 
