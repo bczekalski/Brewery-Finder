@@ -10,7 +10,11 @@ import BreweriesDisplay from '../views/BreweriesDisplay.vue'
 import BreweryDisplay from '../views/BreweryDisplay.vue'
 import BeersDisplay from '../views/BeersDisplay.vue'
 import BeerDisplay from '../views/BeerDisplay.vue'
-import BreweryReviewDisplay from '../views/BreweryReviewDisplay'
+import BreweryReviewDisplay from '../views/BreweryReviewDisplay.vue'
+import BeerReviewDisplay from '../views/BeerReviewDisplay.vue'
+import UserReviewsDisplay from '../views/UserReviewsDisplay.vue'
+import MyAccountDisplay from '../views/MyAccountDisplay.vue'
+import UserBreweriesDisplay from '../views/UserBreweriesDisplay.vue'
 
 Vue.use(Router)
 
@@ -105,6 +109,38 @@ const router = new Router({
       component: BreweryReviewDisplay,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/breweries/:breweryId/beers/:beerId/reviews',
+      name: 'beer-review-display',
+      component: BeerReviewDisplay,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/account',
+      name: 'my-account-display',
+      component: MyAccountDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/reviews',
+      name: 'user-reviews-display',
+      component: UserReviewsDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/breweries',
+      name: 'user-breweries-display',
+      component: UserBreweriesDisplay,
+      meta: {
+        requiresAuth: true
       }
     }
   ]

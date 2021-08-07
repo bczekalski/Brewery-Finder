@@ -1,19 +1,14 @@
 package com.techelevator.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import com.techelevator.dao.JdbcBreweryDao;
+import com.techelevator.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import com.techelevator.dao.BreweryDao;
 import com.techelevator.model.Beer;
@@ -25,7 +20,7 @@ public class BreweryController {
 
     private BreweryDao breweryDao;
 
-    public BreweryController (BreweryDao breweryDao) {
+    public BreweryController (BreweryDao breweryDao, UserDao userDao) {
         this.breweryDao = breweryDao;
     }
 
@@ -40,12 +35,19 @@ public class BreweryController {
         return breweryDao.getBreweryById(id);
     }
 
-    /*@DeleteMapping(path = "/breweries/{id}")
+    @GetMapping(path = "/account/breweries")
+    @PreAuthorize("hasRole('ROLE_BREWER')")
+    public List<Brewery> getBreweryByUserId(@RequestParam int id){
+        return breweryDao.getBreweryByUserId(id);
+    }
+
+    @DeleteMapping(path = "/breweries/{id}")
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     public void deleteBrewery(@PathVariable int id) {
         breweryDao.deleteBrewery(id);
-    }*/
+    }
 
-    @PutMapping(path = "/updateBrewery")
+    @PutMapping(path = "account/breweries/{breweryId}")
     @ResponseStatus(HttpStatus.OK)
     public void updateBrewery(@RequestBody Brewery breweryToUpdate) {
         breweryDao.updateBrewery(breweryToUpdate);

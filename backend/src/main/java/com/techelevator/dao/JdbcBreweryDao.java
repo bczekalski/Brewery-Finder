@@ -28,6 +28,7 @@ public class JdbcBreweryDao implements BreweryDao{
         }
         return breweryList;
     }
+
     @Override
     public Brewery getBreweryById(int id) {
         String sqlGetBrewery = "SELECT * FROM breweries WHERE brewery_id = ?";
@@ -35,6 +36,19 @@ public class JdbcBreweryDao implements BreweryDao{
         result.next();
         Brewery brewery = mapRowSetToBrewery(result);
         return brewery;
+    }
+
+    @Override
+    public List<Brewery> getBreweryByUserId(int id){
+        List<Brewery> breweries = new ArrayList<>();
+        String sql = "SELECT * FROM breweries " +
+                "JOIN user_breweries ON breweries.brewery_id = user_breweries.brewery_id " +
+                "WHERE user_breweries.user_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+        while(result.next()){
+            breweries.add(mapRowSetToBrewery(result));
+        }
+        return breweries;
     }
     @Override
     public long createBrewery(Brewery newBrewery) {
@@ -44,11 +58,13 @@ public class JdbcBreweryDao implements BreweryDao{
                         newBrewery.getAddress(), newBrewery.getCity(), newBrewery.getState(), newBrewery.getZipCode(), newBrewery.getWebsite());
         return newId;
     }
+
     @Override
     public void deleteBrewery(int id) {
         String sql = "DELETE FROM breweries WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
+
     @Override
     public void updateBrewery(Brewery oneBrewery) {
         String sql = "UPDATE Breweries SET brewery_name =?, contact_info =?, brewery_history =?, operation_time =?, " +
@@ -56,6 +72,7 @@ public class JdbcBreweryDao implements BreweryDao{
         jdbcTemplate.update(sql, oneBrewery.getName(),oneBrewery.getContactInfo(), oneBrewery.getHistory(), oneBrewery.getHistory(), oneBrewery.getOperationTime(),
                 oneBrewery.getAddress(), oneBrewery.getCity(), oneBrewery.getState(), oneBrewery.getZipCode(), oneBrewery.getWebsite(), oneBrewery.getId());
     }
+
     @Override
     public List<Brewery> getAllBreweriesWithGFBeer() {
         List<Brewery> gfList = new ArrayList<>();
@@ -66,6 +83,7 @@ public class JdbcBreweryDao implements BreweryDao{
         }
         return gfList;
     }
+
     private Brewery mapRowSetToBrewery(SqlRowSet result) {
         Brewery brewery = new Brewery();
         brewery.setId(result.getInt("brewery_id"));
