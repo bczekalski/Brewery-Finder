@@ -15,6 +15,8 @@ import BeerReviewDisplay from '../views/BeerReviewDisplay.vue'
 import UserReviewsDisplay from '../views/UserReviewsDisplay.vue'
 import MyAccountDisplay from '../views/MyAccountDisplay.vue'
 import UserBreweriesDisplay from '../views/UserBreweriesDisplay.vue'
+import BreweryReviewDisplay from '../views/BreweryReviewDisplay'
+import FeaturedBeerDisplay from '../views/FeaturedBeerDisplay.vue'
 
 Vue.use(Router)
 
@@ -141,6 +143,14 @@ const router = new Router({
       component: UserBreweriesDisplay,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: '/featured-beer',
+      name: 'featured-beer',
+      component: FeaturedBeerDisplay,
+      meta: {
+        requiresAuth: false
       }
     }
   ]
