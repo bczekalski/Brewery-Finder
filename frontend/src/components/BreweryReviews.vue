@@ -1,39 +1,41 @@
 <template>
-    <div class="brewery-review-container container-blur" id="brewery-reviews">
-        <div class="brewery-review-container blur-container">
-            <div id="add-review">
-                <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
-                <h2 id="no-reviews" v-if="!allReviews.length">No reviews! Be the first to write one!</h2>
-            </div>
+  <div id="brewery-reviews">
+    <div id='new-beer-form-container'>
+            <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
             <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
-                <div id = "review-details" v-for="newReview in allReviews" v-bind:key="newReview.id">
+                <div class="form-element">
+                    <label for="title">Please summarize your thoughts:</label>
+                    <textarea class="title" placeholder="Review Title" v-model="newReview.title"/>
                 </div>
                 <div class="form-element">
-                    <textarea class="review-text" placeholder="What did you think of this brewery?" v-model="newReview.text"/>
+                    <label for="text">Please provide your detailed thoughts:</label>
+                    <textarea class="text" placeholder="Review Body" v-model="newReview.text"/>
                 </div>
                 <div class="form-element">
-                    <input type="text" class="review-name" placeholder="what is your name" v-model="newReview.name"/>
+                    <label for="name">Enter your name:</label>
+                    <input type="text" class="name" placeholder="Name" v-model="newReview.name"/>
                 </div>
                 <div class="form-element">
-                    <input type="text" class="review-name" placeholder="are you reviewing a beer or brewery?" v-model="newReview.type"/>
-                    <div class="form-element">
-                        <label for="review-starRating">Rating:</label>
-                        <select name="review-starRating" id="review-starRating" v-model="newReview.starCount">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
+                    <label for="star-rating">Select your rating:</label>
+                    <select name="star-rating" id="review-star-rating" v-model="newReview.starCount">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                    </select>
                 </div>
                 <div class="buttons-div">
-                    <input type="submit" value="Save Review" class='form-btns' v-on:click="addReview">
+                    <input type="submit" value="Save Review" class="form-btns">
                     <input type="button" value="Cancel" class='form-btns' v-on:click.prevent="resetForm">
                 </div>
             </form>
         </div>
+    <div id = "review-details" v-for="review in allReviews" v-bind:key="review.id">
+        <!-- This is where all the reviews will display-->
+        <h2> {{ review.name }} </h2>
     </div>
+  </div>
 </template>
 
 <script>
@@ -43,41 +45,40 @@ export default {
     data(){
         return {
             showForm: false,
-            allReviews: {},
-           newReview: {
-            name: 'name',
-            title: 'NA',
-            text: '',
-            starCount: 3,
-            type: 'Brewery',
-            targetId: this.$route.params.breweryId
+            allReviews: [],
+            brewery: {},
+            newReview: {
+                type: 'Brewery',
+                targetId: this.$route.params.breweryId
             }
         }
     },
-     methods: {
-        resetForm() {
-            this.showForm = false;
-        },
-
-        addReviewToArray() {
-            this.allReviews.push(this.newReview);
-        },
-
-        addReview() {
-            reviewService.createReview1(this.newReview)
-            .then(response=> {
-                if (response.status === 201) {
-                    this.resetForm();
-                    this.addReviewToArray();
-                }
-            })
-        },
     created() {
         reviewService.getBreweryReviews(this.$route.params.breweryId).then((response) => {
             this.allReviews = response.data;
         })
+    },
+    methods: {
+        resetForm() {
+            this.newReview = {
+                        type: 'Brewery',
+                        targetId: this.$route.params.breweryId
+            };
+            this.showForm = false;
+        },
+
+        addReview() {
+            reviewService.createReview(this.newReview)
+            .then(response=> {
+                if (response.status === 201) {
+                    this.allReviews.push(this.newReview);
+                    this.resetForm();
+                    this.$router.push(`/breweries/:breweryId/reviews`)
+                }
+            })
+        },
+     
     }
-}
 }
 </script>
 <style>

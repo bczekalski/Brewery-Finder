@@ -3,26 +3,21 @@ import axios from 'axios';
 
 
 export default {
-    getBreweryReviews(breweryId){
-        return axios.get(`/breweries/${breweryId}/reviews`);
+    getBreweryReviews(id){
+        return axios.get(`/breweries/${id}/reviews`);
     },
     getBeerReviews(breweryId, beerId){
         return axios.get(`/breweries/${breweryId}/beers/${beerId}/reviews`);
     },
 
-    createReview1(review){
+    createReview(review){
         return axios.post('/breweries/${breweryId}/reviews', review);
       },
 
-      createBeerReview(review){
+      /*createBeerReview(review){
         return axios.post('/breweries/${breweryId}/beers/${beerId}/reviews', review);
-      },
-
-    getUserReviews(userId){
-        return axios.get('/account/reviews', {
-            params: {
-                id: userId
-            }
-        });
-    }
+      },*/
+      getUserReviews(){
+        return axios.get('/account/reviews');
+      }
 }
