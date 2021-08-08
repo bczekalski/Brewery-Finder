@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="text-center container-login">
+  <div id="login" class="text-center container-login container-blur">
     <form class="form-signin" @submit.prevent="login">
       <h2 class="h3 mb-3">Please Sign In</h2>
       <div
@@ -12,7 +12,7 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only text">Username</label>
+      <label for="username" class="sr-only login-text">Username</label>
       <input
         type="text"
         id="username"
@@ -23,7 +23,7 @@
         autofocus
       />
       <br>
-      <label for="password" class="sr-only text">Password</label>
+      <label for="password" class="sr-only login-text">Password</label>
       <input
         type="password"
         id="password"
@@ -35,7 +35,7 @@
       <br>
       <button type="submit">Sign in</button>
       <br>
-      <router-link :to="{ name: 'register' }" class="text">Need an account?</router-link>  
+      <router-link :to="{ name: 'register' }" class="login-text link-in-black">Need an account?</router-link>  
     </form>
   </div>
 </template>
@@ -89,7 +89,6 @@ h2 {
   font-family: 'Poppins', sans-serif;
   font-size: 3vw;
   text-align: center;
-  background-color: white;
   display: block;
   border-radius:3vw;
   padding: 3vw;
@@ -101,7 +100,7 @@ h2 {
   margin-right: 20vw;
 }
 
-.text {
+.login-text {
   padding: 2vw;
   font-family: 'Poppins', sans-serif;
   font-size: 2vw;

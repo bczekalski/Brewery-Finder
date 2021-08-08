@@ -1,12 +1,12 @@
 <template>
-  <div id='beer-details'>
-     <router-link id="beers-button" v-bind:to="{ name: 'beers-display', params: {breweryId: breweryDetails.id } }">Return to Beer List</router-link>
-    <h2 id='beer-name'>{{beerDetails.name}}</h2>
-    <h2 id='beer-type'>{{beerDetails.beerType}}</h2>
-    <p id='beer-description'>{{beerDetails.description}}</p>
-    <p id='abv'>Alcohol By Volume: {{beerDetails.abv}}%</p>
-    <!--{{beer.imageLink}}-->
-    <router-link id="reviews-button" v-bind:to="{ name: 'beer-review-display', params: {breweryId: breweryDetails.id, beerId: beerDetails.id} }">View reviews</router-link>
+  <div class="container-beer-details container-blur">
+    <router-link id="beers-button" class="link-in-black" v-bind:to="{ name: 'beers-display', params: {breweryId: breweryDetails.id } }">Return to Beer List</router-link>
+    <div><img :src="beerDetails.image" ></div>
+    <h2 class="beer-details-text">{{beerDetails.name}}</h2>
+    <h2 class="beer-details-text">{{beerDetails.beerType}}</h2>
+    <p class="beer-details-description">{{beerDetails.description}}</p>
+    <p class="beer-details-text">Alcohol By Volume: {{beerDetails.abv}}%</p>
+    <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'beer-review-display', params: {breweryId: breweryDetails.id, beerId: beerDetails.id} }">View reviews</router-link>
   </div>
 </template>
 
@@ -36,29 +36,31 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
 
-#beer-name {
-    font-family: 'Oswald', sans-serif;
-    font-size: 5vw;
+
+
+.beer-details-text {
+    font-size: 2vw;
 }
 
-
-#beer-details {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2vw;
-  text-align: center;
-  background-color: whitesmoke;
-  display: block;
-  border-radius:3vw;
-  padding: 5vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  margin-left: 20vw;
-  margin-right: 20vw;
-}
-
-#beer-description {
+.beer-details-description {
+    font-size: 2vw;
     font-style: italic;
+    text-align: left;
+}
+
+.container-beer-details {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius: 3vw;
+    padding: 1.5vw;
+    padding-bottom: 4vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 </style>
