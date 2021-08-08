@@ -3,8 +3,6 @@
     <div class="brewery-list">
         <div class="container-breweries">
             <h2 class="brewery-name">{{ brewery.name }}</h2>
-            <router-link id="edit-breweries-button" v-bind:to="{ name: 'edit-brewery-display', params: {breweryId: brewery.id} }"
-            v-if="this.userOwnsBrewery">Update this breweries information.</router-link>
             <div class="brewery-details">
                 <div class="brewery-history a">History: {{ brewery.history }}</div>
                 <div class="contact-info a">Contact Information: {{ brewery.contactInfo }}</div>
@@ -35,8 +33,7 @@ export default {
     data() {
         return {
             brewery: {},
-            website: '',
-            ownsThisBrewery: false
+            website: ''
         }
         },
         created(){
@@ -44,18 +41,10 @@ export default {
             .then(response => {
                 this.brewery = response.data;
             });
-            breweryService.isUserOwner(this.$route.params.breweryId).then((response) => {
-                this.ownsThisBrewery = response.data;
-            }) 
         },
         methods: {
             splitJoin(hours){
                 return hours.split(', ');
-            }
-        },
-        computed: {
-            userOwnsBrewery: function() {
-                return this.$store.state.user.authorities[0].name == 'ROLE_BREWER' && this.ownsThisBrewery;
             }
         }
     }
