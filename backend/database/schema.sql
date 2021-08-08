@@ -39,6 +39,14 @@ CREATE TABLE breweries (
 
 );
 
+-- food_breweries (
+ --  food_id
+ --  brewey_id
+ --  CONSTRAINT pk_food_berweries PRIMARY KEY (food_id, brewery_id)
+ -- CONSTRAINT FK_food_breweries_food FOREIGN KEY (food_id) REFERENCES food(food_id)
+ -- CONSTRAINT FK_food_breweries_breweries FOREIGN KEY (brewery_id) REFERENCES breweries(brewery_id)
+
+
 CREATE TABLE user_breweries (
         user_id int NOT NULL,
         brewery_id int NOT NULL,
@@ -93,7 +101,6 @@ CREATE TABLE brewery_reviews (
         CONSTRAINT FK_brewery_reviews_breweries FOREIGN KEY (brewery_id) REFERENCES breweries(brewery_id)
 
 );
-
 
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');

@@ -11,7 +11,7 @@ public class Brewery {
     private String state;
     private String zipCode;
     private String website;
-    private boolean isActive = true;
+    private boolean active = true;
     private long foodServedId;
     private String image;
 
@@ -29,6 +29,8 @@ public class Brewery {
         this.website = website;
         this.image = image;
         this.foodServedId = foodServedId;
+        this.image = image;
+        this.active = active;
     }
 
     public Brewery() {}
@@ -122,11 +124,11 @@ public class Brewery {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        active = active;
     }
 
     public long getFoodServedId() {
