@@ -4,6 +4,10 @@
         <div class="container-breweries">
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
+                <div id="edit" v-if="brewery.owner || $store.state.user.authorities[0].name=='ROLE_ADMIN'">
+                    Information outdated?
+                    <router-link id="edit-brewery-button" v-bind:to="{ name: 'edit-brewery-display', params: {breweryId: brewery.id } }">Update it here.</router-link>
+                </div>
                 <div class="brewery-history a">History: {{ brewery.history }}</div>
                 <div class="contact-info a">Contact Information: {{ brewery.contactInfo }}</div>
                 <div id="hours-text" class="operation-time a">Hours: 
@@ -37,7 +41,7 @@ export default {
         }
         },
         created(){
-            breweryService.getById(this.$route.params.breweryId)
+            breweryService.getByIdLogged(this.$route.params.breweryId)
             .then(response => {
                 this.brewery = response.data;
             });
