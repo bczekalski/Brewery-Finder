@@ -23,4 +23,5 @@ public interface ReviewDao {
 
     int deleteReviews(int userId);
 
+    long createBeerReview(Review r);
 }

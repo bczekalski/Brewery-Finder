@@ -19,47 +19,62 @@ import com.techelevator.model.Review;
 public class ReviewController {
 
     @Autowired
-    ReviewDao reviews;
+    ReviewDao reviewDao;
 
     @Autowired
-    UserDao users;
+    UserDao userDao;
 
     @GetMapping(path="/breweries/{breweryId}/reviews")
     public List<Review> getBreweryReviews(@PathVariable int breweryId){
         String type = "Brewery";
-        return reviews.getAllReviewsByTargetId(breweryId, type);
+        return reviewDao.getAllReviewsByTargetId(breweryId, type);
     }
 
     @GetMapping(path="/account/reviews")
     @PreAuthorize("isAuthenticated()")
     public List<Review> getUserReviews(Principal principal){
-        return reviews.getAllReviewsByUserId(users.findByUsername(principal.getName()).getId());
+        return reviewDao.getAllReviewsByUserId(userDao.findByUsername(principal.getName()).getId());
     }
 
     @GetMapping(path="/breweries/{breweryId}/beers/{beerId}/reviews")
     public List<Review> getBeerReviews(@PathVariable int beerId){
         String type = "Beer";
-        return reviews.getAllReviewsByTargetId(beerId, type);
+        return reviewDao.getAllReviewsByTargetId(beerId, type);
     }
 
     @PutMapping(path="/editReview/{reviewId}")
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.OK)
     public void updateReview(@RequestBody Review review) {
-        reviews.updateReview(review);
+        reviewDao.updateReview(review);
     }
 
     @DeleteMapping(path="/account/reviews")
     @PreAuthorize("isAuthenticated()")
     public void deleteReviews(@PathVariable int userId) {
-        reviews.deleteReviews(userId);
+        reviewDao.deleteReviews(userId);
     }
 
     @PostMapping(path="/breweries/{breweryId}/reviews")
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createReview(@RequestBody Review r) {
-        reviews.createReview(r);
+    public void createReview(Review r, Principal principal) {
+        r.setUserId(getId(principal));
+        reviewDao.createReview(r);
+    }
+
+    @PostMapping(path="/breweries/{breweryId}/beers/{beerId}/reviews")
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createBeerReview(Review r, Principal principal) {
+        r.setUserId(getId(principal));
+        reviewDao.createBeerReview(r);
+    }
+
+
+
+    private long getId(Principal principal){
+        return userDao.findIdByUsername(principal.getName());
     }
 
     /*@GetMapping(path="/reviews/review/{reviewId}")

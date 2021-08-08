@@ -34,10 +34,10 @@ public class JdbcReviewDao implements ReviewDao {
 
     @Override
     public long createReview(Review r) {
-        String sql = "INSERT INTO reviews (reviewer_name, review_title, review_text, review_stars, review_type, user_id, target_id, reviewee_name) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING review_id;";
+        String sql = "INSERT INTO reviews (reviewer_name, review_title, review_text, review_stars, review_type, user_id, target_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING review_id;";
         long newId = jdbcTemplate.queryForObject(sql, Long.class, r.getName(), r.getTitle(), r.getText(),
-                r.getStarCount(), r.getType(), r.getUserId(), r.getTargetId(), r.getTargetName());
+                r.getStarCount(), r.getType(), r.getUserId(), r.getTargetId());
         return newId;
     }
     @Override
@@ -80,6 +80,15 @@ public class JdbcReviewDao implements ReviewDao {
         String sql = "DELETE * FROM reviews WHERE userId = ?;";
         int count = jdbcTemplate.update(sql, userId);
         return count;
+    }
+
+    @Override
+    public long createBeerReview(Review r) {
+        String sql = "INSERT INTO reviews (reviewer_name, review_title, review_text, review_stars, review_type, user_id, target_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING review_id;";
+        long newId = jdbcTemplate.queryForObject(sql, Long.class, r.getName(), r.getTitle(), r.getText(),
+                r.getStarCount(), r.getType(), r.getUserId(), r.getTargetId());
+        return newId;
     }
 
     private Review mapRowSetToReview(SqlRowSet rs) {
