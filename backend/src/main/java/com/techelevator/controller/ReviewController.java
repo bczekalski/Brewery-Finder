@@ -33,7 +33,7 @@ public class ReviewController {
     @GetMapping(path="/account/reviews")
     @PreAuthorize("isAuthenticated()")
     public List<Review> getUserReviews(Principal principal){
-        return reviewDao.getAllReviewsByUserId(userDao.findByUsername(principal.getName()).getId());
+        return reviewDao.getAllReviewsByUserId(getId(principal));
     }
 
     @GetMapping(path="/breweries/{breweryId}/beers/{beerId}/reviews")
@@ -58,7 +58,7 @@ public class ReviewController {
     @PostMapping(path="/breweries/{breweryId}/reviews")
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createReview(Review r, Principal principal) {
+    public void createReview(@RequestBody Review r, Principal principal) {
         r.setUserId(getId(principal));
         reviewDao.createReview(r);
     }
@@ -66,16 +66,11 @@ public class ReviewController {
     @PostMapping(path="/breweries/{breweryId}/beers/{beerId}/reviews")
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createBeerReview(Review r, Principal principal) {
+    public void createBeerReview(@RequestBody Review r, Principal principal) {
         r.setUserId(getId(principal));
-        reviewDao.createBeerReview(r);
+        reviewDao.createReview(r);
     }
-
-
-
-    private long getId(Principal principal){
-        return userDao.findIdByUsername(principal.getName());
-    }
+    
 
     /*@GetMapping(path="/reviews/review/{reviewId}")
     public Review getReviewsByReviewId(@PathVariable int reviewId){
@@ -83,7 +78,9 @@ public class ReviewController {
         return userReviews;
     }*/
 
-
+    private long getId(Principal principal){
+        return userDao.findIdByUsername(principal.getName());
+    }
 
 
 

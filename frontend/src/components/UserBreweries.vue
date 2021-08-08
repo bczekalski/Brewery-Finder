@@ -3,7 +3,7 @@
     <div class="brewery-list" v-for="brewery in allBreweries" v-bind:key="brewery.id">
         
         <h2 class="brewery-name">{{ brewery.name }}</h2>
-        <router-link id="brewery-button" v-bind:to="{ name: 'brewery-display', params: {breweryId: brewery.id } }">View details.</router-link>
+        <router-link id="brewery-button" v-bind:to="{ name: 'brewer-brewery-display', params: {breweryId: brewery.id } }">View details.</router-link>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
         }
     },
     created() {
-      breweryService.getByUserId(this.$store.state.user.id).then((response) => {
+      breweryService.getByUserId().then((response) => {
           this.allBreweries = response.data;
       })  
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Repository
 public class JdbcReviewDao implements ReviewDao {
@@ -20,8 +21,8 @@ public class JdbcReviewDao implements ReviewDao {
     @Override
     public List<Review> getAllReviewsByTargetId(long targetId, String type) {
         List<Review> reviews = new ArrayList<>();
-        String sql = "SELECT * FROM reviews WHERE target_id = ? AND review_type = ?;";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, targetId, type);
+        String sql = "SELECT * FROM reviews WHERE review_type = ? AND target_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, type, targetId);
         while(result.next()){
             Review review = mapRowSetToReview(result);
             reviews.add(review);
@@ -52,10 +53,10 @@ public class JdbcReviewDao implements ReviewDao {
     @Override
     public void updateReview(Review r) {
         String sql = "UPDATE reviews SET reviewer_name = ?, review_title = ?, review_text = ?, " +
-                "review_stars = ?, review_type = ?, user_id = ?, target_id = ?, reviewee_name = ? " +
+                "review_stars = ?, review_type = ?, user_id = ?, target_id = ? " +
                 "WHERE review_id = ?;";
         jdbcTemplate.update(sql, r.getName(), r.getTitle(), r.getText(), r.getStarCount(),
-                r.getType(), r.getUserId(), r.getTargetId(), r.getTargetName(), r.getId());
+                r.getType(), r.getUserId(), r.getTargetId(), r.getId());
     }
 
     @Override
@@ -82,15 +83,6 @@ public class JdbcReviewDao implements ReviewDao {
         return count;
     }
 
-    @Override
-    public long createBeerReview(Review r) {
-        String sql = "INSERT INTO reviews (reviewer_name, review_title, review_text, review_stars, review_type, user_id, target_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING review_id;";
-        long newId = jdbcTemplate.queryForObject(sql, Long.class, r.getName(), r.getTitle(), r.getText(),
-                r.getStarCount(), r.getType(), r.getUserId(), r.getTargetId());
-        return newId;
-    }
-
     private Review mapRowSetToReview(SqlRowSet rs) {
         Review r = new Review();
         r.setId(rs.getLong("review_id"));
@@ -101,7 +93,23 @@ public class JdbcReviewDao implements ReviewDao {
         r.setType(rs.getString("review_type"));
         r.setUserId(rs.getLong("user_id"));
         r.setTargetId(rs.getLong("target_id"));
-        r.setTargetName(rs.getString("reviewee_name"));
+        r.setTargetName(getTargetName(r.getId(), r.getType()));
         return r;
+    }
+
+    private String getTargetName(long id, String type){
+        String sql;
+        if(type.equals("Beer")){
+            sql = "SELECT beer_name FROM beers b JOIN beer_reviews br ON br.beer_id = b.beer_id " +
+                    "WHERE br.review_id = ?;";
+        }else if(type.equals("Brewery")){
+            sql = "SELECT brewery_name FROM breweries b JOIN brewery_reviews br ON br.brewery_id = b.brewery_id " +
+                    "WHERE br.review_id = ?;";
+        }else{
+            return null;
+        }
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+        result.next();
+        return result.getString(type.toLowerCase(Locale.ROOT)+"_name");
     }
 }
