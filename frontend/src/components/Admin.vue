@@ -1,7 +1,12 @@
 <template>
   <div id='admin-menu'>
-    <router-link id="map-button" v-bind:to="{ name: 'manage-brewers-display' }">Map a Brewer to a Brewery.</router-link>
-    <router-link id="add-button" v-bind:to="{ name: 'add-brewery-display' }">Add a new Brewery.</router-link>
+    <div class="container-admin-function container-blur">
+    <router-link id="map-button" class="link-in-black" v-bind:to="{ name: 'manage-brewers-display' }">Map Brewer to Brewery</router-link>
+    </div>
+    <br>
+    <div class="container-admin-function container-blur">
+    <router-link id="add-button" class="link-in-black" v-bind:to="{ name: 'add-brewery-display' }">Add New Brewery</router-link>
+    </div>
   </div>
 </template>
 
@@ -13,5 +18,18 @@ export default {
 </script>
 
 <style>
-
+.container-admin-function {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius: 3vw;
+    padding: 1.5vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
 </style>

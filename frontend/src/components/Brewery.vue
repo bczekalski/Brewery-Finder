@@ -3,8 +3,8 @@
       
     <div class="brewery-list">
         
-        <div class="container-breweries">
-            <a id="return-link" href="http://localhost:8082/breweries">Return to Breweries List</a>
+        <div class="container-brewery container-blur">
+            <router-link class="link-in-black" v-bind:to="{name: 'breweries-display'}">Return to Brewery List</router-link>
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
                 <div class="brewery-history a">History: {{ brewery.history }}</div>
@@ -19,9 +19,9 @@
                 <div class="address-line-2"> 
                     </div>
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
-                <div><a class="brewery-website a" :href="brewery.website" target="_blank" :alt="brewery-website" >Website</a></div>
+                <div><a class="brewery-website a link-in-black" :href="brewery.website" target="_blank" :alt="brewery-website" >Website</a></div>
                 <div><img class="logo-image a" :src="brewery.image" alt="Brewery Logo"></div>
-            <router-link id="reviews-button" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
+            <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
             </div>
         </div>
         <br><br><br>
@@ -59,20 +59,19 @@ export default {
 
 
 <style>
-.container-breweries {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3vw;
-  text-align: center;
-  background-color: white;
-  display: block;
-  border-radius:3vw;
-  padding: 5vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  margin-left: 20vw;
-  margin-right: 20vw;
+.container-brewery {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius:3vw;
+    padding: 5vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 .brewery-details {
     font-size: 1.5vw;
@@ -96,8 +95,7 @@ li {
 }
 
 #return-link {
-    font-size: 16px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5vw;
 }
 
 </style>

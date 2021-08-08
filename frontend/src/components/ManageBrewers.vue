@@ -1,7 +1,7 @@
 <template>
-  <form v-on:submit.prevent="updateBrewer">
+  <form class="container-assign-brewer container-blur" v-on:submit.prevent="updateBrewer">
       <div class="form-element">
-            <label for="brewery">Please select a brewer to manage this brewery:</label>
+            <label for="brewery">Please select a brewery: </label>
             <select id="brewery" type="text" v-model="breweryToUpdate">
                 <option v-bind:value="brewery" v-for="brewery in allBreweries" v-bind:key="brewery.id">
                     {{ brewery.name }}</option>
@@ -9,7 +9,7 @@
         </div>
       
       <div class="form-element">
-            <label for="brewer">Please select a brewer to manage this brewery:</label>
+            <label for="brewer">Please select a brewer to manage this brewery: </label>
             <select id="brewer" type="text" v-model="breweryToUpdate.ownerId">
                 <option v-bind:value="user.id" v-for="user in brewerList" v-bind:key="user.id">
                     {{ user.username }}</option>
@@ -61,5 +61,20 @@ export default {
 </script>
 
 <style>
+
+.container-assign-brewer {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw;
+    text-align: center;
+    display: block;
+    border-radius: 3vw;
+    padding: 1.5vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
 
 </style>

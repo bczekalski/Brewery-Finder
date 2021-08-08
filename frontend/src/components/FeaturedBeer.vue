@@ -1,5 +1,5 @@
 <template>
-    <div class="container-featured-beer">
+    <div class="container-featured-beer container-blur">
             <h2>Featured Beer</h2>        
                 <div id='grid-featured-beer'>
                     <h4 id='beer-brand'>{{ featuredBeer.brands }}</h4>
@@ -30,19 +30,18 @@ export default {
 <style>
 
 .container-featured-beer {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3vw;
-  text-align: center;
-  background-color: white;
-  display: block;
-  border-radius:3vw;
-  padding: 2vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  margin-left: 30vw;
-  margin-right: 30vw;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius:3vw;
+    padding: 2vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 30vw;
+    margin-right: 30vw;
 }
 
 #beer-brand {
@@ -67,7 +66,8 @@ export default {
 #grid-featured-beer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "image brand"
+    grid-template-areas:
+                         "image brand"
                          "image product"
                          "image abv";
     row-gap: 20px;
