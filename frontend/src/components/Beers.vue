@@ -1,16 +1,12 @@
 <template>
     <div id='beer-list'>
-         <a id="return-link" href="http://localhost:8082/breweries">Return to Breweries List</a>
+        <router-link id="breweries-list" v-bind:to="{name: 'breweries-display'}">Return to Brewery List</router-link>
         <h1 id='brewery-name'>{{breweryDetails.name}} Presents: </h1>
         <div id='beers' v-for="beer in allBeers" v-bind:key="beer.id">
         <h1 id='beer-name'>{{beer.name}}</h1>
         <router-link id="beer-button" v-bind:to="{name: 'beer-display', params: {breweryId: breweryDetails.id, beerId: beer.id} }">View Beer Details</router-link>
-        
-        
-
         </div>
     </div>
-  
 </template>
 
 <script>

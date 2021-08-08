@@ -2,9 +2,7 @@ package com.techelevator.controller;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
-import com.techelevator.dao.JdbcBreweryDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Food;
 import com.techelevator.model.User;
@@ -14,7 +12,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.techelevator.dao.BreweryDao;
-import com.techelevator.model.Beer;
 import com.techelevator.model.Brewery;
 
 @RestController

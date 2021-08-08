@@ -26,8 +26,7 @@ public class ReviewController {
 
     @GetMapping(path="/breweries/{breweryId}/reviews")
     public List<Review> getBreweryReviews(@PathVariable int breweryId){
-        String type = "Brewery";
-        return reviewDao.getAllReviewsByTargetId(breweryId, type);
+        return reviewDao.getAllReviewsByBreweryId(breweryId);
     }
 
     @GetMapping(path="/account/reviews")
@@ -38,8 +37,7 @@ public class ReviewController {
 
     @GetMapping(path="/breweries/{breweryId}/beers/{beerId}/reviews")
     public List<Review> getBeerReviews(@PathVariable int beerId){
-        String type = "Beer";
-        return reviewDao.getAllReviewsByTargetId(beerId, type);
+        return reviewDao.getAllReviewsByBeerId(beerId);
     }
 
     @PutMapping(path="/editReview/{reviewId}")
@@ -70,13 +68,6 @@ public class ReviewController {
         r.setUserId(getId(principal));
         reviewDao.createReview(r);
     }
-    
-
-    /*@GetMapping(path="/reviews/review/{reviewId}")
-    public Review getReviewsByReviewId(@PathVariable int reviewId){
-        Review userReviews = reviews.getReviewByReviewId(reviewId);
-        return userReviews;
-    }*/
 
     private long getId(Principal principal){
         return userDao.findIdByUsername(principal.getName());
