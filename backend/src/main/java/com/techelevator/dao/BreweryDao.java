@@ -2,15 +2,17 @@ package com.techelevator.dao;
 
 import java.util.List;
 import com.techelevator.model.Brewery;
-import com.techelevator.model.Beer;
+import com.techelevator.model.Food;
 
 public interface BreweryDao {
 
     List<Brewery> getAllBreweries();
 
+    Brewery getBreweryByIdLogged(int id, long userId);
+
     Brewery getBreweryById(int id);
 
-    List<Brewery> getBreweryByUserId(int id);
+    List<Brewery> getBreweryByUserId(long id);
 
     long createBrewery(Brewery newBrewery);
 
@@ -19,4 +21,8 @@ public interface BreweryDao {
     void updateBrewery(Brewery aBrewery);
 
     List<Brewery> getAllBreweriesWithGFBeer();
+
+    List<Food> getFoodList();
+
+    void updateBrewer(Brewery brewery);
 }

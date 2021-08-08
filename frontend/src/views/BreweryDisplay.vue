@@ -11,10 +11,11 @@ export default {
     components: {
         Brewery
     }
-
 }
 </script>
 
 <style>
+
+
 
 </style>

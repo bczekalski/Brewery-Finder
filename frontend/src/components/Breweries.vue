@@ -5,6 +5,7 @@
         <h2 class="brewery-name">{{ brewery.name }}</h2>
         
         <router-link id="brewery-button" v-bind:to="{ name: 'brewery-display', params: {breweryId: brewery.id } }">View details</router-link>
+        <br>
         <router-link id="beers-button" v-bind:to="{ name: 'beers-display', params: {breweryId: brewery.id } }">View beers</router-link>
         
     </div>

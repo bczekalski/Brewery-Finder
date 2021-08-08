@@ -16,6 +16,11 @@ import UserReviewsDisplay from '../views/UserReviewsDisplay.vue'
 import MyAccountDisplay from '../views/MyAccountDisplay.vue'
 import UserBreweriesDisplay from '../views/UserBreweriesDisplay.vue'
 import FeaturedBeerDisplay from '../views/FeaturedBeerDisplay.vue'
+import EditBreweryDisplay from '../views/EditBreweryDisplay.vue'
+import AdminDisplay from '../views/AdminDisplay.vue'
+import AddBreweryDisplay from '../views/AddBreweryDisplay.vue'
+import BrewerBreweryDisplay from '../views/BrewerBreweryDisplay.vue'
+import ManageBrewersDisplay from '../views/ManageBrewersDisplay.vue'
 
 Vue.use(Router)
 
@@ -150,6 +155,46 @@ const router = new Router({
       component: FeaturedBeerDisplay,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/account/breweries/:breweryId/edit',
+      name: 'edit-brewery-display',
+      component: EditBreweryDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/admin',
+      name: 'admin-display',
+      component: AdminDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/admin/add',
+      name: 'add-brewery-display',
+      component: AddBreweryDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/breweries/:breweryId',
+      name: 'brewer-brewery-display',
+      component: BrewerBreweryDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/admin/assign',
+      name: 'manage-brewers-display',
+      component: ManageBrewersDisplay,
+      meta: {
+        requiresAuth: true
       }
     }
   ]
