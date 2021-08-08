@@ -1,7 +1,10 @@
 <template>
   <div id="brewery-reviews">
-    <div id='new-beer-form-container'>
-            <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
+    <div id='new-brewery-form-container'>
+            <div id="add-review">
+                <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
+                <h2 id="no-reviews" v-if="!allReviews.length">No reviews! Be the first to write one!</h2>
+            </div>
             <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
                 <div class="form-element">
                     <label for="title">Please summarize your thoughts:</label>
@@ -45,7 +48,6 @@ export default {
         return {
             showForm: false,
             allReviews: [],
-            brewery: {},
             newReview: {
                 type: 'Brewery',
                 targetId: this.$route.params.breweryId
@@ -70,9 +72,8 @@ export default {
             reviewService.createReview(this.newReview)
             .then(response=> {
                 if (response.status === 201) {
-                    this.allReviews.push(this.newReview);
+                    this.allReviews.unshift(this.newReview);
                     this.resetForm();
-                    this.$router.push(`/breweries/:breweryId/reviews`)
                 }
             })
         },
