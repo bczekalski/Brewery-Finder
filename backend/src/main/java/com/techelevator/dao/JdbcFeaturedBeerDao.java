@@ -1,6 +1,6 @@
 package com.techelevator.dao;
 
-
+import com.techelevator.model.Nutriments;
 import com.techelevator.model.FeaturedBeer;
 import com.techelevator.model.Objectifier;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ import java.util.Random;
 @Repository
 public class JdbcFeaturedBeerDao implements FeaturedBeerDao {
 
-    public String API_LINK = "https://us.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=beer&json=true&page_size=1000;";
+    public String API_LINK = "https://us.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=beers&json=true&page_size=1000;";
 
     @Override
     public FeaturedBeer getRandomBeer() {
