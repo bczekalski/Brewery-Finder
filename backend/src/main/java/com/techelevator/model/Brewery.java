@@ -11,7 +11,7 @@ public class Brewery {
     private String state;
     private String zipCode;
     private String website;
-    private boolean isActive = true;
+    private boolean active = true;
     private String food;
     private long foodId;
     private String image;
@@ -109,11 +109,11 @@ public class Brewery {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public String getFood() {

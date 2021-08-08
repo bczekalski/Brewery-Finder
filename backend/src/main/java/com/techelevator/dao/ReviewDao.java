@@ -22,5 +22,5 @@ public interface ReviewDao {
     //List<Beer> topRatedBeers();
 
     int deleteReviews(int userId);
-
+    
 }

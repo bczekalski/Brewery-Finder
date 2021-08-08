@@ -58,9 +58,19 @@ public class ReviewController {
     @PostMapping(path="/breweries/{breweryId}/reviews")
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createReview(@RequestBody Review r) {
+    public void createReview(@RequestBody Review r, Principal principal) {
+        r.setUserId(getId(principal));
         reviewDao.createReview(r);
     }
+
+    @PostMapping(path="/breweries/{breweryId}/beers/{beerId}/reviews")
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createBeerReview(@RequestBody Review r, Principal principal) {
+        r.setUserId(getId(principal));
+        reviewDao.createReview(r);
+    }
+    
 
     /*@GetMapping(path="/reviews/review/{reviewId}")
     public Review getReviewsByReviewId(@PathVariable int reviewId){
