@@ -1,7 +1,10 @@
 <template>
   <div id="breweries">
+      
     <div class="brewery-list">
+        
         <div class="container-breweries">
+            <a id="return-link" href="http://localhost:8082/breweries">Return to Breweries List</a>
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
                 <div class="brewery-history a">History: {{ brewery.history }}</div>
@@ -47,6 +50,7 @@ export default {
                 return hours.split(', ');
             }
         }
+        
     }
 
     
@@ -91,5 +95,9 @@ li {
     margin-left: 35%;
 }
 
+#return-link {
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+}
 
 </style>
