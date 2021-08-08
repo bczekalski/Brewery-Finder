@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="main-nav">
 
-      <router-link id="button" v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+      <router-link class="main-nav" v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
 
-      <router-link id="button" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link> 
+      <router-link class="main-nav" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link> 
 
-      <router-link id="button" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Login</router-link> &nbsp;|&nbsp;
+      <router-link class="main-nav" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Login</router-link> &nbsp;|&nbsp;
 
-      <router-link id="button" v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''">Register</router-link>
+      <router-link class="main-nav" v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''">Register</router-link>
 
-      <router-link id="button" v-bind:to="{ name: 'my-account-display' }" v-if="$store.state.token != ''">My Account</router-link>
+      <router-link class="main-nav" v-bind:to="{ name: 'my-account-display' }" v-if="$store.state.token != ''">My Account</router-link>
     
 
     </div>
-        <h1>
-      Brewery Finder
-    </h1>	
+        <h1 id="main-header">
+          Brewery Finder
+        </h1>	
     <router-view />
   </div>
 </template>
@@ -25,7 +25,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
-h1 {
+#main-header {
   font-family: 'Lobster Two', cursive;
   font-size: 12vw;
   color: white;
@@ -42,22 +42,27 @@ html {
   background-size: cover;
 }
 
-#nav {
+#main-nav {
   text-align: center;
   font-size: 5vw;
   color: white;
 }
 
-#button {
+.main-nav {
   font-family: 'Staatliches', cursive;
   font-size: 5vw;
   color: white;
 }
 
-#button:visited {
+.button:visited {
   font-family: 'Staatliches', cursive;
   font-size: xx-large;
   color: white;
+}
+
+.container-blur {
+  background-color: rgba(255 ,255 , 255, .5);    
+  backdrop-filter: blur(12px);
 }
 
 

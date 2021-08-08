@@ -1,13 +1,13 @@
 <template>
-  <div id="breweries">
+  <div>
     <div class="brewery-list" v-for="brewery in allBreweries" v-bind:key="brewery.id">
-        
-        <h2 class="brewery-name">{{ brewery.name }}</h2>
-        
-        <router-link id="brewery-button" v-bind:to="{ name: 'brewery-display', params: {breweryId: brewery.id } }">View details</router-link>
+        <div class="container-breweries container-blur">
+            <h2 class="brewery-name-header">{{ brewery.name }}</h2>
+            <router-link id="brewery-details-button" class="link-in-black" v-bind:to="{ name: 'brewery-display', params: {breweryId: brewery.id } }">View details</router-link>
+            |
+            <router-link id="beers-button" class="link-in-black" v-bind:to="{ name: 'beers-display', params: {breweryId: brewery.id } }">View beers</router-link>
+        </div>
         <br>
-        <router-link id="beers-button" v-bind:to="{ name: 'beers-display', params: {breweryId: brewery.id } }">View beers</router-link>
-        
     </div>
   </div>
 </template>
@@ -37,35 +37,19 @@ export default {
 
 <style>
 .container-breweries {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3vw;
-  text-align: center;
-  background-color: white;
-  display: block;
-  border-radius:3vw;
-  padding: 5vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  margin-left: 20vw;
-  margin-right: 20vw;
-}
-.brewery-details {
-    font-size: 1.5vw;
-}
-
-.brewery-history {
-    font-style:italic;
-    text-align: left;
-}
-
-.a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius: 3vw;
     padding: 1.5vw;
-}
-
-.logo-image {
-    width: 35vw;
+    padding-bottom: 4vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 

@@ -1,11 +1,11 @@
 <template>
-  <div id="register" class="text-center container-register">
+  <div id="register" class="text-center container-register-user container-blur">
     <form class="form-register" @submit.prevent="register">
       <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only text">Username</label>
+      <label for="username" class="sr-only register-text">Username</label>
       <input
         type="text"
         id="username"
@@ -16,7 +16,7 @@
         autofocus
       />
       <br>
-      <label for="password" class="sr-only text">Password</label>
+      <label for="password" class="sr-only register-text">Password</label>
       <input
         type="password"
         id="password"
@@ -39,9 +39,9 @@
         Create Account
       </button>
       <br>
-      <router-link :to="{ name: 'login' }" class="text">Have an account?</router-link>
+      <router-link :to="{ name: 'login' }" class="register-text link-in-black">Have an account?</router-link>
     </form>
-    <router-link :to="{ name: 'register-brewer' }" class="text">Click here to register a brewer account</router-link>
+    <router-link :to="{ name: 'register-brewer' }" class="register-text link-in-black">Click here to register a brewer account</router-link>
   </div>
 </template>
 <script>
@@ -94,11 +94,10 @@ export default {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
-.container-register {
+.container-register-user {
   font-family: 'Poppins', sans-serif;
   font-size: 3vw;
   text-align: center;
-  background-color: white;
   display: block;
   border-radius:3vw;
   padding: 3vw;
@@ -109,7 +108,7 @@ export default {
   margin-left: 20vw;
   margin-right: 20vw;
 }
-.text {
+.register-text {
   padding: 2vw;
   font-family: 'Poppins', sans-serif;
   font-size: 2vw;

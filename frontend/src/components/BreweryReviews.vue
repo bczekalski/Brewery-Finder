@@ -40,6 +40,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import reviewService from '../services/ReviewService'
 export default {
@@ -82,4 +83,22 @@ export default {
 }
 </script>
 <style>
+
+
+.brewery-review-container {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw;
+    text-align: left;
+    display: block;
+    border-radius:3vw;
+    padding: 3vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
+
+
 </style>

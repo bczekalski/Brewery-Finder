@@ -1,7 +1,7 @@
 <template>
   <div id="breweries">
     <div class="brewery-list">
-        <div class="container-breweries">
+        <div class="container-breweries-brewer container-blur">
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
                 <div id="edit" v-if="brewery.owner || $store.state.user.authorities[0].name=='ROLE_ADMIN'">
@@ -59,11 +59,10 @@ export default {
 
 
 <style>
-.container-breweries {
+.container-breweries-brewer {
   font-family: 'Poppins', sans-serif;
   font-size: 3vw;
   text-align: center;
-  background-color: white;
   display: block;
   border-radius:3vw;
   padding: 5vw;

@@ -1,22 +1,19 @@
 <template>
   <section>
 
-    <figure class="image center">
-      <!-- <img src ="images/c61ca5bebd5fac190227f602ab0d6fe8.png" style="max-width: 128px;"> -->
-    </figure>
-    <div id="grid">
-      <div id="list" class="container-home">
+    <div id="home-grid">
+      <div id="brewery-list-button" class="container-home container-blur">
         <div>
-          <router-link id="home-page-button" v-bind:to="{ name: 'breweries-display' }">List of Breweries</router-link>
+          <router-link class="link-in-black" v-bind:to="{ name: 'breweries-display' }">List of Breweries</router-link>
         </div>
       </div>    
-      <div id="beer" class="container-home">
+      <div id="featured-beer-button" class="container-home container-blur">
         <div>
-          <router-link id="home-page-button" v-bind:to="{ name: 'featured-beer' }">Featured Beer</router-link>
+          <router-link class="link-in-black" v-bind:to="{ name: 'featured-beer' }">Featured Beer</router-link>
         </div>
       </div>
-      <div id="events" class="container-home">
-        <router-link id="home-page-button" v-bind:to="{ name: 'events' }">Brewery Events</router-link>
+      <div id="events-button" class="container-home container-blur">
+        <router-link class="link-in-black" v-bind:to="{ name: 'events' }">Brewery Events</router-link>
       </div>
     </div>
   </section>
@@ -37,7 +34,6 @@ export default {
   font-family: 'Poppins', sans-serif;
   font-size: 3vw;
   text-align: center;
-  background-color: white;
   display: block;
   border-radius:3vw;
   padding: 3vw;
@@ -47,20 +43,19 @@ export default {
   align-items: center;
 }
 
-
-#list {
+#brewery-list-button {
     grid-area: "list";
 }
 
-#beer {
+#featured-beer-button {
     grid-area: "beer";
 }
 
-#events {
+#events-button {
     grid-area: "events";
 }
 
-#grid {
+#home-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "list beer events";
@@ -72,12 +67,12 @@ export default {
     align-content: space-evenly;
 }
 
-#home-page-button {
+.link-in-black {
   color: black;
 }
 
 @media screen and (max-width: 450px){
-    #grid{
+    #home-grid{
         display: grid;
         row-gap: 20px;
         column-gap: 20px;
