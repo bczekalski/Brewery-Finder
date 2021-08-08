@@ -53,6 +53,20 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public List<User> findAllBrewer(){
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT user_id, username FROM users WHERE role = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, "ROLE_BREWER");
+        while(result.next()){
+            User user = new User();
+            user.setId(result.getLong("user_id"));
+            user.setUsername(result.getString("username"));
+            users.add(user);
+        }
+        return users;
+    }
+
+    @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
         for (User user : this.findAll()) {
             if( user.getUsername().toLowerCase().equals(username.toLowerCase())) {

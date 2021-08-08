@@ -11,25 +11,12 @@ public class Brewery {
     private String state;
     private String zipCode;
     private String website;
-    private boolean isActive = true;
-    private long foodServedId;
+    private boolean active = true;
+    private String food;
+    private long foodId;
     private String image;
-
-    public Brewery(long id, String name, String contactInfo, String history, String operationTime, String address,
-                   String city, String state, String zipCode, String website, long foodServedId, String image) {
-        this.id = id;
-        this.name = name;
-        this.contactInfo = contactInfo;
-        this.history = history;
-        this.operationTime = operationTime;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.website = website;
-        this.image = image;
-        this.foodServedId = foodServedId;
-    }
+    private boolean owner;
+    private long ownerId;
 
     public Brewery() {}
 
@@ -122,18 +109,42 @@ public class Brewery {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
-    public long getFoodServedId() {
-        return foodServedId;
+    public String getFood() {
+        return food;
     }
 
-    public void setFoodServedId(long foodServedId) {
-        this.foodServedId = foodServedId;
+    public void setFood(String food) {
+        this.food = food;
+    }
+
+    public boolean isOwner() {
+        return owner;
+    }
+
+    public void setOwner(boolean owner) {
+        this.owner = owner;
+    }
+
+    public long getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(long foodId) {
+        this.foodId = foodId;
+    }
+
+    public long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(long ownerId) {
+        this.ownerId = ownerId;
     }
 }

@@ -16,20 +16,20 @@ CREATE TABLE users (
 
 CREATE TABLE food (
         food_id SERIAL, 
-        food_name varchar(255) NOT NULL DEFAULT '',
+        food_name varchar(255) NOT NULL,
         CONSTRAINT PK_food PRIMARY KEY (food_id)
 );
 
 CREATE TABLE breweries (
         brewery_id SERIAL NOT NULL,
         brewery_name varchar(255) NOT NULL,
-        contact_info varchar(255) NOT NULL DEFAULT '',
-        brewery_history varchar(2000) NOT NULL DEFAULT '',
-        operation_time varchar (255) NOT NULL DEFAULT '',
-        address varchar(255) NOT NULL DEFAULT '',
-        city varchar(255) NOT NULL DEFAULT '',
-        state_abrev varchar(255) NOT NULL DEFAULT '',
-        zip varchar(255) NOT NULL DEFAULT '',
+        contact_info varchar(255) NOT NULL DEFAULT 'No contact info available.',
+        brewery_history varchar(2000) NOT NULL DEFAULT 'No history available.',
+        operation_time varchar (255) NOT NULL DEFAULT 'No operation times available.',
+        address varchar(255) NOT NULL DEFAULT 'No address available.',
+        city varchar(255) NOT NULL DEFAULT 'No city available.',
+        state_abrev varchar(255) NOT NULL DEFAULT 'No state available.',
+        zip varchar(255) NOT NULL DEFAULT 'No zip code available.',
         website varchar(255) NOT NULL DEFAULT '',
         image varchar(1000) NOT NULL DEFAULT '',
         active boolean NOT NULL DEFAULT true,
@@ -70,7 +70,6 @@ CREATE TABLE reviews (
         review_type varchar(10),
         user_id int NOT NULL,
         target_id int NOT NULL,
-        reviewee_name varchar(100) NOT NULL,
         CONSTRAINT PK_reviews PRIMARY KEY (review_id),
         CONSTRAINT FK_reviews_users FOREIGN KEY (user_id) REFERENCES users(user_id)
         
@@ -95,10 +94,10 @@ CREATE TABLE brewery_reviews (
 );
 
 
-
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('brewer','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_BREWER');
+INSERT INTO users (username,password_hash,role) VALUES ('brewer2','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_BREWER');
 INSERT INTO users (username,password_hash,role) VALUES ('bcze','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('cel','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 
@@ -140,15 +139,15 @@ INSERT INTO beers (beer_name, beer_type, beer_description, abv, image, gluten_fr
 'https://churchbrew.com/wp-content/themes/yeast/img/logo.png', false, 3);
 ;
 
-INSERT INTO reviews (reviewer_name, review_title, review_text, review_stars, review_type, user_id, target_id, reviewee_name) VALUES 
-('Brandon Czekalski', 'I love this place', 'Hitchhiker is a really cool brewery.', 4, 'Brewery', 4, 1, 'HitchHiker'), 
-('Brandon Czekalski', 'This place is okay', 'Eleventh Hour has really interesting beers, but the atmosphere in the tap room sucks.', 3, 'Brewery', 4, 2, 'Eleventh Hour'), 
-('Brandon Czekalski', 'Amazing place', 'Church Brew has a really cool design. The beer is good too.', 5, 'Brewery', 4, 3, 'The Church Brew Works'), 
-('Celeste', 'Worst service ever', 'Church Brew sucks.', 1, 'Brewery', 5, 3, 'The Church Brew Works'), 
-('Brandon Czekalski', 'Do not recommend', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 1, 'Cosmic Void'), 
-('Brandon Czekalski', 'Heavy improvments', 'This years installment of Paper Birds is much better than last years', 4, 'Beer', 4, 6, 'Paper Birds 2021'), 
-('Brandon Czekalski', 'Top tier beer', 'This Tropical Seltzer is the greatest beer ever', 5, 'Beer', 4, 8, 'Tropical Seltzer'), 
-('Celeste', 'I have no taste buds', 'This IPA could use some work', 1, 'Beer', 5, 9, 'Southern Tier Nu Haze');
+INSERT INTO reviews (reviewer_name, review_title, review_text, review_stars, review_type, user_id, target_id) VALUES 
+('Brandon Czekalski', 'I love this place', 'Hitchhiker is a really cool brewery.', 4, 'Brewery', 4, 1), 
+('Brandon Czekalski', 'This place is okay', 'Eleventh Hour has really interesting beers, but the atmosphere in the tap room sucks.', 3, 'Brewery', 4, 2), 
+('Brandon Czekalski', 'Amazing place', 'Church Brew has a really cool design. The beer is good too.', 5, 'Brewery', 4, 3), 
+('Celeste', 'Worst service ever', 'Church Brew sucks.', 1, 'Brewery', 5, 3), 
+('Brandon Czekalski', 'Do not recommend', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 1), 
+('Brandon Czekalski', 'Heavy improvments', 'This years installment of Paper Birds is much better than last years', 4, 'Beer', 4, 6), 
+('Brandon Czekalski', 'Top tier beer', 'This Tropical Seltzer is the greatest beer ever', 5, 'Beer', 4, 8), 
+('Celeste', 'I have no taste buds', 'This IPA could use some work', 1, 'Beer', 5, 9);
 
 INSERT INTO brewery_reviews (review_id, brewery_id) 
 VALUES (1, 1), (2, 2), (3, 3), (4, 3);
