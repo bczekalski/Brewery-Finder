@@ -23,6 +23,10 @@ public interface ReviewDao {
 
     //List<Beer> topRatedBeers();
 
+    void deleteBeerReviews(long id);
+
+    void deleteBreweryReviews(long id);
+
     int deleteReviews(int userId);
     
 }

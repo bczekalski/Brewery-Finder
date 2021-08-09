@@ -10,7 +10,7 @@ public interface BeerDao {
 
     long addBeer(Beer beerToInsert);
 
-    void deleteBeer(int id);
+    void deleteBeer(long id);
 
     void deleteBeersByBrewery(int breweryId);
 

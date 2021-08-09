@@ -3,19 +3,11 @@ package com.techelevator.controller;
 import java.util.List;
 
 import com.techelevator.dao.FeaturedBeerDao;
+import com.techelevator.dao.ReviewDao;
 import com.techelevator.model.FeaturedBeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.techelevator.dao.BeerDao;
 import com.techelevator.model.Beer;
@@ -23,7 +15,6 @@ import com.techelevator.model.Beer;
 
 @RestController
 @CrossOrigin
-
 public class BeerController {
 
     @Autowired
@@ -43,15 +34,15 @@ public class BeerController {
         return beer;
     }
 
-    @PostMapping(path= {"/beers"})
+    @PostMapping(path= "/account/breweries/{breweryId}/beers/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void addBeer(@RequestBody Beer b) {
         beerDao.addBeer(b);
     }
 
-    @DeleteMapping(path="/beers/{id}")
-    public void deleteBeer(@PathVariable int id) {
-        beerDao.deleteBeer(id);
+    @DeleteMapping(path="/account/breweries/{breweryId}/beers")
+    public void deleteBeer(@RequestParam long beerId) {
+        beerDao.deleteBeer(beerId);
     }
 
     @DeleteMapping(path="/beers/{breweryId}")
