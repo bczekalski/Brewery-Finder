@@ -34,7 +34,7 @@ public class JdbcReviewDao implements ReviewDao {
     public List<Review> getAllReviewsByBeerId(long targetId) {
         List<Review> reviews = new ArrayList<>();
         String sql = "SELECT * FROM reviews r JOIN beer_reviews br ON br.review_id = r.review_id " +
-                "WHERE beer_id = ?;";
+                "JOIN beers b on b.beer_id = br.beer_id WHERE b.beer_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, targetId);
         while(result.next()){
             Review review = mapRowSetToBeerReview(result);
@@ -42,8 +42,6 @@ public class JdbcReviewDao implements ReviewDao {
         }
         return reviews;
     }
-
-
 
 
     @Override
@@ -98,9 +96,41 @@ public class JdbcReviewDao implements ReviewDao {
 
     @Override
     public int deleteReviews(int userId) {
-        String sql = "DELETE * FROM reviews WHERE userId = ?;";
+        String sql = "DELETE FROM reviews WHERE userId = ?;";
         int count = jdbcTemplate.update(sql, userId);
         return count;
+    }
+
+    @Override
+    public void deleteBeerReviews(long id){
+        List<Integer> reviews = new ArrayList<>();
+        String sql = "SELECT review_id FROM beer_reviews WHERE beer_id = ?;";
+        SqlRowSet r = jdbcTemplate.queryForRowSet(sql, id);
+        while(r.next()){
+            reviews.add((r.getInt("review_id")));
+        }
+        sql = "DELETE FROM beer_reviews WHERE beer_id = ?;";
+        jdbcTemplate.update(sql, id);
+        sql = "DELETE FROM reviews WHERE review_id = ?;";
+        for (int i : reviews){
+            jdbcTemplate.update(sql, i);
+        }
+    }
+
+    @Override
+    public void deleteBreweryReviews(long id){
+        List<Integer> reviews = new ArrayList<>();
+        String sql = "SELECT review_id FROM brewery_reviews WHERE brewery_id = ?;";
+        SqlRowSet r = jdbcTemplate.queryForRowSet(sql, id);
+        while(r.next()){
+            reviews.add((r.getInt("review_id")));
+        }
+        sql = "DELETE FROM brewery_reviews WHERE brewery_id = ?;";
+        jdbcTemplate.update(sql, id);
+        sql = "DELETE FROM reviews WHERE review_id = ?;";
+        for (int i : reviews){
+            jdbcTemplate.update(sql, i);
+        }
     }
 
     private Review mapRowSetToBreweryReview(SqlRowSet rs) {

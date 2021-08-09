@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Beer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,8 @@ import java.util.List;
 @Repository
 public class JdbcBeerDao implements BeerDao{
 
+    @Autowired
+    private ReviewDao reviewDao;
     private JdbcTemplate jdbcTemplate;
 
     public JdbcBeerDao (JdbcTemplate jdbcTemplate){
@@ -61,14 +64,24 @@ public class JdbcBeerDao implements BeerDao{
     }
 
     @Override
-    public void deleteBeer(int id) {
-        String sql = "DELETE * FROM beers WHERE beer_id = ?;";
+    public void deleteBeer(long id) {
+        reviewDao.deleteBeerReviews(id);
+        String sql = "DELETE FROM beers WHERE beer_id = ?;";
         jdbcTemplate.update(sql, id);
     }
 
     @Override
     public void deleteBeersByBrewery(int breweryId) {
-        String sql = "DELETE * FROM beers WHERE brewery_id = ?;";
+        List<Integer> beers = new ArrayList<>();
+        String sql = "SELECT beer_id FROM beers WHERE brewery_id = ?;";
+        SqlRowSet r = jdbcTemplate.queryForRowSet(sql);
+        while(r.next()){
+            beers.add(r.getInt("beer_id"));
+        }
+        for(int b : beers){
+            reviewDao.deleteBeerReviews(b);
+        }
+        sql = "DELETE * FROM beers WHERE brewery_id = ?;";
         jdbcTemplate.update(sql, breweryId);
     }
 
