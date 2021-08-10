@@ -13,14 +13,17 @@ public class Beer {
     public Beer() {
     }
 
-    public Beer(String name, String description, String beerType, float abv, String imageLink, long breweryId) {
+    public Beer(long id, String name, String description, String beerType, float abv, String imageLink, boolean glutenFree, long breweryId) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.beerType = beerType;
         this.abv = abv;
         this.imageLink = imageLink;
+        this.glutenFree = true;
         this.breweryId = breweryId;
     }
+
 
     public long getId() {
         return id;
