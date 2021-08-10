@@ -1,9 +1,8 @@
 <template>
   <div id='user-reviews'>
       
-      <h2 v-for="review in allReviews" v-bind:key="review.id">{{review.name}}
-
-      </h2>
+      <h2 v-for="review in allReviews" v-bind:key="review.id">{{review.name}}</h2>
+      
 
       </div>
 </template>

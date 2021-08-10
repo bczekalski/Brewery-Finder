@@ -1,6 +1,6 @@
 <template>
-  <div id="brewery-reviews">
-    <div id='new-brewery-form-container'>
+  <div id="brewery-reviews" >
+    <div id='new-brewery-form-container' class="brewery-review-container container-blur">
             <div id="add-review">
                 <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
                 <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
@@ -34,10 +34,14 @@
                 </div>
             </form>
         </div>
-    <div id = "review-details" v-for="review in allReviews" v-bind:key="review.id">
+    <div id = "review-details" class="brewery-review-container container-blur" v-for="review in allReviews" v-bind:key="review.id">
         <!-- This is where all the reviews will display-->
-        <h2> {{ review.name }} </h2>
+        <h2> {{ review.title }} </h2>        
+        <h3> By:  {{ review.name }} </h3>
+        <h3> {{ review.starCount }} Stars </h3>
+        <p> {{ review.text }} </p>
     </div>
+    <br><br>
   </div>
 </template>
 
@@ -91,7 +95,8 @@ export default {
     text-align: left;
     display: block;
     border-radius:3vw;
-    padding: 3vw;
+    padding: 1.5vw;
+    padding-bottom: 4vw;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
