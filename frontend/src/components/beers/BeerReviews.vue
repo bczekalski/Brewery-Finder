@@ -2,8 +2,10 @@
   <div id="beer-reviews">
     <div id='new-beer-form-container'>
             <div id="add-review" v-if="$store.state.token != ''">
-                <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
-                <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
+                <div class="center-button">
+                    <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
+                </div>
+                <h2 class="beer-reviews-container container-blur" id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
             </div>
             <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
                 <div class="form-element">
@@ -41,7 +43,7 @@
         <h3> {{ review.starCount }} Stars</h3>
         <p> {{ review.text }} </p>
     </div>
-    <br>
+    <br><br>
   </div>
 </template>
 <script>
@@ -89,12 +91,16 @@ export default {
 <style>
 
 .center-button {
-    text-align: center;
     display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
     align-items: center;
+    text-align: center;
+    padding: 3vw;
 }
 
 
@@ -104,7 +110,7 @@ export default {
   font-size: 3vw;
   text-align: center;
   display: block;
-  border-radius:3vw;
+  border-radius: 3vw;
   padding: 5vw;
   justify-content: space-evenly;
   justify-items: center;

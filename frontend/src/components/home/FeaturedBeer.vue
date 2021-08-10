@@ -4,9 +4,12 @@
                 <div id='grid-featured-beer'>
                     <div><img id='beer-image' :src="featuredBeer.image_url" ></div>                    
                     <div id='beer-details'>
-                        <h4 id='beer-brand'>{{ featuredBeer.brands }}</h4>
-                        <h4 id='product-name'>{{ featuredBeer.product_name }}</h4>
-                        <h4 id='abv'>{{ featuredBeer.nutriments.alcohol }} {{ featuredBeer.nutriments.alcohol_unit }} </h4>
+                        <h4 id='beer-brand'>Brewery: {{ featuredBeer.brands }}</h4>
+                        <h4 id='product-name'>Beer: {{ featuredBeer.product_name }}</h4>
+                        <div v-if="featuredBeer.nutriments.alcohol === 0">Sorry, no ABV data found.</div> 
+                        <div v-else>
+                        <h4 id='abv'>ABV: {{ featuredBeer.nutriments.alcohol }} {{ featuredBeer.nutriments.alcohol_unit }} </h4>
+                        </div>
                     </div>
         </div>
     </div>
@@ -49,10 +52,12 @@ export default {
 #beer-details {
     grid-area: 'details';
     font-size: 2vw;
+    text-align: left;
 }
 
 #beer-image {
     grid-area: 'image';
+    padding: .5vw;
 }
 
 
@@ -61,11 +66,9 @@ export default {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
                          "image details";
-
     row-gap: 20px;
     column-gap: .5fr;
     align-items: center;
-
 }
 
 </style>
