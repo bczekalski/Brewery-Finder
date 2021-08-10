@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="container-blur beer-reviews-container" v-for="review in allReviews" v-bind:key="review.id">
-            <h2> {{ review.title }} </h2>      
+            <h2> "{{ review.title }}" </h2>      
             <h3> By: {{ review.name }} </h3>
             <h3> {{ review.starCount }} Stars</h3>
-            <p> {{ review.text }} </p>
+            <p> "{{ review.text }}" </p>
         </div>
     </div>
 </template>
@@ -30,7 +30,7 @@ export default {
 <style>
 .container-view-my-reviews {
     font-family: 'Poppins', sans-serif;
-    font-size: 2vw;
+    font-size: 1545px;
     text-align: left;
     display: block;
     border-radius:3vw;
