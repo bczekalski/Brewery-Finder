@@ -1,8 +1,8 @@
 <template>
-    <div id='beer-list'>
-        <router-link id="breweries-list" v-bind:to="{name: 'user-breweries-display'}">Return to Brewery List</router-link>
-        <br>
-        <router-link id="add-beer" v-bind:to="{name: 'add-beer-display'}">Add a beer</router-link>
+    <div id='beer-list'  class="container-beers-brewer container-blur">
+        <router-link id="breweries-list" class="link-in-black" v-bind:to="{name: 'user-breweries-display'}">Return to Brewery List</router-link>
+        <br> 
+        <router-link id="add-beer" class="link-in-black" v-bind:to="{name: 'add-beer-display'}">Add a beer</router-link>
         <h1 id='brewery-name'>{{breweryDetails.name}} Presents: </h1>
         <div id='beers' v-for="beer in allBeers" v-bind:key="beer.id">
         <h1 id='beer-name'>{{beer.name}}</h1>
@@ -60,19 +60,19 @@ export default {
     font-family: 'Poppins', sans-serif;
 }
 
-#beer-list {
-  
-  text-align: center;
-  background-color: white;
-  display: block;
-  border-radius:3vw;
-  padding: 5vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  margin-left: 20vw;
-  margin-right: 20vw;
+.container-beers-brewer {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius:3vw;
+    padding: 5vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 
