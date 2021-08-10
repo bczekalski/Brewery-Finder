@@ -93,6 +93,18 @@ CREATE TABLE brewery_reviews (
 
 );
 
+CREATE TABLE events (
+        event_id SERIAL NOT NULL,
+        event_name varchar(100) NOT NULL,
+        brewery_id int NOT NULL,
+        event_description varchar(2000) NOT NULL,
+        event_date date NOT NULL,
+        event_start_time time NOT NULL,
+        event_end_time time NOT NULL,
+        CONSTRAINT PK_events PRIMARY KEY (event_id),
+        CONSTRAINT FK_events_breweries FOREIGN KEY (brewery_id) REFERENCES breweries(brewery_id)
+);
+
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
@@ -155,6 +167,10 @@ VALUES (1, 1), (2, 2), (3, 3), (4, 3);
 INSERT INTO beer_reviews (review_id, beer_id) 
 VALUES (5, 1), (6, 6), (7, 8), (8, 9);
 
+INSERT INTO events (event_name, brewery_id, event_description, event_date, event_start_time, event_end_time)
+VALUES ('Cool Event', 1, 'This event is gonna be really cool, do not miss it!', '2021-09-17', '20:00', '24:00'),
+('Another Cool Event', 1, 'This event is gonna be even cooler than the last one, definitely do not miss it!', '2021-09-18', '22:00', '2:00'),
+('Cool Event', 2, 'We want to have our own cool event, so here it is!', '2021-09-24', '24:00', '1:00');
 
 
 COMMIT TRANSACTION;

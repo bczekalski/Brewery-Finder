@@ -12,7 +12,7 @@
         where as the router link would always work no matter what path we make the edit display.
         The router link is definitely better code practice, however if we can't get the styling to look pretty
         then we can just use the button instead. leaving both in now for the group to decide-->
-        <router-link id='edit-beer' class="link-in-black" v-bind:to="{name: 'edit-beer-display', params: {beerId: beer.id}}">Edit this beer</router-link> |
+        <router-link id='edit-beer' class="link-in-black" v-bind:to="{name: 'edit-beers-display', params: {beerId: beer.id}}">Edit this beer</router-link> |
         <button id="edit-beer" v-on:click.prevent="pushToEdit(beer.id)">Edit Button</button>
         <button id="delete-beer" v-on:click.prevent="deleteBeer(beer.id)">Delete this beer</button>
         </div>
