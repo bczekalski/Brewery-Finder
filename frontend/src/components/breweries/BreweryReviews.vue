@@ -1,7 +1,7 @@
 <template>
-  <div id="brewery-reviews" >
+  <div id="brewery-reviews">
     <div id='new-brewery-form-container' class="brewery-review-container container-blur">
-            <div id="add-review">
+            <div id="add-review" v-if="$store.state.token != ''">
                 <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
                 <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
             </div>

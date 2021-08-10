@@ -15,7 +15,10 @@
           </div>
           <div class="form-element">
               <label for="operation-time">Operation Time: </label>
-              <input id="operation-time" type="text" v-model="editedBrewery.operationTime" />
+              <div v-for="(day, i) in days" v-bind:key="i">
+                  <label for="day-hours">{{day}}</label>
+                  <input id="day-hours" type="text" v-model="hours[i]"/>
+              </div>
           </div>
           <div class="form-element">
               <label for="address">Street Address: </label>
@@ -61,19 +64,32 @@ export default {
     data(){
         return {
             editedBrewery: {},
-            foodList: []
+            foodList: [],
+            days: ['Mon: ', 'Tue: ', 'Wed: ', 'Thr: ', 'Fri: ', 'Sat: ', 'Sun: '],
+            hours: []
         }
     },
     created() {
         breweryService.getById(this.$route.params.breweryId).then((response) => {
             this.editedBrewery = response.data;
+            this.setHours()
         }),
         breweryService.getFoodList(this.$route.params.breweryId).then((response) => {
             this.foodList = response.data;
         })
     },
     methods: {
+         setOperationTime(){
+            this.editedBrewery.operationTime = this.days.map((e, i) => e + this.hours[i]).join(', ');
+        },
+        setHours(){
+            this.hours = this.editedBrewery.operationTime.split(', ');
+            for(let i = 0; i<7; i++){
+                this.hours[i] = this.hours[i].split(' ')[1];
+            }
+        },
         updateBrewery(){
+            this.setOperationTime()
             breweryService.updateBrewery(this.editedBrewery).then((response) => {
             if (response.status == 200 ){
                 this.$router.push(`/account/breweries/${this.editedBrewery.id}`);
@@ -86,6 +102,7 @@ export default {
         resetForm() {
             breweryService.getById(this.$route.params.breweryId).then((response) => {
             this.editedBrewery = response.data;
+            this.setHours()
         })
         }
     }
