@@ -1,30 +1,30 @@
 <template>
 <div id="beer-form">
-  <form class="container-add-beer container-blur" v-on:submit.prevent="addNewBeer()">
+  <form class="container-add-beer container-blur" v-on:submit.prevent="updateBeer()">
           <div class="form-element">
               <label for="name">Please enter the name of your beer: </label>
-              <input id="name" type="text" v-model="newBeer.name" />
+              <input id="name" type="text" v-model="editedBeer.name" />
           </div>
           <div class="form-element">
               <label for="description">Please enter a description of your beer: </label>
-              <textarea id="description" type="text" v-model="newBeer.description" />
+              <textarea id="description" type="text" v-model="editedBeer.description" />
           </div>
           <div class="form-element">
               <label for="beer-type">Please enter the type of beer it is: </label>
-              <input id="beer-type" type="text" v-model="newBeer.beerType" />
+              <input id="beer-type" type="text" v-model="editedBeer.beerType" />
           </div>
           <div class="form-element">
               <label for="abv">Please enter the abv of the beer: </label>
-              <input id="abv" type="text" v-model="newBeer.abv" />
+              <input id="abv" type="text" v-model="editedBeer.abv" />
               <label for="abv">%</label>
           </div>
           <div class="form-element">
               <label for="gluten-free">Is your beer Gluten Free? </label>
-              <input type="checkbox" id="gluten" v-model="newBeer.glutenFree" />
+              <input type="checkbox" id="gluten" v-model="editedBeer.glutenFree" />
           </div>
           <div class="form-element">
               <label for="image">Please enter a link to an image for the beer: </label>
-              <input id="image" type="text" v-model="newBeer.imageLink" />
+              <input id="image" type="text" v-model="editedBeer.imageLink" />
           </div>
           <input type="submit" value="Save">
           <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
@@ -35,29 +35,34 @@
 <script>
 import beerService from '../../services/BeerService'
 export default {
-    name: 'add-beer',
+    name: 'edit-beer',
     data(){
         return {
-            newBeer: {
-                glutenFree: false,
-                breweryId: this.$route.params.breweryId
-            }
+            editedBeer: {}
         }
     },
+    created(){
+        beerService.getBeersById(this.$route.params.breweryId, this.$route.params.beerId).then((response) => {
+            this.editedBeer = response.data;
+        })
+
+    },
     methods: {
-        addNewBeer() {
-            beerService.createBeer(this.$route.params.breweryId, this.newBeer).then((response) => {
-            if (response.status == 201 ){
-                this.$router.push(`/account/breweries/${this.$route.params.breweryId}/beers`);
+        updateBeer() {
+            beerService.updateBeer(this.$route.params.breweryId, this.editedBeer).then((response) => {
+            if (response.status == 200 ){
+                this.$router.push(`/breweries/${this.$route.params.breweryId}/beers/${this.editedBeer.id}`);
             }
             })
             .catch(error => {
-                alert("Could not add this Beer.");
+                alert("Could not edit this Beer.");
                 console.error(error);
             })
         },
         resetForm() {
-            this.newBeer = {glutenFree: false, breweryId: this.$route.params.breweryId}
+            beerService.getBeersById(this.$route.params.breweryId, this.$route.params.beerId).then((response) => {
+                this.editedBeer = response.data;
+            })
         }
     }
 
