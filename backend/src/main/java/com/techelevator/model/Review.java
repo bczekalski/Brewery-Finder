@@ -12,7 +12,23 @@ public class Review {
     private long targetId;
     private String targetName;
 
+    public Review(long id, String name, String title, String text, int starCount, String type, long userId, long targetId) {
+        this.id = id;
+        this.name = name;
+        this.title = title;
+        this.text = text;
+        this.starCount = starCount;
+        this.type = type;
+        this.userId = userId;
+        this.targetId = targetId;
+    }
+
     public Review() {
+
+
+
+
+
     }
 
     public long getId() {
