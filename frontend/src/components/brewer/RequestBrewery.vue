@@ -51,13 +51,6 @@
                       {{ food.name }}</option>
               </select>
           </div>
-          <div class="form-element">
-              <label for="brewer">Please select a brewer to manage this brewery: </label>
-              <select id="brewer" type="text" v-model="newBrewery.ownerId">
-                  <option v-bind:value="user.id" v-for="user in brewerList" v-bind:key="user.id">
-                      {{ user.username }}</option>
-              </select>
-          </div>
           <input type="submit" value="Save">
           <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
     </form>
@@ -67,22 +60,21 @@
 <script>
 import breweryService from '../../services/BreweryService'
 export default {
-    name: 'add-brewery',
+    name: 'request-brewery',
     data(){
         return {
-            newBrewery: {active: true},
+            newBrewery: {
+                active: false,
+                ownerId: this.$store.state.user.id
+            },
             foodList: [],
-            brewerList: [],
             days: ['Mon: ', 'Tue: ', 'Wed: ', 'Thr: ', 'Fri: ', 'Sat: ', 'Sun: '],
-            hours: []
+            hours: [] 
         }
     },
     created() {
         breweryService.getFoodList(this.$route.params.breweryId).then((response) => {
             this.foodList = response.data;
-        }),
-        breweryService.getBrewers().then((response) => {
-            this.brewerList = response.data;
         })
     },
     methods: {
@@ -102,7 +94,9 @@ export default {
             })
         },
         resetForm() {
-            this.newBrewery = {active: true}
+            this.newBrewery = {
+                active: false
+            }
         }
     }
 
