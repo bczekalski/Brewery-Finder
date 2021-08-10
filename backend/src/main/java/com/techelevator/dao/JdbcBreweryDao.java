@@ -74,12 +74,12 @@ public class JdbcBreweryDao implements BreweryDao{
     @Override
     public long createBrewery(Brewery newBrewery) {
         String sql = "INSERT INTO breweries(brewery_name, contact_info, brewery_history, operation_time, address, " +
-                "city, state_abrev, zip, website, image, food_served) VALUES (?,?,?,?,?,?,?,?,?,?,?) RETURNING brewery_id";
+                "city, state_abrev, zip, website, image, active, food_served) VALUES (?,?,?,?,?,?,?,?,?,?,?, ?) RETURNING brewery_id";
         long newId =
                 jdbcTemplate.queryForObject(sql, Long.class, newBrewery.getName(),newBrewery.getContactInfo(),
                         newBrewery.getHistory(), newBrewery.getOperationTime(), newBrewery.getAddress(),
                         newBrewery.getCity(), newBrewery.getState(), newBrewery.getZipCode(), newBrewery.getWebsite(),
-                newBrewery.getImage(), newBrewery.getFoodId());
+                newBrewery.getImage(), newBrewery.isActive(), newBrewery.getFoodId());
         sql = "INSERT INTO user_breweries (user_id, brewery_id) VALUES (?, ?);";
         jdbcTemplate.update(sql, newBrewery.getOwnerId(), newId);
         return newId;
