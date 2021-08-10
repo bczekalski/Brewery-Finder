@@ -1,11 +1,11 @@
 <template>
-  <div id="beer-reviews">
+  <div class="container-beer-reviews container-blur">
     <div id='new-beer-form-container'>
             <div id="add-review">
                 <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
                 <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
             </div>
-            <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
+            <form class="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
                 <div class="form-element">
                     <label for="title">Please summarize your thoughts:</label>
                     <textarea class="title" placeholder="Review Title" v-model="newReview.title"/>
@@ -83,6 +83,13 @@ export default {
 </script>
 
 <style>
+
+#review-form{
+
+font-family: 'Poppins', sans-serif;
+
+}
+
 #beer-reviews {
     
   font-family: 'Poppins', sans-serif;
