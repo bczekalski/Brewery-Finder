@@ -19,8 +19,8 @@
                 <div class="address-line-2"> 
                     </div>
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
-                <div><a class="brewery-website a link-in-black" :href="brewery.website" target="_blank" :alt="brewery-website" >Website</a></div>
-                <div><img class="logo-image a" :src="brewery.image" alt="Brewery Logo"></div>
+                
+                <div><a :href="brewery.website"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
             <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
             </div>
         </div>
@@ -97,5 +97,7 @@ li {
 #return-link {
     font-size: 1.5vw;
 }
+
+
 
 </style>
