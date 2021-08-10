@@ -4,7 +4,7 @@
     <div id="home-grid">
       <div id="brewery-list-button" class="container-home container-blur">
         <div>
-          <router-link class="link-in-black" v-bind:to="{ name: 'breweries-display' }">List of Breweries</router-link>
+          <router-link class="link-in-black" v-bind:to="{ name: 'breweries-display' }">Brewery List</router-link>
         </div>
       </div>    
       <div id="featured-beer-button" class="container-home container-blur">

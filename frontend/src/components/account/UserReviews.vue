@@ -1,11 +1,12 @@
 <template>
-  <div id='user-reviews'>
-      
-      <h2 v-for="review in allReviews" v-bind:key="review.id">{{review.name}}
-
-      </h2>
-
-      </div>
+    <div>
+        <div class="container-blur beer-reviews-container" v-for="review in allReviews" v-bind:key="review.id">
+            <h2> {{ review.title }} </h2>      
+            <h3> By: {{ review.name }} </h3>
+            <h3> {{ review.starCount }} Stars</h3>
+            <p> {{ review.text }} </p>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -27,6 +28,19 @@ export default {
 </script>
 
 <style>
-
+.container-view-my-reviews {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw;
+    text-align: left;
+    display: block;
+    border-radius:3vw;
+    padding: 3vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
 
 </style>

@@ -23,6 +23,8 @@ import BrewerBreweryDisplay from '../views/brewer/BrewerBreweryDisplay.vue'
 import ManageBrewersDisplay from '../views/admin/ManageBrewersDisplay.vue'
 import UserBeersDisplay from '../views/brewer/UserBeersDisplay.vue'
 import AddBeerDisplay from '../views/brewer/AddBeerDisplay.vue'
+import RequestBreweryDisplay from '../views/brewer/RequestBreweryDisplay.vue'
+import Events from '../views/home/Events.vue'
 
 Vue.use(Router)
 
@@ -213,6 +215,22 @@ const router = new Router({
       component: AddBeerDisplay,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: '/account/request/',
+      name: 'request-brewery-display',
+      component: RequestBreweryDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/events',
+      name: 'events',
+      component: Events,
+      meta: {
+        requiresAuth: false
       }
     }
   ]

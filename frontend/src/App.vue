@@ -63,6 +63,7 @@ html {
 .container-blur {
   background-color: rgba(255 ,255 , 255, .5);    
   backdrop-filter: blur(12px);
+  margin: 1.5vw;
 }
 
 

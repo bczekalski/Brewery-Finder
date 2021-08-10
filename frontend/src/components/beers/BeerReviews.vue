@@ -1,9 +1,11 @@
 <template>
   <div class="container-beer-reviews container-blur">
     <div id='new-beer-form-container'>
-            <div id="add-review">
-                <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
-                <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
+            <div id="add-review" v-if="$store.state.token != ''">
+                <div class="center-button">
+                    <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
+                </div>
+                <h2 class="beer-reviews-container container-blur" id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
             </div>
             <form class="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
                 <div class="form-element">
@@ -34,10 +36,14 @@
                 </div>
             </form>
         </div>
-    <div id = "review-details" v-for="review in allReviews" v-bind:key="review.id">
+    <div id = "review-details" class="container-blur beer-reviews-container" v-for="review in allReviews" v-bind:key="review.id">
         <!-- This is where all the reviews will display-->
-        <h2> {{ review.name }} </h2>
+        <h2> {{ review.title }} </h2>      
+        <h3> By: {{ review.name }} </h3>
+        <h3> {{ review.starCount }} Stars</h3>
+        <p> {{ review.text }} </p>
     </div>
+    <br><br>
   </div>
 </template>
 <script>
@@ -90,14 +96,28 @@ font-family: 'Poppins', sans-serif;
 
 }
 
-#beer-reviews {
+
+.center-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    padding: 3vw;
+}
+
+
+.beer-reviews-container {
     
   font-family: 'Poppins', sans-serif;
   font-size: 3vw;
   text-align: center;
-  background-color: whitesmoke;
   display: block;
-  border-radius:3vw;
+  border-radius: 3vw;
   padding: 5vw;
   justify-content: space-evenly;
   justify-items: center;

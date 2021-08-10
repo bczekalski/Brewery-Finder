@@ -15,7 +15,10 @@
           </div>
           <div class="form-element">
               <label for="operation-time">Operation Time: </label>
-              <textarea id="operation-time" type="text" v-model="newBrewery.operationTime" />
+                <div v-for="(day, i) in days" v-bind:key="i">
+                    <label for="day-hours">{{day}}</label>
+                    <input id="day-hours" type="text" v-model="hours[i]"/>
+              </div>
           </div>
           <div class="form-element">
               <label for="address">Street Address: </label>
@@ -67,11 +70,11 @@ export default {
     name: 'add-brewery',
     data(){
         return {
-            newBrewery: {
-                operationTime: 'Mon: Closed, Tues: Closed, Wed: Closed, Thur: Closed, Fri: Closed, Sat: Closed, Sun: Closed'
-            },
+            newBrewery: {active: true},
             foodList: [],
-            brewerList: []
+            brewerList: [], 
+            days: ['Mon: ', 'Tue: ', 'Wed: ', 'Thr: ', 'Fri: ', 'Sat: ', 'Sun: '],
+            hours: []
         }
     },
     created() {
@@ -83,20 +86,23 @@ export default {
         })
     },
     methods: {
+        setOperationTime(){
+            this.newBrewery.operationTime = this.days.map((e, i) => e + this.hours[i]).join(', ');
+        },
         addNewBrewery() {
+            this.setOperationTime()
             breweryService.createBrewery(this.newBrewery).then((response) => {
             if (response.status == 201 ){
-                this.$router.push(`/breweries/${response.data}`);
+                this.$router.push(`/`);
             }
             })
             .catch(error => {
-                this.handleErrorResponse(error, "adding");
+                alert('Error requesting this brewery to be added.');
+                console.log(error);
             })
         },
         resetForm() {
-            this.newBrewery = {
-                operationTime: 'Mon: Closed, Tues: Closed, Wed: Closed, Thur: Closed, Fri: Closed, Sat: Closed, Sun: Closed'
-            }
+            this.newBrewery = {active: true}
         }
     }
 
@@ -107,18 +113,18 @@ export default {
 <style>
 
 .container-add-brewery {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2vw;
-  text-align: left;
-  display: block;
-  border-radius:3vw;
-  padding: 3vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  margin-left: 20vw;
-  margin-right: 20vw;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw;
+    text-align: left;
+    display: block;
+    border-radius:3vw;
+    padding: 3vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 </style>

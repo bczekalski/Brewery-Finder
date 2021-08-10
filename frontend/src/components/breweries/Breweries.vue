@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="brewery-list" v-for="brewery in allBreweries" v-bind:key="brewery.id">
-        <div class="container-breweries container-blur">
+        <div class="container-breweries container-blur" v-if="brewery.active">
             <h2 class="brewery-name-header">{{ brewery.name }}</h2>
             <router-link id="brewery-details-button" class="link-in-black" v-bind:to="{ name: 'brewery-display', params: {breweryId: brewery.id } }">View details</router-link>
             |
