@@ -15,9 +15,9 @@
           </div>
           <div class="form-element">
               <label for="operation-time">Operation Time: </label>
-              <div v-for="(day, i) in days" v-bind:key="i">
-                  <label for="day-hours">{{day}}</label>
-                  <input id="day-hours" type="text" v-model="hours[i]"/>
+                <div v-for="(day, i) in days" v-bind:key="i">
+                    <label for="day-hours">{{day}}</label>
+                    <input id="day-hours" type="text" v-model="hours[i]"/>
               </div>
           </div>
           <div class="form-element">
@@ -72,7 +72,7 @@ export default {
         return {
             newBrewery: {active: true},
             foodList: [],
-            brewerList: [],
+            brewerList: [], 
             days: ['Mon: ', 'Tue: ', 'Wed: ', 'Thr: ', 'Fri: ', 'Sat: ', 'Sun: '],
             hours: []
         }
@@ -113,18 +113,18 @@ export default {
 <style>
 
 .container-add-brewery {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2vw;
-  text-align: left;
-  display: block;
-  border-radius:3vw;
-  padding: 3vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  margin-left: 20vw;
-  margin-right: 20vw;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw;
+    text-align: left;
+    display: block;
+    border-radius:3vw;
+    padding: 3vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 </style>
