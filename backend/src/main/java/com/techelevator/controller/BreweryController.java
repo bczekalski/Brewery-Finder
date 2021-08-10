@@ -50,9 +50,9 @@ public class BreweryController {
         return breweryDao.getBreweryByUserId(getId(principal));
     }
 
-    @DeleteMapping(path = "account/breweries/{id}")
+    @DeleteMapping(path = "account/breweries")
     @PreAuthorize("hasRole('ROLE_BREWER')")
-    public void deleteBrewery(@PathVariable int id) {
+    public void deleteBrewery(@RequestParam int id) {
         breweryDao.deleteBrewery(id);
     }
 

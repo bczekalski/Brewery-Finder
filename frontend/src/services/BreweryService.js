@@ -31,6 +31,9 @@ export default {
         return axios.get(`/account/admin/add`);
     },
     updateBrewer(brewery){
-        return axios.put(`account/admin/assign`, brewery);
+        return axios.put(`/account/admin/assign`, brewery);
+    },
+    deleteBrewery(id){
+        return axios.delete(`/account/breweries`, { params: {id: id} })
     }
 }

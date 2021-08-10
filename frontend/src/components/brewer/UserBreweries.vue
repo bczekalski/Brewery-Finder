@@ -1,10 +1,11 @@
 <template>
   <div id="breweries">
-    <div class="brewery-list container-breweries-brewer container-blur" v-for="brewery in allBreweries" v-bind:key="brewery.id">
+    <div class="brewery-list container-breweries-brewer container-blur" v-for="(brewery, i) in allBreweries" v-bind:key="brewery.id">
         
         <h2 class="brewery-name">{{ brewery.name }}</h2>
         <router-link id="brewery-button" class="link-in-black" v-bind:to="{ name: 'brewer-brewery-display', params: {breweryId: brewery.id } }">View details</router-link> |
         <router-link id="brewery-beers" class="link-in-black" v-bind:to="{name: 'user-beers-display', params: {breweryId: brewery.id } }">View Beer List</router-link>
+        <button v-on:click.prevent="deleteBrewery(brewery.id, i)">Delete this Brewery</button>
     </div>
   </div>
 </template>
@@ -22,6 +23,12 @@ export default {
       breweryService.getByUserId().then((response) => {
           this.allBreweries = response.data;
       })  
+    },
+    methods: {
+      deleteBrewery(id, i){
+        breweryService.deleteBrewery(id);
+        this.allBreweries.splice(i, 1);
+      }
     }
 
 }
