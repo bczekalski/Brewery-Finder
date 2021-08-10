@@ -51,7 +51,7 @@ INSERT INTO reviews (reviewer_id, reviewer_name, review_title, review_text, revi
 (2, 'Brandon Czekalski', 'This place is okay', 'Eleventh Hour has really interesting beers, but the atmosphere in the tap room sucks.', 3, 'Brewery', 4, 2),
 (3, 'Brandon Czekalski', 'Amazing place', 'Church Brew has a really cool design. The beer is good too.', 5, 'Brewery', 4, 3),
 (4, 'Celeste', 'Worst service ever', 'Church Brew sucks.', 1, 'Brewery', 5, 3),
-(5, 'Brandon Czekalski', 'Do not recommend', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 1),
+(5, 'Brandon Czekalski', 'Do not recommend', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 4),
 (6, 'Brandon Czekalski', 'Heavy improvments', 'This years installment of Paper Birds is much better than last years', 4, 'Beer', 4, 6),
 (7, 'Brandon Czekalski', 'Top tier beer', 'This Tropical Seltzer is the greatest beer ever', 5, 'Beer', 4, 8),
 (8, 'Celeste', 'I have no taste buds', 'This IPA could use some work', 1, 'Beer', 5, 9);
