@@ -20,7 +20,7 @@
                     </div>
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
                 
-                <div><a :href="brewery.website"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
+                <div><a :href="brewery.website" target="_blank"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
             <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
             </div>
         </div>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import breweryService from "../../services/BreweryService.js"
+import breweryService from "../services/BreweryService.js"
 export default {
     name: "breweries",
     data() {
@@ -88,6 +88,7 @@ export default {
 
 .logo-image {
     width: 35vw;
+    
 }
 li {
     text-align: left;
@@ -97,6 +98,7 @@ li {
 #return-link {
     font-size: 1.5vw;
 }
+
 
 
 

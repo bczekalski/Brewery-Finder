@@ -67,7 +67,7 @@ CREATE TABLE reviews (
         review_title varchar(100) NOT NULL,
         review_text varchar(1000) NOT NULL,
         review_stars int NOT NULL,
-        review_type varchar(10),
+        review_type varchar(100),
         user_id int NOT NULL,
         target_id int NOT NULL,
         CONSTRAINT PK_reviews PRIMARY KEY (review_id),
