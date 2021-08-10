@@ -51,8 +51,9 @@ Brewery breweryTest = new Brewery (8, "The Brew Works", "(412) 687-8200", "On th
         @Test
         public void getAllBreweries(){
             List<Brewery> listToTest = breweryDao.getAllBreweries();
-            assertNotNull(listToTest);
-
+            assertBreweriesMatch(listToTest.get(0), BREWERY_1);
+            assertBreweriesMatch(listToTest.get(1), BREWERY_2);
+            assertBreweriesMatch(listToTest.get(2), BREWERY_3);
         }
 
         @Test
@@ -74,6 +75,36 @@ Brewery breweryTest = new Brewery (8, "The Brew Works", "(412) 687-8200", "On th
             assertEquals(1, breweryDao.getBreweryByUserId(2).size());
             beerDao.deleteBeersByBrewery(2);
         }
+
+    @Test
+    public void updateBreweryExpectedValue () {
+
+        Brewery breweryToUpdate = breweryDao.getBreweryById(1);
+        breweryToUpdate.setId(1);
+        breweryToUpdate.setName("update");
+        breweryToUpdate.setContactInfo("updated ingo");
+        breweryToUpdate.setHistory("updated history");
+        breweryToUpdate.setOperationTime("updated time");
+        breweryToUpdate.setAddress("updated address");
+        breweryToUpdate.setCity("updated city");
+        breweryToUpdate.setState("updated state");
+        breweryToUpdate.setZipCode("updated zip");
+        breweryToUpdate.setWebsite("updated site");
+        breweryToUpdate.setImage("updated image");
+        breweryToUpdate.isActive();
+        breweryToUpdate.setFoodId(1);
+
+        breweryDao.updateBrewery(breweryToUpdate);
+
+        Brewery retrivedUpdate = breweryDao.getBreweryById(1);
+        assertBreweriesMatch(breweryToUpdate, retrivedUpdate);
+    }
+        
+
+
+
+
+
 
     private void assertBreweriesMatch(Brewery expected, Brewery actual) {
         Assert.assertEquals(expected.getId(), actual.getId());
