@@ -3,7 +3,11 @@
         <div class="container-blur beer-reviews-container" v-for="review in allReviews" v-bind:key="review.id">
             <h2> {{ review.title }} </h2>      
             <h3> By: {{ review.name }} </h3>
-            <h3> {{ review.starCount }} Stars</h3>
+            <div id='rating'>
+                <h3>Rating</h3>
+                <img src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
+                <img src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
+            </div>
             <p> {{ review.text }} </p>
         </div>
     </div>
@@ -22,6 +26,11 @@ export default {
         reviewService.getUserReviews(this.$store.state.user.id).then((response) => {
             this.allReviews = response.data;
         })
+    },
+    methods: {
+        emptyMugCount(count){
+            return 5-count;
+        }
     }
 
 }

@@ -40,7 +40,11 @@
         <!-- This is where all the reviews will display-->
         <h2> {{ review.title }} </h2>      
         <h3> By: {{ review.name }} </h3>
-        <h3> {{ review.starCount }} Stars</h3>
+        <div id='rating'>
+            <h3>Rating</h3>
+            <img src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
+            <img src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
+        </div>  
         <p> {{ review.text }} </p>
     </div>
     <br><br>
@@ -79,11 +83,14 @@ export default {
             reviewService.createBeerReview(this.newReview)
             .then(response=> {
                 if (response.status === 201) {
-                    this.allReviews.unshift(this.newReview);
                     this.resetForm();
+                    window.location.reload();
                 }
             })
         },
+        emptyMugCount(count){
+            return 5-count;
+        }
     }
 }
 </script>

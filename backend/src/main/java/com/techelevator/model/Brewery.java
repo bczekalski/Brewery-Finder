@@ -19,7 +19,9 @@ public class Brewery {
     private long ownerId;
 
 
-    public Brewery(long id, String name, String contactInfo, String history, String operationTime, String address, String city, String state, String zipCode, String website, String image, boolean active, int food) {
+    public Brewery() {}
+
+    public Brewery(long id, String name, String contactInfo, String history, String operationTime, String address, String city, String state, String zipCode, String website, String image, boolean active, long foodId) {
         this.id = id;
         this.name = name;
         this.contactInfo = contactInfo;

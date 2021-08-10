@@ -6,6 +6,14 @@
         <h1 id='brewery-name'>{{breweryDetails.name}} Presents: </h1>
         <div id='beers' v-for="beer in allBeers" v-bind:key="beer.id">
         <h1 id='beer-name'>{{beer.name}}</h1>
+        <!-- So after playing around with stuff a bit, i was able to get a button to function the same as a router link
+        The only issue is that it's hard-coded to the path, rather than the display
+        If we were to ever change the path for the edit display, the button would need changed too
+        where as the router link would always work no matter what path we make the edit display.
+        The router link is definitely better code practice, however if we can't get the styling to look pretty
+        then we can just use the button instead. leaving both in now for the group to decide-->
+        <router-link id='edit-beer' class="link-in-black" v-bind:to="{name: 'edit-beer-display', params: {beerId: beer.id}}">Edit this beer</router-link> |
+        <button id="edit-beer" v-on:click.prevent="pushToEdit(beer.id)">Edit Button</button>
         <button id="delete-beer" v-on:click.prevent="deleteBeer(beer.id)">Delete this beer</button>
         </div>
     </div>
@@ -41,6 +49,9 @@ export default {
                     alert("Could not delete this Beer.");
                     console.error(error);
                 })
+        },
+        pushToEdit(id){
+            this.$router.push(`/account/breweries/${this.$route.params.breweryId}/beers/${id}/edit`)
         }
       
     }

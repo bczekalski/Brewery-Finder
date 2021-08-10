@@ -74,20 +74,20 @@ public class JdbcBeerDao implements BeerDao{
     public void deleteBeersByBrewery(int breweryId) {
         List<Integer> beers = new ArrayList<>();
         String sql = "SELECT beer_id FROM beers WHERE brewery_id = ?;";
-        SqlRowSet r = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet r = jdbcTemplate.queryForRowSet(sql, breweryId);
         while(r.next()){
             beers.add(r.getInt("beer_id"));
         }
         for(int b : beers){
             reviewDao.deleteBeerReviews(b);
         }
-        sql = "DELETE * FROM beers WHERE brewery_id = ?;";
+        sql = "DELETE FROM beers WHERE brewery_id = ?;";
         jdbcTemplate.update(sql, breweryId);
     }
 
     @Override
     public void updateBeer(Beer b) {
-        String sql = "UPDATE beers" +
+        String sql = "UPDATE beers " +
                 "SET beer_name = ?, beer_type = ?, beer_description = ?, abv = ?, " +
                 "image = ?, gluten_free = ?, brewery_id = ? " +
                 "WHERE beer_id = ?;";

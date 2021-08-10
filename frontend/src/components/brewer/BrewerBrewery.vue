@@ -4,6 +4,7 @@
         <div class="container-breweries-brewer container-blur">
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
+                <h2 v-if="!brewery.active">This Brewery is still pending admin approval.</h2>
                 <div id="edit" v-if="brewery.owner || $store.state.user.authorities[0].name=='ROLE_ADMIN'">
                     Information outdated?
                     <router-link id="edit-brewery-button" class="link-in-black" v-bind:to="{ name: 'edit-brewery-display', params: {breweryId: brewery.id } }">Update it here.</router-link>

@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Brewery;
 import com.techelevator.model.Food;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import com.techelevator.model.Beer;
@@ -11,6 +12,11 @@ import java.util.List;
 
 @Repository
 public class JdbcBreweryDao implements BreweryDao{
+
+    @Autowired
+    private ReviewDao reviewDao;
+    @Autowired
+    private BeerDao beerDao;
 
     private JdbcTemplate jdbcTemplate;
 
@@ -87,17 +93,22 @@ public class JdbcBreweryDao implements BreweryDao{
 
     @Override
     public void deleteBrewery(int id) {
-        String sql = "DELETE FROM breweries WHERE id = ?";
+        beerDao.deleteBeersByBrewery(id);
+        reviewDao.deleteBreweryReviews(id);
+        String sql = "DELETE FROM user_breweries WHERE brewery_id = ?;";
+        jdbcTemplate.update(sql, id);
+        sql = "DELETE FROM breweries WHERE brewery_id = ?";
         jdbcTemplate.update(sql, id);
     }
 
     @Override
     public void updateBrewery(Brewery oneBrewery) {
         String sql = "UPDATE breweries SET brewery_name =?, contact_info =?, brewery_history =?, operation_time =?, " +
-                "address =?, city =?, state_abrev =?, zip =?, website =?, image =?, food_served =? WHERE brewery_id = ?";
+                "address =?, city =?, state_abrev =?, zip =?, website =?, image =?, active=?, food_served =? WHERE brewery_id = ?";
         jdbcTemplate.update(sql, oneBrewery.getName(),oneBrewery.getContactInfo(), oneBrewery.getHistory(),
                 oneBrewery.getOperationTime(), oneBrewery.getAddress(), oneBrewery.getCity(), oneBrewery.getState(),
-                oneBrewery.getZipCode(), oneBrewery.getWebsite(), oneBrewery.getImage(), oneBrewery.getFoodId(), oneBrewery.getId());
+                oneBrewery.getZipCode(), oneBrewery.getWebsite(), oneBrewery.getImage(), oneBrewery.isActive(),
+                oneBrewery.getFoodId(), oneBrewery.getId());
     }
 
     @Override
