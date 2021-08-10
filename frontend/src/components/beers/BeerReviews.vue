@@ -1,5 +1,5 @@
 <template>
-  <div id="beer-reviews">
+  <div class="container-beer-reviews container-blur">
     <div id='new-beer-form-container'>
             <div id="add-review" v-if="$store.state.token != ''">
                 <div class="center-button">
@@ -7,7 +7,7 @@
                 </div>
                 <h2 class="beer-reviews-container container-blur" id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
             </div>
-            <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
+            <form class="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
                 <div class="form-element">
                     <label for="title">Please summarize your thoughts:</label>
                     <textarea class="title" placeholder="Review Title" v-model="newReview.title"/>
@@ -89,6 +89,13 @@ export default {
 </script>
 
 <style>
+
+#review-form{
+
+font-family: 'Poppins', sans-serif;
+
+}
+
 
 .center-button {
     display: block;
