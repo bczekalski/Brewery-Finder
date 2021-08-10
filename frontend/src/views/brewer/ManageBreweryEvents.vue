@@ -86,7 +86,7 @@ export default {
                 breweryId: this.$route.params.breweryId
             };
             this.showAddForm = false;
-            //window.location.reload();
+            window.location.reload();
         },
         addNewEvent(){
             eventService.createEvent(this.$route.params.breweryId, this.newEvent).then((response) => {
@@ -95,8 +95,10 @@ export default {
                     this.newEvent.id = response.data;
                     this.allEvents.unshift(this.newEvent);
                     this.resetAddForm();
-                    
                 }
+            }).catch((error) => {
+                alert('Error creating this event');
+                console.log(error);
             })
         },
         deleteEvent(id, i){
