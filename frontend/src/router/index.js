@@ -1,26 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Logout from '../views/Logout.vue'
-import Register from '../views/Register.vue'
+import Home from '../views/home/Home.vue'
+import Login from '../views/account/Login.vue'
+import Logout from '../views/account/Logout.vue'
+import Register from '../views/account/Register.vue'
 import store from '../store/index'
-import RegisterBrewer from '../views/RegisterBrewer.vue'
-import BreweriesDisplay from '../views/BreweriesDisplay.vue'
-import BreweryDisplay from '../views/BreweryDisplay.vue'
-import BeersDisplay from '../views/BeersDisplay.vue'
-import BeerDisplay from '../views/BeerDisplay.vue'
-import BreweryReviewDisplay from '../views/BreweryReviewDisplay.vue'
-import BeerReviewDisplay from '../views/BeerReviewDisplay.vue'
-import UserReviewsDisplay from '../views/UserReviewsDisplay.vue'
-import MyAccountDisplay from '../views/MyAccountDisplay.vue'
-import UserBreweriesDisplay from '../views/UserBreweriesDisplay.vue'
-import FeaturedBeerDisplay from '../views/FeaturedBeerDisplay.vue'
-import EditBreweryDisplay from '../views/EditBreweryDisplay.vue'
-import AdminDisplay from '../views/AdminDisplay.vue'
-import AddBreweryDisplay from '../views/AddBreweryDisplay.vue'
-import BrewerBreweryDisplay from '../views/BrewerBreweryDisplay.vue'
-import ManageBrewersDisplay from '../views/ManageBrewersDisplay.vue'
+import RegisterBrewer from '../views/account/RegisterBrewer.vue'
+import BreweriesDisplay from '../views/breweries/BreweriesDisplay.vue'
+import BreweryDisplay from '../views/breweries/BreweryDisplay.vue'
+import BeersDisplay from '../views/beers/BeersDisplay.vue'
+import BeerDisplay from '../views/beers/BeerDisplay.vue'
+import BreweryReviewDisplay from '../views/breweries/BreweryReviewDisplay.vue'
+import BeerReviewDisplay from '../views/beers/BeerReviewDisplay.vue'
+import UserReviewsDisplay from '../views/account/UserReviewsDisplay.vue'
+import MyAccountDisplay from '../views/account/MyAccountDisplay.vue'
+import UserBreweriesDisplay from '../views/brewer/UserBreweriesDisplay.vue'
+import FeaturedBeerDisplay from '../views/home/FeaturedBeerDisplay.vue'
+import EditBreweryDisplay from '../views/brewer/EditBreweryDisplay.vue'
+import AdminDisplay from '../views/admin/AdminDisplay.vue'
+import AddBreweryDisplay from '../views/admin/AddBreweryDisplay.vue'
+import BrewerBreweryDisplay from '../views/brewer/BrewerBreweryDisplay.vue'
+import ManageBrewersDisplay from '../views/admin/ManageBrewersDisplay.vue'
+import UserBeersDisplay from '../views/brewer/UserBeersDisplay.vue'
+import AddBeerDisplay from '../views/brewer/AddBeerDisplay.vue'
 
 Vue.use(Router)
 
@@ -193,6 +195,22 @@ const router = new Router({
       path: '/account/admin/assign',
       name: 'manage-brewers-display',
       component: ManageBrewersDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/breweries/:breweryId/beers',
+      name: 'user-beers-display',
+      component: UserBeersDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/account/breweries/:breweryId/beers/add',
+      name: 'add-beer-display',
+      component: AddBeerDisplay,
       meta: {
         requiresAuth: true
       }
