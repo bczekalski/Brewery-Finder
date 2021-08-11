@@ -37,10 +37,6 @@ public class Brewery {
         this.foodId = foodId;
     }
 
-    public Brewery() {
-
-    }
-
     public String getImage() {
         return image;
     }

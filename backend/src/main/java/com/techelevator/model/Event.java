@@ -13,6 +13,7 @@ public class Event {
     private LocalTime startTime;
     private LocalTime endTime;
     private String location;
+    private String breweryName;
 
     public long getId() {
         return id;
@@ -76,5 +77,13 @@ public class Event {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getBreweryName() {
+        return breweryName;
+    }
+
+    public void setBreweryName(String breweryName) {
+        this.breweryName = breweryName;
     }
 }

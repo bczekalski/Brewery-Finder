@@ -5,6 +5,7 @@
         <h2>Upcoming Events for {{brewery.name}}:</h2>
     </div>
     <div class="container-events container-blur" v-for="event in allEvents" :key="event.id">
+        <h2>{{event.breweryName}}</h2>
         <h2>{{event.name}}</h2>
         <p>{{event.description}}</p>
         <h2>{{convertTime(event.startTime)}} - {{convertTime(event.endTime)}}</h2>

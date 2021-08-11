@@ -84,6 +84,7 @@ public class JdbcEventDao implements EventDao{
         e.setBreweryId(r.getLong("brewery_id"));
         e.setDescription(r.getString("event_description"));
         e.setLocation(r.getString("address") + ":" + r.getString("city") + ", " + r.getString("state_abrev") + " " + r.getString("zip"));
+        e.setBreweryName(r.getString("brewery_name"));
         Date date = r.getDate("event_date");
         Time startTime = r.getTime("event_start_time");
         Time endTime = r.getTime("event_end_time");
