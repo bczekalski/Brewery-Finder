@@ -1,8 +1,8 @@
 <template>
 <div>
     <div class="container-events container-blur">
-        <router-link id="home" class="link-in-black" v-bind:to="{ name: 'home' }">Back Home</router-link>
-        <h2>Upcoming Events:</h2>
+        <router-link id="brewery-details-button" class="link-in-black" v-bind:to="{ name: 'brewery-display', params: {breweryId: brewery.id } }">Back to Brewery</router-link>
+        <h2>Upcoming Events for {{brewery.name}}:</h2>
     </div>
     <div class="container-events container-blur" v-for="event in allEvents" :key="event.id">
         <h2>{{event.breweryName}}</h2>
@@ -16,19 +16,24 @@
 </template>
 
 <script>
+import breweryService from '../../services/BreweryService'
 import eventService from '../../services/EventService'
 import { DateTime }  from "luxon";
 export default {
-    name: "events",
+    name: "brewery-events",
     data(){
         return{
             allEvents: [],
+            brewery: {}
         }
     },
     created(){
-        eventService.getUpcomingEvents().then((response) => {
+        eventService.getUpcomingBreweryEvents(this.$route.params.breweryId).then((response) => {
             this.allEvents = response.data;
-        })
+        }),
+        breweryService.getById(this.$route.params.breweryId).then(response => {
+                this.brewery = response.data;
+        });
     },
     methods: {
         convertTime(time){

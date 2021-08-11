@@ -27,6 +27,9 @@ import RequestBreweryDisplay from '../views/brewer/RequestBreweryDisplay.vue'
 import Events from '../views/home/Events.vue'
 import BreweryRequestsDisplay from '../views/admin/BreweryRequestsDisplay.vue'
 import EditBeerDisplay from '../views/brewer/EditBeerDisplay.vue'
+import BreweryEvents from '../views/breweries/BreweryEvents.vue'
+import ManageBreweryEvents from '../views/brewer/ManageBreweryEvents.vue'
+import EditEvent from '../views/brewer/EditEvent.vue'
 
 Vue.use(Router)
 
@@ -247,6 +250,30 @@ const router = new Router({
       path: '/account/breweries/:breweryId/beers/:beerId/edit',
       name: 'edit-beers-display',
       component: EditBeerDisplay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/breweries/:breweryId/events',
+      name: 'brewery-events',
+      component: BreweryEvents,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/account/breweries/:breweryId/events',
+      name: 'manage-brewery-events',
+      component: ManageBreweryEvents,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: `/account/breweries/:breweryId/events/edit`,
+      name: 'edit-event',
+      component: EditEvent,
       meta: {
         requiresAuth: true
       }

@@ -4,7 +4,8 @@
         
         <h2 class="brewery-name">{{ brewery.name }}</h2>
         <router-link id="brewery-button" class="link-in-black" v-bind:to="{ name: 'brewer-brewery-display', params: {breweryId: brewery.id } }">View details</router-link> |
-        <router-link id="brewery-beers" class="link-in-black" v-bind:to="{name: 'user-beers-display', params: {breweryId: brewery.id } }">View Beer List</router-link>
+        <router-link id="brewery-beers" class="link-in-black" v-bind:to="{name: 'user-beers-display', params: {breweryId: brewery.id } }">View Beer List</router-link> <br>
+        <router-link id="brewery-events-button" class="link-in-black" v-bind:to="{ name: 'manage-brewery-events', params: {breweryId: brewery.id } }">Manage Events</router-link><br>
         <button v-on:click.prevent="deleteBrewery(brewery.id, i)">Delete this Brewery</button>
     </div>
   </div>

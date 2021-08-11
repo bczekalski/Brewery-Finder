@@ -1,6 +1,7 @@
 <template>
   <div id="brewery-reviews">
     <div id='new-brewery-form-container' class="brewery-review-container container-blur">
+        <router-link id="brewery-details-button" class="link-in-black" v-bind:to="{ name: 'brewery-display', params: {breweryId: this.$route.params.breweryId } }">Back to Brewery</router-link>
             <div id="add-review" class="center-button" v-if="$store.state.token != ''">
                 <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
                 <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
