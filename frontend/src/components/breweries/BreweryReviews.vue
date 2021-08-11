@@ -1,25 +1,35 @@
 <template>
   <div id="brewery-reviews">
     <div id='new-brewery-form-container' class="brewery-review-container container-blur">
+        <router-link id="brewery-details-button" class="link-in-black" v-bind:to="{ name: 'brewery-display', params: {breweryId: this.$route.params.breweryId } }">Back to Brewery</router-link>
             <div id="add-review" class="center-button" v-if="$store.state.token != ''">
-                <button v-if="showForm === false" v-on:click.prevent="showForm = true">Add Review</button>
-                <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
+                <button v-if="showForm === false" v-on:click.prevent="showForm = true">Click here to add a review!</button>
+                <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">There are no reviews on this brewery yet. Be the first to write one!</h2>
             </div>
             <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
+                <div id="add-brew">Review this brewery: </div>
+      <br>
                 <div class="form-element">
-                    <label for="title">Please summarize your thoughts:</label>
-                    <textarea class="title" placeholder="Review Title" v-model="newReview.title"/>
+                    <label for="title">Title of your review: </label>
+                    <br>
+                    <textarea class="title" v-model="newReview.title"/>
                 </div>
+                <br>
                 <div class="form-element">
-                    <label for="text">Please provide your detailed thoughts:</label>
-                    <textarea class="text" placeholder="Review Body" v-model="newReview.text"/>
+                    <label for="text">Detailed thoughts on this brewery: </label>
+                    <br>
+                    <textarea class="text" v-model="newReview.text" />
                 </div>
+                <br>
                 <div class="form-element">
-                    <label for="name">Enter your name:</label>
-                    <input type="text" class="name" placeholder="Name" v-model="newReview.name"/>
+                    <label for="name">Enter your name: </label>
+                    <br>
+                    <input type="text" class="name" v-model="newReview.name"/>
                 </div>
+                <br>
                 <div class="form-element">
-                    <label for="star-rating">Select your rating:</label>
+                    <label for="star-rating">Select your rating:    </label>
+                    
                     <select name="star-rating" id="review-star-rating" v-model="newReview.starCount">
                         <option value=1>1</option>
                         <option value=2>2</option>
@@ -27,7 +37,9 @@
                         <option value=4>4</option>
                         <option value=5>5</option>
                     </select>
+                    <br>
                 </div>
+                <br>
                 <div class="buttons-div">
                     <input type="submit" value="Save Review" class="form-btns">
                     <input type="button" value="Cancel" class='form-btns' v-on:click.prevent="resetForm">
@@ -36,10 +48,14 @@
         </div>
     <div id = "review-details" class="brewery-review-container container-blur" v-for="review in allReviews" v-bind:key="review.id">
         <!-- This is where all the reviews will display-->
-        <h2> {{ review.title }} </h2>        
+        <h2> "{{ review.title }}" </h2>        
         <h3> By:  {{ review.name }} </h3>
-        <h3> {{ review.starCount }} Stars </h3>
-        <p> {{ review.text }} </p>
+        <div id='rating'>
+            <h3>Rating</h3>
+        <img class="rating-beer-pint" src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
+        <img class="rating-beer-pint" src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
+        </div>
+        <p> "{{ review.text }}" </p>
     </div>
     <br><br>
   </div>
@@ -77,22 +93,29 @@ export default {
             reviewService.createReview(this.newReview)
             .then(response=> {
                 if (response.status === 201) {
-                    this.allReviews.unshift(this.newReview);
                     this.resetForm();
+                    window.location.reload();
                 }
             })
         },
+        emptyMugCount(count){
+            return 5-count;
+        }
      
     }
 }
 </script>
 <style>
 
+.rating-beer-pint{
+margin: auto;
+height: 7vw;
+}
 
 .brewery-review-container {
     font-family: 'Poppins', sans-serif;
     font-size: 2vw;
-    text-align: left;
+    text-align: center;
     display: block;
     border-radius:3vw;
     padding: 1.5vw;
@@ -104,6 +127,8 @@ export default {
     margin-left: 20vw;
     margin-right: 20vw;
 }
+
+
 
 
 </style>

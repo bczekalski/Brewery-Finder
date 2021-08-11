@@ -1,9 +1,12 @@
 <template>
     <div class="container-beer-list container-blur">
         <router-link class="link-in-black" id=“breweries-list” v-bind:to="{name: 'breweries-display'}">Return to Brewery List</router-link>
+        <br>
+        <br>
         <h1 class="beer-list-header">{{breweryDetails.name}} Presents: </h1>
         <div v-for="beer in allBeers" v-bind:key="beer.id">
-            <h1 class='beer-name-in-list'>{{beer.name}}</h1>
+            <br>
+            <div class='beer-name-in-list'>{{beer.name}}</div>
             <router-link id="beer-button" class="link-in-black details-link" v-bind:to="{name: 'beer-display', params: {breweryId: breweryDetails.id, beerId: beer.id} }">View Beer Details</router-link>
             <br>
         </div>
@@ -35,16 +38,21 @@ export default {
 
 <style>
 
+.link-in-black{
+font-size: 2vw;
+}
+
 .beer-list-header {
-    font-size: 4vw;
+    font-size: 50px;
 }
 
 .beer-name-in-list {
-    font-size: 3vw;
+    font-size: 30px;
+    font-style: italic;
 }
 
 .details-link {
-    font-size: 2vw;
+    font-size: 20px;
 }
 
 .container-beer-list {

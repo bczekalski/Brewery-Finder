@@ -1,12 +1,12 @@
 <template>
     <div class="container-featured-beer container-blur">
-            <h2>Featured Beer</h2>        
+            <h2>Featured Beer:</h2>        
                 <div id='grid-featured-beer'>
                     <div><img id='beer-image' :src="featuredBeer.image_url" ></div>                    
                     <div id='beer-details'>
                         <h4 id='beer-brand'>Brewery: {{ featuredBeer.brands }}</h4>
                         <h4 id='product-name'>Beer: {{ featuredBeer.product_name }}</h4>
-                        <div v-if="featuredBeer.nutriments.alcohol === 0">Sorry, no ABV data found.</div> 
+                        <div v-if="featuredBeer.nutriments.alcohol === 0">Sorry, no ABV data found!</div> 
                         <div v-else>
                         <h4 id='abv'>ABV: {{ featuredBeer.nutriments.alcohol }} {{ featuredBeer.nutriments.alcohol_unit }} </h4>
                         </div>

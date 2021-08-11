@@ -50,7 +50,7 @@ public class BeerController {
         beerDao.deleteBeer(id);
     }
 
-    @PutMapping(path="/updateBeer")
+    @PutMapping(path="/account/breweries/{breweryId}/beers/{beerId}/edit")
     @ResponseStatus(HttpStatus.OK)
     public void updateBeer(@RequestBody Beer b) {
         beerDao.updateBeer(b);

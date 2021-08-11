@@ -4,23 +4,25 @@
         <div class="container-breweries-brewer container-blur">
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
+                <h2 v-if="!brewery.active">This brewery is still pending admin approval</h2>
                 <div id="edit" v-if="brewery.owner || $store.state.user.authorities[0].name=='ROLE_ADMIN'">
                     Information outdated?
-                    <router-link id="edit-brewery-button" class="link-in-black" v-bind:to="{ name: 'edit-brewery-display', params: {breweryId: brewery.id } }">Update it here.</router-link>
+                    <br>
+                    <router-link id="edit-brewery-button" class="link-in-black" v-bind:to="{ name: 'edit-brewery-display', params: {breweryId: brewery.id } }">Update here</router-link>
                 </div>
                 <div class="brewery-history a">History: {{ brewery.history }}</div>
-                <div class="contact-info a">Contact Information: {{ brewery.contactInfo }}</div>
+                <div class="contact-info a">Phone Number: <br>{{ brewery.contactInfo }}</div>
                 <div id="hours-text" class="operation-time a">Hours: 
                     <ul class="hours-list">
                     <li v-for="day in splitJoin(brewery.operationTime)" v-bind:key="day"> {{ day }} </li>
                     </ul>
                     </div>
                 <div class="full-address a">
-                <div class="address-line-1">Address: {{ brewery.address }}</div>
+                <div class="address-line-1">Address: <br><br>{{ brewery.address }}</div>
                 <div class="address-line-2"> 
                     </div>
-                    {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
-                <div><a class="brewery-website a link-in-black" :href="brewery.website" target="_blank" :alt="brewery-website" >Website</a></div>
+                    {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div><br>
+                <div><a class="brewery-website a link-in-black" :href="brewery.website" target="_blank" :alt="brewery-website" >Brewery Website</a></div><br><br>
                 <div><img class="logo-image a" :src="brewery.image" alt="Brewery Logo"></div>
             <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
             </div>
@@ -72,6 +74,9 @@ export default {
     align-items: center;
     margin-left: 20vw;
     margin-right: 20vw;
+}
+#edit-brewery-button{
+font-size: 20px;
 }
 .brewery-details {
     font-size: 1.5vw;

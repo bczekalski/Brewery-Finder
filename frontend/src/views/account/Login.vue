@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center container-login container-blur">
     <form class="form-signin" @submit.prevent="login">
-      <h2 class="h3 mb-3">Please Sign In</h2>
+      <h2 class="h3 mb-3">Sign In</h2>
       <div
         class="alert alert-danger"
         role="alert"

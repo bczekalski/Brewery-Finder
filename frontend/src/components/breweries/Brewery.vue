@@ -21,7 +21,8 @@
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
                 
                 <div><a :href="brewery.website"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
-            <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
+            <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link> | 
+            <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-events', params: {breweryId: brewery.id } }">Upcoming Events</router-link>
             </div>
         </div>
         <br><br><br>

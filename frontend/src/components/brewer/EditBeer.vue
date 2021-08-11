@@ -1,36 +1,36 @@
 <template>
 <div id="beer-form">
-  <form class="container-add-beer container-blur" v-on:submit.prevent="addNewBeer()">
-      <div id="add-beer">Add beer: </div><br>
+  <form class="container-add-beer container-blur" v-on:submit.prevent="updateBeer()">
+      <div id="update-beer">Update beer: </div><br>
           <div class="form-element">
               <label for="name">Beer name: </label><br>
-              <input id="name" type="text" v-model="newBeer.name" />
+              <input id="name" type="text" v-model="editedBeer.name" />
           </div>
           <br>
           <div class="form-element">
               <label for="description">Beer description: </label><br>
-              <textarea id="description" type="text" v-model="newBeer.description" />
+              <textarea id="description" type="text" v-model="editedBeer.description" />
           </div>
           <br>
           <div class="form-element">
               <label for="beer-type">Beer type: </label><br>
-              <input id="beer-type" type="text" v-model="newBeer.beerType" />
+              <input id="beer-type" type="text" v-model="editedBeer.beerType" />
           </div>
           <br>
           <div class="form-element">
               <label for="abv">Beer abv: </label><br>
-              <input id="abv" type="text" v-model="newBeer.abv" />
-              <label for="abv">%</label><br>
+              <input id="abv" type="text" v-model="editedBeer.abv" />
+              <label for="abv">%</label>
           </div>
           <br>
           <div class="form-element">
-              <label for="gluten-free">Is your beer Gluten Free? </label>
-              <input type="checkbox" id="gluten" v-model="newBeer.glutenFree" />
+              <label for="gluten-free">Is this beer Gluten Free? </label>
+              <input type="checkbox" id="gluten" v-model="editedBeer.glutenFree" />
           </div>
           <br>
           <div class="form-element">
-              <label for="image">Please enter a link to an image for the beer: </label>
-              <input placeholder="https://" id="image" type="text" v-model="newBeer.imageLink" />
+              <label for="image">Beer image link: </label><br>
+              <input id="image" type="text" v-model="editedBeer.imageLink" />
           </div>
           <br>
           <input type="submit" value="Save">
@@ -42,29 +42,34 @@
 <script>
 import beerService from '../../services/BeerService'
 export default {
-    name: 'add-beer',
+    name: 'edit-beer',
     data(){
         return {
-            newBeer: {
-                glutenFree: false,
-                breweryId: this.$route.params.breweryId
-            }
+            editedBeer: {}
         }
     },
+    created(){
+        beerService.getBeersById(this.$route.params.breweryId, this.$route.params.beerId).then((response) => {
+            this.editedBeer = response.data;
+        })
+
+    },
     methods: {
-        addNewBeer() {
-            beerService.createBeer(this.$route.params.breweryId, this.newBeer).then((response) => {
-            if (response.status == 201 ){
-                this.$router.push(`/account/breweries/${this.$route.params.breweryId}/beers`);
+        updateBeer() {
+            beerService.updateBeer(this.$route.params.breweryId, this.editedBeer).then((response) => {
+            if (response.status == 200 ){
+                this.$router.push(`/breweries/${this.$route.params.breweryId}/beers/${this.editedBeer.id}`);
             }
             })
             .catch(error => {
-                alert("Could not add this Beer.");
+                alert("Could not edit this Beer.");
                 console.error(error);
             })
         },
         resetForm() {
-            this.newBeer = {glutenFree: false, breweryId: this.$route.params.breweryId}
+            beerService.getBeersById(this.$route.params.breweryId, this.$route.params.beerId).then((response) => {
+                this.editedBeer = response.data;
+            })
         }
     }
 
@@ -73,7 +78,7 @@ export default {
 </script>
 
 <style>
-#add-beer{
+#update-beer{
     font-family: 'Poppins', sans-serif;
     font-size: 40px;
 }
@@ -97,10 +102,11 @@ export default {
   font-size: 15px;
 }
 
+
 .container-add-beer {
   font-family: 'Poppins', sans-serif;
   font-size: 25px;
-  text-align: left;
+  text-align: center;
   display: block;
   border-radius:3vw;
   padding: 3vw;

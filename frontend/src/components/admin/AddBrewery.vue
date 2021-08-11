@@ -1,25 +1,27 @@
 <template>
 <div id="brewery-form">
-  <form class="container-add-brewery container-blur" v-on:submit.prevent="addNewBrewery">
+  <form class="container-add-brewery-in-admin container-blur" v-on:submit.prevent="addNewBrewery">
+      <div id="add-brewery-admin">Add a new brewery: </div><br>
           <div class="form-element">
-              <label for="name">Name: </label>
+              <label for="name">Name: </label><br>
               <input id="name" type="text" v-model="newBrewery.name" />
           </div>
+          <br>
           <div class="form-element">
-              <label for="history">History: </label>
+              <label for="history">History: </label><br>
               <textarea id="history" type="text" v-model="newBrewery.history" />
-          </div>
+          </div><br>
           <div class="form-element">
-              <label for="contact-info">Contact Info: </label>
+              <label for="contact-info">Phone Number: </label><br>
               <input id="contact-info" type="text" v-model="newBrewery.contactInfo" />
-          </div>
+          </div><br>
           <div class="form-element">
               <label for="operation-time">Operation Time: </label>
                 <div v-for="(day, i) in days" v-bind:key="i">
                     <label for="day-hours">{{day}}</label>
                     <input id="day-hours" type="text" v-model="hours[i]"/>
               </div>
-          </div>
+          </div><br>
           <div class="form-element">
               <label for="address">Street Address: </label>
               <input id="address" type="text" v-model="newBrewery.address" />
@@ -35,7 +37,7 @@
           <div class="form-element">
               <label for="zip">Zip Code: </label>
               <input id="zip" type="text" v-model="newBrewery.zipCode" />
-          </div>
+          </div><br>
           <div class="form-element">
               <label for="website">Link to Website: </label>
               <input placeholder="https://" id="website" type="text" v-model="newBrewery.website" />
@@ -45,19 +47,19 @@
               <input placeholder="https://" id="image" type="text" v-model="newBrewery.image" />
           </div>
           <div class="form-element">
-              <label for="food">Please select what food type you offer: </label>
+              <label for="food">Type of food offered: </label><br>
               <select id="food" type="text" v-model="newBrewery.foodId">
                   <option v-bind:value="food.id" v-for="food in foodList" v-bind:key="food.id">
                       {{ food.name }}</option>
               </select>
-          </div>
+          </div><br>
           <div class="form-element">
-              <label for="brewer">Please select a brewer to manage this brewery: </label>
+              <label for="brewer">Select a brewer to manage this brewery: </label>
               <select id="brewer" type="text" v-model="newBrewery.ownerId">
                   <option v-bind:value="user.id" v-for="user in brewerList" v-bind:key="user.id">
                       {{ user.username }}</option>
               </select>
-          </div>
+          </div><br>
           <input type="submit" value="Save">
           <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
     </form>
@@ -112,10 +114,15 @@ export default {
 
 <style>
 
-.container-add-brewery {
+#add-brewery-admin{
+font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+}
+
+.container-add-brewery-in-admin{
     font-family: 'Poppins', sans-serif;
-    font-size: 2vw;
-    text-align: left;
+    font-size: 25px;
+    text-align: center;
     display: block;
     border-radius:3vw;
     padding: 3vw;
