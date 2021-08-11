@@ -4,9 +4,9 @@
             <h2> "{{ review.title }}" </h2>      
             <h3> By: {{ review.name }} </h3>
             <div id='rating'>
-                <h3>Rating</h3>
-                <img src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
-                <img src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
+                <h3>Rating:</h3>
+                <img class="rating-beer-pint" src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
+                <img class="rating-beer-pint" src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
             </div>
             <p> "{{ review.text }}" </p>
         </div>
@@ -37,17 +37,22 @@ export default {
 </script>
 
 <style>
-.container-view-my-reviews {
+.rating-beer-pint{
+margin: auto;
+height: 7vw;
+}
+
+.beer-reviews-container {
     font-family: 'Poppins', sans-serif;
-    font-size: 1545px;
+    font-size: 20px;
     text-align: left;
     display: block;
     border-radius:3vw;
     padding: 3vw;
     justify-content: space-evenly;
-    justify-items: center;
+    justify-items: left;
     align-content: space-evenly;
-    align-items: center;
+    align-items: left;
     margin-left: 20vw;
     margin-right: 20vw;
 }

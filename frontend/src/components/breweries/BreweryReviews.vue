@@ -3,9 +3,11 @@
     <div id='new-brewery-form-container' class="brewery-review-container container-blur">
             <div id="add-review" class="center-button" v-if="$store.state.token != ''">
                 <button v-if="showForm === false" v-on:click.prevent="showForm = true">Click here to add a review!</button>
-                <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
+                <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">There are no reviews on this brewery yet. Be the first to write one!</h2>
             </div>
             <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
+                <div id="add-brew">Review this brewery: </div>
+      <br>
                 <div class="form-element">
                     <label for="title">Title of your review: </label>
                     <br>
@@ -49,8 +51,8 @@
         <h3> By:  {{ review.name }} </h3>
         <div id='rating'>
             <h3>Rating</h3>
-        <img src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
-        <img src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
+        <img class="rating-beer-pint" src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
+        <img class="rating-beer-pint" src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
         </div>
         <p> "{{ review.text }}" </p>
     </div>
@@ -103,6 +105,11 @@ export default {
 }
 </script>
 <style>
+
+.rating-beer-pint{
+margin: auto;
+height: 7vw;
+}
 
 .brewery-review-container {
     font-family: 'Poppins', sans-serif;

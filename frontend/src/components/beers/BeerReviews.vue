@@ -5,9 +5,11 @@
                 <div class="center-button">
                     <button v-if="showForm === false" v-on:click.prevent="showForm = true">Click here to add a review!</button>
                 </div>
-                <h2 class="beer-reviews-container container-blur" id="no-reviews" v-if="!allReviews.length && showForm==false">No reviews! Be the first to write one!</h2>
+                <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">There are no reviews on this beer yet. Be the first to write one!</h2>
             </div>
             <form class="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
+                <div id="add-beer-review">Add beer review: </div>
+      <br>
                 <div class="form-element">
                     <label for="title">Title of your review: </label>
                     <br>
@@ -31,7 +33,6 @@
                 <br>
                 <div class="form-element">
                     <label for="star-rating">Select your rating:    </label>
-                    
                     <select name="star-rating" id="review-star-rating" v-model="newReview.starCount">
                         <option value=1>1</option>
                         <option value=2>2</option>
@@ -53,9 +54,9 @@
         <h2> "{{ review.title }}" </h2>      
         <h3> By: {{ review.name }} </h3>
         <div id='rating'>
-            <h3>Rating</h3>
-            <img src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
-            <img src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
+            <h3>Rating:</h3>
+            <img class="rating-beer-pint" src="../../images/beer-mugs.png" v-for="n in review.starCount" v-bind:key="n"/>
+            <img class="rating-beer-pint" src="../../images/empty-mugs.png" v-for="n in emptyMugCount(review.starCount)" v-bind:key="n"/>
         </div>  
         <p> "{{ review.text }}" </p>
     </div>
@@ -109,8 +110,23 @@ export default {
 
 <style>
 
+#no-reviews{
+    font-family: 'Poppins', sans-serif;
+  font-size: 2vw;
+  
+  
+}
+.rating-beer-pint{
+margin: auto;
+height: 7vw;
+}
+
 div > center-button{
   font-family: 'Poppins', sans-serif;
+}
+#add-beer-review{
+    font-family: 'Poppins', sans-serif;
+  font-size: 40px;
 }
 
 .title{
@@ -129,7 +145,7 @@ div > center-button{
 }
 
 .form-btns{
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 20px;
 }
 
@@ -141,7 +157,7 @@ div > center-button{
 }
 
 #review-star-rating{
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 15px;
 }
 
@@ -183,7 +199,6 @@ font-family: 'Poppins', sans-serif;
 
 
 .beer-reviews-container {
-    
   font-family: 'Poppins', sans-serif;
   font-size: 3vw;
   text-align: center;

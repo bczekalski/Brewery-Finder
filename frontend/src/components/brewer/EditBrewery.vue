@@ -1,18 +1,22 @@
 <template>
   <div id='edit-brewery' class="container-edit-brewery container-blur">
       <form v-on:submit.prevent="updateBrewery">
+          <div id="update-brewery">Update Brewery Info: </div><br>
           <div class="form-element">
-              <label for="name">Name: </label>
+              <label for="name">Name: </label><br>
               <input id="name" type="text" v-model="editedBrewery.name" />
           </div>
+          <br>
           <div class="form-element">
-              <label for="history">History: </label>
+              <label for="history">History: </label><br>
               <textarea id="history" type="text" v-model="editedBrewery.history" />
           </div>
+          <br>
           <div class="form-element">
-              <label for="contact-info">Contact Info: </label>
-              <input id="contact-info" type="text" v-model="editedBrewery.contactInfo" />
+              <label for="contact-info">Phone Number: </label><br>
+              <input id="contact-info" type="text" v-model="editedBrewery.contactInfo" /> 
           </div>
+          <br>
           <div class="form-element">
               <label for="operation-time">Operation Time: </label>
               <div v-for="(day, i) in days" v-bind:key="i">
@@ -20,6 +24,7 @@
                   <input id="day-hours" type="text" v-model="hours[i]"/>
               </div>
           </div>
+          <br>
           <div class="form-element">
               <label for="address">Street Address: </label>
               <input id="address" type="text" v-model="editedBrewery.address" />
@@ -36,21 +41,25 @@
               <label for="zip">Zip Code: </label>
               <input id="zip" type="text" v-model="editedBrewery.zipCode" />
           </div>
+          <br>
           <div class="form-element">
-              <label for="website">Link to Website: </label>
+              <label for="website">Link to Website: </label><br>
               <input id="website" type="text" v-model="editedBrewery.website" />
           </div>
+          <br>
           <div class="form-element">
-              <label for="image">Link to Image: </label>
+              <label for="image">Link to Image: </label><br>
               <input id="image" type="text" v-model="editedBrewery.image" />
           </div>
+          <br>
           <div class="form-element">
-              <label for="food">Please select what food type you offer: </label>
+              <label for="food">Type of food offered: </label>
               <select id="food" type="text" v-model="editedBrewery.foodId">
                   <option v-bind:value="food.id" v-for="food in foodList" v-bind:key="food.id">
                       {{ food.name }}</option>
               </select>
           </div>
+          <br>
           <input type="submit" value="Save">
           <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
           </form>
@@ -112,9 +121,14 @@ export default {
 
 <style>
 
+#update-brewery{
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+}
+
 .container-edit-brewery {
     font-family: 'Poppins', sans-serif;
-    font-size: 3vw;
+    font-size: 25px;
     text-align: center;
     display: block;
     border-radius:3vw;
