@@ -33,7 +33,7 @@ export default {
     font-size: 2vw;
     text-align: left;
     display: block;
-    border-radius:3vw;
+    border-radius: 3vw;
     padding: 3vw;
     justify-content: space-evenly;
     justify-items: center;

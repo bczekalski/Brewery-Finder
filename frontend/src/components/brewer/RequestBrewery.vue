@@ -38,11 +38,11 @@
           </div>
           <div class="form-element">
               <label for="website">Link to Website: </label>
-              <input id="website" type="text" v-model="newBrewery.website" />
+              <input placeholder="https://" id="website" type="text" v-model="newBrewery.website" />
           </div>
           <div class="form-element">
               <label for="image">Link to Image: </label>
-              <input id="image" type="text" v-model="newBrewery.image" />
+              <input value="https://" id="image" type="text" v-model="newBrewery.image" />
           </div>
           <div class="form-element">
               <label for="food">Please select what food type you offer: </label>

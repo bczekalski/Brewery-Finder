@@ -24,7 +24,7 @@
           </div>
           <div class="form-element">
               <label for="image">Please enter a link to an image for the beer: </label>
-              <input id="image" type="text" v-model="newBeer.imageLink" />
+              <input placeholder="https://" id="image" type="text" v-model="newBeer.imageLink" />
           </div>
           <input type="submit" value="Save">
           <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
