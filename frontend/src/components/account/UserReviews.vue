@@ -47,7 +47,7 @@ height: 7vw;
     font-size: 20px;
     text-align: left;
     display: block;
-    border-radius:3vw;
+    border-radius: 3vw;
     padding: 3vw;
     justify-content: space-evenly;
     justify-items: left;

@@ -45,12 +45,12 @@
           <br>
           <div class="form-element">
               <label for="website">Link to brewery website: </label><br>
-              <input id="website" type="text" v-model="newBrewery.website" />
+              <input placeholder="https://" id="website" type="text" v-model="newBrewery.website" />
           </div>
           <br>
           <div class="form-element">
               <label for="image">Link to brewery image: </label><br>
-              <input id="image" type="text" v-model="newBrewery.image" />
+              <input placeholder="https://" id="image" type="text" v-model="newBrewery.image" />
           </div>
           <br>
           <div class="form-element">

@@ -39,13 +39,13 @@
               <input id="zip" type="text" v-model="newBrewery.zipCode" />
           </div><br>
           <div class="form-element">
-              <label for="website">Link to Website: </label><br>
-              <input id="website" type="text" v-model="newBrewery.website" />
-          </div><br>
+              <label for="website">Link to Website: </label>
+              <input placeholder="https://" id="website" type="text" v-model="newBrewery.website" />
+          </div>
           <div class="form-element">
-              <label for="image">Link to Image: </label><br>
-              <input id="image" type="text" v-model="newBrewery.image" />
-          </div><br>
+              <label for="image">Link to Image: </label>
+              <input placeholder="https://" id="image" type="text" v-model="newBrewery.image" />
+          </div>
           <div class="form-element">
               <label for="food">Type of food offered: </label><br>
               <select id="food" type="text" v-model="newBrewery.foodId">
