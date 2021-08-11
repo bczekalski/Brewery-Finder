@@ -1,20 +1,21 @@
 <template>
   <form class="container-assign-brewer container-blur" v-on:submit.prevent="updateBrewer">
       <div class="form-element">
-            <label for="brewery">Please select a brewery: </label>
-            <select id="brewery" type="text" v-model="breweryToUpdate">
+            <label for="brewery-selector">Select a brewery: </label><br>
+            <select id="brewery-selector-bttn" type="text" v-model="breweryToUpdate">
                 <option v-bind:value="brewery" v-for="brewery in allBreweries" v-bind:key="brewery.id">
                     {{ brewery.name }}</option>
             </select>
         </div>
-      
+      <br>
       <div class="form-element">
-            <label for="brewer">Please select a brewer to manage this brewery: </label>
-            <select id="brewer" type="text" v-model="breweryToUpdate.ownerId">
+            <label for="brewer-selector">Select a brewer to manage this brewery: </label><br>
+            <select id="brewer-selector-bttn" type="text" v-model="breweryToUpdate.ownerId">
                 <option v-bind:value="user.id" v-for="user in brewerList" v-bind:key="user.id">
                     {{ user.username }}</option>
             </select>
         </div>
+        <br>
     <input type="submit" value="Save">
     <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
         
@@ -61,6 +62,14 @@ export default {
 </script>
 
 <style>
+.brewer-selector-bttn{
+   font-family: 'Poppins', sans-serif;
+}
+
+.brewery-selector-bttn{
+   font-family: 'Poppins', sans-serif; 
+}
+
 
 .container-assign-brewer {
     font-family: 'Poppins', sans-serif;

@@ -2,16 +2,18 @@
 <div>
     <div id='beer-list'  class="container-beers-brewer container-blur">
         <router-link id="breweries-list" class="link-in-black" v-bind:to="{name: 'user-breweries-display'}">Return to Brewery List</router-link>
-        <br> 
-        <router-link id="add-beer" class="link-in-black" v-bind:to="{name: 'add-beer-display'}">Add a beer</router-link>
-        <h1 id='brewery-name'>{{breweryDetails.name}} Presents: </h1>
+        <br>
+        <router-link id="add-a-beer" class="link-in-black" v-bind:to="{name: 'add-a-beer-display'}">Add a beer</router-link>
+        <h1 id='brewery-name-at-top'>{{breweryDetails.name}} </h1>
         </div>
-        <div id='beers' v-for="beer in allBeers" v-bind:key="beer.id" class="container-beers-brewer container-blur">
+        <div id='beers' v-for="beer in allBeers" class="container-beers-brewer container-blur" v-bind:key="beer.id">
         <h1 id='beer-name'>{{beer.name}}</h1>
-        <router-link id='edit-beer' class="link-in-black" v-bind:to="{name: 'edit-beers-display', params: {beerId: beer.id}}">Edit this beer</router-link><br>
+        <router-link id='edit-beer' class="link-in-black" v-bind:to="{name: 'edit-beers-display', params: {beerId: beer.id}}">Edit this beer</router-link>
+        <br>
         <button id="delete-beer" v-on:click.prevent="deleteBeer(beer.id)">Delete this beer</button>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -55,6 +57,17 @@ export default {
 </script>
 
 <style>
+#breweries-list{
+font-size: 30px;
+}
+
+#add-a-beer{
+ font-size: 30px;
+}
+
+#brewery-name-at-top{
+    font-size: 50px;
+}
 
 #brewery-name {
     font-size: 5vw;
