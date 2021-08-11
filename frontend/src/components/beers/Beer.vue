@@ -1,11 +1,11 @@
 <template>
   <div class="container-beer-details container-blur">
     <router-link id="beers-button" class="link-in-black" v-bind:to="{ name: 'beers-display', params: {breweryId: breweryDetails.id } }">Return to Beer List</router-link>
-    <div><img :src="beerDetails.image" ></div>
     <h2 class="beer-details-text">{{beerDetails.name}}</h2>
     <h2 class="beer-details-text">{{beerDetails.beerType}}</h2>
     <p class="beer-details-description">{{beerDetails.description}}</p>
     <p class="beer-details-text">Alcohol By Volume: {{beerDetails.abv}}%</p>
+    <div><img class="logo-image a" :src="beerDetails.imageLink" alt="Beer Image" :href="beerDetails.website"></div>
     <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'beer-review-display', params: {breweryId: breweryDetails.id, beerId: beerDetails.id} }">View reviews</router-link>
   </div>
 </template>

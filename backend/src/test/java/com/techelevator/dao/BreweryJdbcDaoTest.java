@@ -99,7 +99,7 @@ Brewery breweryTest = new Brewery (8, "The Brew Works", "(412) 687-8200", "On th
         Brewery retrivedUpdate = breweryDao.getBreweryById(1);
         assertBreweriesMatch(breweryToUpdate, retrivedUpdate);
     }
-        
+
 
 
 
