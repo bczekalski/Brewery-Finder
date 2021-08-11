@@ -97,6 +97,8 @@ public class JdbcBreweryDao implements BreweryDao{
         reviewDao.deleteBreweryReviews(id);
         String sql = "DELETE FROM user_breweries WHERE brewery_id = ?;";
         jdbcTemplate.update(sql, id);
+        sql = "DELETE FROM events WHERE brewery_id = ?;";
+        jdbcTemplate.update(sql, id);
         sql = "DELETE FROM breweries WHERE brewery_id = ?";
         jdbcTemplate.update(sql, id);
     }

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.techelevator.model.Brewery;
+import com.techelevator.model.Review;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class BeerJdbcDaoTest extends FinalCapstoneDaoTests {
     private static final Beer BEER_3 = new Beer(1, "Cosmic Void", "IPA", "Brewed and dry hopped with Sabro. Notes of Pineapple, Coconut, Tropical Fruit, and Cedar.", 7.0F,
             "https://hitchhiker.beer/wp-content/uploads/HHBC_CosmicVoid_bc_01102019_CMYK.jpg", false, 1);
     private static final Beer BEER_4 = new Beer(3, "Fruit Rush- Raspberry", "Smoothie Sour Shandy", "Brewed with Oats and Wheat. Conditioned on Lemon and Raspberry.", 4.8F,
-            "https://hitchhiker.beer/wp-content/uploads/HHBC_FruitRushRaspberry_bc_49375x7-1200x757.jpg", false, 1);
+            "https://hitchhiker.beer/wp-content/uploads/HHBC_FruitRushRaspberry_bc_49375x7-1200x757.jpg", false, 8);
 
     private static final Brewery BREWERY_1 = new Brewery (1, "HitchHiker", "(412) 343-1950", "Our original pub (and our former brewery) is located in the heart of Mt. Lebanon.",
             "Mon: Closed, Tues: 4-10PM, Wed: 4-10PM, Thur: 4-10PM, Fri: 4-10PM, Sat: 12-10PM, Sun: 12-8PM", "1500 S Canal St #2541", "Pittsburgh", "PA", "15215", "https://hitchhiker.beer/",
@@ -44,11 +45,6 @@ public class BeerJdbcDaoTest extends FinalCapstoneDaoTests {
             "https://churchbrew.com/", "https://churchbrew.com/wp-content/themes/yeast/img/logo.png", true, 7);
 
 
-
-
-
-
-
     @Before
     public void setup() {
         DataSource dataSource = this.getDataSource();
@@ -60,17 +56,17 @@ public class BeerJdbcDaoTest extends FinalCapstoneDaoTests {
 
     }
 
-    @Test
-    public void getAllBeers() {
-        List<Beer> listToTest = beerDao.getBeers();
-        assertNotNull(listToTest);
-
-    }
 
     @Test
     public void getBeersByIdTest() {
-        Beer actual = beerDao.getBeerById(3, 8);
+        Beer actual = beerDao.getBeerById(8, 3);
         assertBeersMatch(actual, BEER_4);
+        Beer actual2 = beerDao.getBeerById(1, 1);
+        assertBeersMatch(actual2, BEER_3);
+        Beer actual3 = beerDao.getBeerById(3, 8);
+        assertBeersMatch(actual3, BEER_2);
+        Beer actual4 = beerDao.getBeerById(3, 9);
+        assertBeersMatch(actual4, BEER_1);
 
     }
 
@@ -85,8 +81,28 @@ public class BeerJdbcDaoTest extends FinalCapstoneDaoTests {
     public void deleteBeersByBreweryId() {
         assertEquals(3, beerDao.getBeersByBreweryId(2).size());
         beerDao.deleteBeersByBrewery(2);
-        assertEquals(3, beerDao.getBeersByBreweryId(2).size());
+        assertEquals(2, beerDao.getBeersByBreweryId(2).size());
     }
+
+    @Test
+    public void updateBeerExpectedValue () {
+
+       Beer beerToUpdate = beerDao.getBeerById(8,3);
+       beerToUpdate.setId(1);
+       beerToUpdate.setName("update");
+       beerToUpdate.setBeerType("updated beer type");
+       beerToUpdate.setDescription("updated description");
+       beerToUpdate.setAbv(4F);
+       beerToUpdate.setImageLink("updated image link");
+       beerToUpdate.isGlutenFree();
+       beerToUpdate.setBreweryId(2);
+
+       beerDao.updateBeer(beerToUpdate);
+
+       Beer retrivedUpdate = beerDao.getBeerById(8,3);
+       assertBeersMatch(beerToUpdate, retrivedUpdate);
+    }
+
 
     private void assertBeersMatch(Beer expected, Beer actual) {
         Assert.assertEquals(expected.getId(), actual.getId());
