@@ -5,12 +5,13 @@
         <h2>Upcoming Events for {{brewery.name}}:</h2>
     </div>
     <div class="container-events container-blur" v-for="event in allEvents" :key="event.id">
-        <h2>{{event.breweryName}}</h2>
-        <h2>{{event.name}}</h2>
-        <p>{{event.description}}</p>
-        <h2>{{convertTime(event.startTime)}} - {{convertTime(event.endTime)}}</h2>
-        <h2>{{convertDate(event.date)}}</h2>
-        <h2 v-for='(l,i) in convertLocation(event.location)' :key="i">{{l}}</h2>
+        <h2>Event: {{event.name}}</h2>
+        <div class="event-details">
+        <p>Description: {{event.description}}</p>
+        <p>Date: {{convertDate(event.date)}}</p>
+        <p>Time: {{convertTime(event.startTime)}} - {{convertTime(event.endTime)}}</p>
+        <p>Location:</p><p v-for='(l,i) in convertLocation(event.location)' :key="i"> {{l}}</p>
+        </div>
     </div>
   </div>
 </template>

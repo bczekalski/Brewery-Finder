@@ -5,12 +5,15 @@
         <h2>Upcoming Events:</h2>
     </div>
     <div class="container-events container-blur" v-for="event in allEvents" :key="event.id">
-        <h2>{{event.breweryName}}</h2>
-        <h2>{{event.name}}</h2>
-        <p>{{event.description}}</p>
-        <h2>{{convertTime(event.startTime)}} - {{convertTime(event.endTime)}}</h2>
-        <h2>{{convertDate(event.date)}}</h2>
-        <h2 v-for='(l,i) in convertLocation(event.location)' :key="i">{{l}}</h2>
+        <h2>Hosted by: {{event.breweryName}}</h2>
+        <h2>Event: {{event.name}}</h2>
+        <div class="event-details">
+        <p>Description: {{event.description}}</p>
+        <p>Date: {{convertDate(event.date)}}</p>
+        <p>Time: {{convertTime(event.startTime)}} - {{convertTime(event.endTime)}}</p>
+        <p>Location: </p>
+        <p v-for='(l,i) in convertLocation(event.location)' :key="i">{{l}}</p>
+        </div>
     </div>
   </div>
 </template>
@@ -46,16 +49,22 @@ export default {
 
 <style>
 .container-events {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3vw;
-  text-align: center;
-  display: block;
-  border-radius:3vw;
-  padding: 3vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius:3vw;
+    padding: 3vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
+
+.event-details {
+    font-size: 2vw;
 }
 
 </style>

@@ -108,8 +108,8 @@ export default {
 <style>
 
 .rating-beer-pint{
-margin: auto;
-height: 7vw;
+    margin: auto;
+    height: 7vw;
 }
 
 .brewery-review-container {
@@ -119,7 +119,6 @@ height: 7vw;
     display: block;
     border-radius:3vw;
     padding: 1.5vw;
-    padding-bottom: 4vw;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
