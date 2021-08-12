@@ -31,16 +31,16 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 .container-home {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3vw;
-  text-align: center;
-  display: block;
-  border-radius:3vw;
-  padding: 3vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius: 3vw;
+    padding: 3vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
 }
 
 #brewery-list-button {
@@ -68,10 +68,10 @@ export default {
 }
 
 .link-in-black {
-  color: black;
+    color: black;
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 500px){
     #home-grid{
         display: grid;
         row-gap: 20px;

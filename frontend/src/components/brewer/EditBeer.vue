@@ -33,8 +33,8 @@
               <input id="image" type="text" v-model="editedBeer.imageLink" />
           </div>
           <br>
-          <input type="submit" value="Save">
-          <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
+          <input class="form-btns" type="submit" value="Save">
+          <input class="form-btns" type="button" value="Cancel" v-on:click.prevent="resetForm()">
           </form>
 </div>
 </template>
@@ -78,34 +78,10 @@ export default {
 </script>
 
 <style>
-#update-beer{
-    font-family: 'Poppins', sans-serif;
-    font-size: 40px;
-}
-#name{
-    font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
-
-#description{
-    font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
-
-#beer-type{
-    font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
-
-#abv{
-    font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
-
 
 .container-add-beer {
   font-family: 'Poppins', sans-serif;
-  font-size: 25px;
+  font-size: 3vw;
   text-align: center;
   display: block;
   border-radius:3vw;

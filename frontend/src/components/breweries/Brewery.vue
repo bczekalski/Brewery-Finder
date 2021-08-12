@@ -5,7 +5,9 @@
         
         <div class="container-brewery container-blur">
             <router-link class="link-in-black" v-bind:to="{name: 'breweries-display'}">Return to Brewery List</router-link>
-            <h2 class="brewery-name">{{ brewery.name }}</h2>
+        </div>
+        <div class="container-brewery container-blur">
+            <h2>{{ brewery.name }}</h2>
             <div class="brewery-details">
                 <div class="brewery-history a">History: {{ brewery.history }}</div>
                 <div class="contact-info a">Contact Information: {{ brewery.contactInfo }}</div>
@@ -15,19 +17,20 @@
                     </ul>
                     </div>
                 <div class="full-address a">
-                <div class="address-line-1">Address: {{ brewery.address }}</div>
-                <div class="address-line-2"> 
-                    </div>
+                    <div class="address-line-1">Address: {{ brewery.address }}</div>
+                    <div class="address-line-2"> 
+                </div>
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
                 
-                <div><a :href="brewery.website"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
+                <div><a :href="brewery.website" target="_blank" class="link-in-black"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
             <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link> | 
             <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-events', params: {breweryId: brewery.id } }">Upcoming Events</router-link>
             </div>
         </div>
+        </div>
         <br><br><br>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -65,7 +68,7 @@ export default {
     font-size: 3vw;
     text-align: center;
     display: block;
-    border-radius:3vw;
+    border-radius: 3vw;
     padding: 5vw;
     justify-content: space-evenly;
     justify-items: center;
@@ -75,7 +78,7 @@ export default {
     margin-right: 20vw;
 }
 .brewery-details {
-    font-size: 1.5vw;
+    font-size: 3vw;
 }
 
 .brewery-history {

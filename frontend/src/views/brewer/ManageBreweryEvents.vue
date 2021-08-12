@@ -5,25 +5,26 @@
         <button v-if="showAddForm === false" v-on:click.prevent="showAddForm = true">Add Event</button>
         <form id="add-review-form" v-if="showAddForm===true" v-on:submit.prevent="addNewEvent">
             <div class="form-element">
-                <label for="title">Name for the event:</label>
+                <label for="title">Name for the event: </label>
                 <textarea class="title" placeholder="Event Title" v-model="newEvent.name"/>
             </div>
             <div class="form-element">
-                <label for="text">Description for the Event:</label>
+                <label for="text">Description for the Event: </label>
                 <textarea class="text" placeholder="Event Description" v-model="newEvent.description"/>
             </div>
             <div class="form-element">
-                <label for="name">Date of the Event:</label>
+                <label for="name">Date of the Event: </label>
                 <input type="date" class="name" placeholder="Name" v-model="newEvent.date"/>
             </div>
             <div class="form-element">
-                <label for="name">Event start time:</label>
+                <label for="name">Event start time: </label>
                 <input type="time" class="name" placeholder="Name" v-model="newEvent.startTime"/>
             </div>
             <div class="form-element">
-                <label for="name">Event end time:</label>
+                <label for="name">Event end time: </label>
                 <input type="time" class="name" placeholder="Name" v-model="newEvent.endTime"/>
             </div>
+            <br>
             <div class="buttons-div">
                 <input type="submit" value="Save Event" class="form-btns">
                 <input type="button" value="Cancel" class='form-btns' v-on:click.prevent="resetAddForm">

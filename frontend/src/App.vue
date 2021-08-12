@@ -60,11 +60,29 @@ html {
   color: white;
 }
 
+.center-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    padding: 3vw;
+}
+
 .container-blur {
   background-color: rgba(255 ,255 , 255, .5);    
   backdrop-filter: blur(12px);
   margin: 1.5vw;
 }
 
+
+.form-btns {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2vw;
+}
 
 </style>

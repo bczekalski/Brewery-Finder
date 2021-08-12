@@ -33,7 +33,7 @@
         required
       />
       <br>
-      <button type="submit">Sign in</button>
+      <button class="form-btns" type="submit">Sign in</button>
       <br>
       <router-link :to="{ name: 'register' }" class="login-text link-in-black">Need an account?</router-link>  
     </form>
@@ -86,25 +86,25 @@ h2 {
 }
 
 .container-login {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3vw;
-  text-align: center;
-  display: block;
-  border-radius:3vw;
-  padding: 3vw;
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  margin-left: 20vw;
-  margin-right: 20vw;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius:3vw;
+    padding: 3vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 .login-text {
-  padding: 2vw;
-  font-family: 'Poppins', sans-serif;
-  font-size: 2vw;
-  text-align: center;
+    padding: 2vw;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw;
+    text-align: center;
 }
 
 </style>
