@@ -1,7 +1,7 @@
 <template>
 <div id="brewery-form">
   <form class="container-add-brewery-in-admin container-blur" v-on:submit.prevent="addNewBrewery">
-      <div id="add-brewery-admin">Add a new brewery: </div><br>
+      <div class="add-brewery-admin">Add a new brewery: </div><br>
           <div class="form-element">
               <label for="name">Name: </label><br>
               <input id="name" type="text" v-model="newBrewery.name" />
@@ -60,8 +60,8 @@
                       {{ user.username }}</option>
               </select>
           </div><br>
-          <input type="submit" value="Save">
-          <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
+          <input class="form-btns" type="submit" value="Save">
+          <input class="form-btns" type="button" value="Cancel" v-on:click.prevent="resetForm()">
     </form>
 </div>
 </template>
@@ -114,17 +114,17 @@ export default {
 
 <style>
 
-#add-brewery-admin{
-font-family: 'Poppins', sans-serif;
-    font-size: 40px;
+.add-brewery-admin{
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
 }
 
 .container-add-brewery-in-admin{
     font-family: 'Poppins', sans-serif;
-    font-size: 25px;
+    font-size: 2vw;
     text-align: center;
     display: block;
-    border-radius:3vw;
+    border-radius: 3vw;
     padding: 3vw;
     justify-content: space-evenly;
     justify-items: center;

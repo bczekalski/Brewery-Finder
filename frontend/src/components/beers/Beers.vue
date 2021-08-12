@@ -1,11 +1,14 @@
 <template>
-    <div class="container-beer-list container-blur">
-        <router-link class="link-in-black" id=“breweries-list” v-bind:to="{name: 'breweries-display'}">Return to Brewery List</router-link>
-        <br>
-        <h1 class="beer-list-header">{{breweryDetails.name}} Presents: </h1>
-        <div v-for="beer in allBeers" v-bind:key="beer.id">
-            <router-link class="link-in-black beer-name-in-list" v-bind:to="{name: 'beer-display', params: {breweryId: breweryDetails.id, beerId: beer.id} }">{{beer.name}}</router-link>
-            <br><br>
+    <div>
+        <div class="container-beer-list container-blur">
+            <router-link class="link-in-black" id=“breweries-list” v-bind:to="{name: 'breweries-display'}">Return to Brewery List</router-link>
+        </div>
+        <div class="container-beer-list container-blur">
+            <h1 class="beer-list-header">{{breweryDetails.name}} Presents: </h1>
+            <div v-for="beer in allBeers" v-bind:key="beer.id">
+                <router-link class="link-in-black beer-name-in-list" v-bind:to="{name: 'beer-display', params: {breweryId: breweryDetails.id, beerId: beer.id} }">{{beer.name}}</router-link>
+                <br><br>
+            </div>
         </div>
     </div>
 </template>
@@ -36,17 +39,13 @@ export default {
 <style>
 
 .beer-list-header {
-    font-size: 50px;
+    font-size: 3vw;
+    font-style: bold;
 }
 
 .beer-name-in-list {
-    font-size: 30px;
+    font-size: 2.5vw;
     font-style: italic;
-    padding-bottom: 3vw;
-}
-
-.details-link {
-    font-size: 20px;
 }
 
 .container-beer-list {
@@ -56,7 +55,6 @@ export default {
     display: block;
     border-radius: 3vw;
     padding: 1.5vw;
-    padding-bottom: 4vw;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;

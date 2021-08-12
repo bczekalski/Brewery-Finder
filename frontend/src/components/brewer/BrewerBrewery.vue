@@ -75,15 +75,13 @@ export default {
     margin-left: 20vw;
     margin-right: 20vw;
 }
-#edit-brewery-button{
-font-size: 20px;
-}
+
 .brewery-details {
-    font-size: 1.5vw;
+    font-size: 2vw;
 }
 
 .brewery-history {
-    font-style:italic;
+    font-style: italic;
     text-align: left;
 }
 
@@ -96,7 +94,7 @@ font-size: 20px;
 }
 li {
     text-align: left;
-    margin-left: 35%;
+    margin-left: 20%;
 }
 
 

@@ -1,12 +1,16 @@
 <template>
+<div>
   <div class="container-beer-details container-blur">
-    <router-link id="beers-button" class="link-in-black" v-bind:to="{ name: 'beers-display', params: {breweryId: breweryDetails.id } }">Return to Beer List</router-link>
-    <div><img :src="beerDetails.image" ></div>
+    <router-link class="link-in-black" v-bind:to="{ name: 'beers-display', params: {breweryId: breweryDetails.id } }">Return to Beer List</router-link>
+  </div>
+  <div class="container-beer-details container-blur">
+    <div><img class="logo-image" :src="beerDetails.imageLink" ></div>
     <h2 class="beer-name-text">{{beerDetails.name}}</h2>
     <h3 class="beer-type-text">Beer Type: {{beerDetails.beerType}}</h3>
     <p class="beer-details-description">{{beerDetails.description}}</p>
     <p class="beer-abv-text">Alcohol By Volume: {{beerDetails.abv}}%</p>
     <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'beer-review-display', params: {breweryId: breweryDetails.id, beerId: beerDetails.id} }">View reviews</router-link>
+  </div>
   </div>
 </template>
 
@@ -39,21 +43,21 @@ export default {
 
 
 .beer-name-text {
-    font-size: 40px;
+    font-size: 3vw;
 }
 
 .beer-type-text{
-    font-size: 30px;
+    font-size: 3vw;
 }
 
 .beer-details-description {
-    font-size: 20px;
+    font-size: 2.5vw;
     font-style: italic;
     text-align: left;
 }
 
 .beer-abv-text{
-    font-size: 25px;
+    font-size: 2.5vw;
 
 }
 
@@ -63,7 +67,7 @@ export default {
     text-align: center;
     display: block;
     border-radius: 3vw;
-    padding: 1.5vw;
+    padding: 2vw;
     padding-bottom: 4vw;
     justify-content: space-evenly;
     justify-items: center;

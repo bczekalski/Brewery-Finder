@@ -20,7 +20,6 @@ public class FeaturedBeer {
         this.brands = brands;
         this.product_name = product_name;
         this.image_url = image_url;
-//        this.allergens = allergens;
         this._id = _id;
         this.nutriments = nutriments;
         this.alcohol = nutriments.getAlcohol();
@@ -38,10 +37,6 @@ public class FeaturedBeer {
     public String getImage_url() {
         return image_url;
     }
-
-//    public String getAllergens() {
-//        return allergens;
-//    }
 
     public long get_id() {
         return _id;
