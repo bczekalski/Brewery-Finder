@@ -3,7 +3,7 @@
     <div id='beer-list'  class="container-beers-brewer container-blur">
         <router-link id="breweries-list" class="link-in-black" v-bind:to="{name: 'user-breweries-display'}">Return to Brewery List</router-link>
         <br>
-        <router-link id="add-a-beer" class="link-in-black" v-bind:to="{name: 'add-a-beer-display'}">Add a beer</router-link>
+        <router-link id="add-a-beer" class="link-in-black" v-bind:to="{name: 'add-beer-display'}">Add a beer</router-link>
         <h1 id='brewery-name-at-top'>{{breweryDetails.name}} </h1>
         </div>
         <div id='beers' v-for="beer in allBeers" class="container-beers-brewer container-blur" v-bind:key="beer.id">
