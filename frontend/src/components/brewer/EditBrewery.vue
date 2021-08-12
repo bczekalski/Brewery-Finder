@@ -60,8 +60,8 @@
               </select>
           </div>
           <br>
-          <input type="submit" value="Save">
-          <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
+          <input class="form-btns" type="submit" value="Save">
+          <input class="form-btns" type="button" value="Cancel" v-on:click.prevent="resetForm()">
           </form>
   </div>
 </template>
@@ -123,15 +123,15 @@ export default {
 
 #update-brewery{
     font-family: 'Poppins', sans-serif;
-    font-size: 40px;
+    font-size: 3vw;
 }
 
 .container-edit-brewery {
     font-family: 'Poppins', sans-serif;
-    font-size: 25px;
+    font-size: 2vw;
     text-align: center;
     display: block;
-    border-radius:3vw;
+    border-radius: 3vw;
     padding: 5vw;
     justify-content: space-evenly;
     justify-items: center;

@@ -1,9 +1,11 @@
 <template>
   <div id="brewery-reviews">
-    <div id='new-brewery-form-container' class="brewery-review-container container-blur">
+    <div class="center-nav review-container container-blur">
         <router-link id="brewery-details-button" class="link-in-black" v-bind:to="{ name: 'brewery-display', params: {breweryId: this.$route.params.breweryId } }">Back to Brewery</router-link>
+    </div>
+        <div class="review-container container-blur">
             <div id="add-review" class="center-button" v-if="$store.state.token != ''">
-                <button v-if="showForm === false" v-on:click.prevent="showForm = true">Click here to add a review!</button>
+                <button class="form-btns" v-if="showForm === false" v-on:click.prevent="showForm = true">Click here to add a review!</button>
                 <h2 id="no-reviews" v-if="!allReviews.length && showForm==false">There are no reviews on this brewery yet. Be the first to write one!</h2>
             </div>
             <form id="add-review-form" v-if="showForm===true" v-on:submit.prevent="addReview">
@@ -12,7 +14,7 @@
                 <div class="form-element">
                     <label for="title">Title of your review: </label>
                     <br>
-                    <textarea class="title" v-model="newReview.title"/>
+                    <textarea v-model="newReview.title"/>
                 </div>
                 <br>
                 <div class="form-element">
@@ -24,7 +26,7 @@
                 <div class="form-element">
                     <label for="name">Enter your name: </label>
                     <br>
-                    <input type="text" class="name" v-model="newReview.name"/>
+                    <input type="text" v-model="newReview.name"/>
                 </div>
                 <br>
                 <div class="form-element">
@@ -46,7 +48,7 @@
                 </div>
             </form>
         </div>
-    <div id = "review-details" class="brewery-review-container container-blur" v-for="review in allReviews" v-bind:key="review.id">
+    <div id = "review-details" class="review-container container-blur" v-for="review in allReviews" v-bind:key="review.id">
         <!-- This is where all the reviews will display-->
         <h2> "{{ review.title }}" </h2>        
         <h3> By:  {{ review.name }} </h3>
@@ -107,25 +109,29 @@ export default {
 </script>
 <style>
 
-.rating-beer-pint{
-margin: auto;
-height: 7vw;
+.rating-beer-pint {
+    margin: auto;
+    height: 7vw;
 }
 
-.brewery-review-container {
+.review-container {
     font-family: 'Poppins', sans-serif;
     font-size: 2vw;
-    text-align: center;
+    text-align: left;
     display: block;
     border-radius:3vw;
     padding: 1.5vw;
-    padding-bottom: 4vw;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
     align-items: center;
     margin-left: 20vw;
     margin-right: 20vw;
+}
+
+.center-nav {
+    text-align: center;
+    font-size: 3vw;
 }
 
 

@@ -4,11 +4,11 @@
                 <div id='grid-featured-beer'>
                     <div><img id='beer-image' :src="featuredBeer.image_url" ></div>                    
                     <div id='beer-details'>
-                        <h4 id='beer-brand'>Brewery: {{ featuredBeer.brands }}</h4>
-                        <h4 id='product-name'>Beer: {{ featuredBeer.product_name }}</h4>
+                        <h4>Brewery: {{ featuredBeer.brands }}</h4>
+                        <h4>Beer: {{ featuredBeer.product_name }}</h4>
                         <div v-if="featuredBeer.nutriments.alcohol === 0">Sorry, no ABV data found!</div> 
                         <div v-else>
-                        <h4 id='abv'>ABV: {{ featuredBeer.nutriments.alcohol }} {{ featuredBeer.nutriments.alcohol_unit }} </h4>
+                        <h4>ABV: {{ featuredBeer.nutriments.alcohol }} {{ featuredBeer.nutriments.alcohol_unit }} </h4>
                         </div>
                     </div>
         </div>
@@ -56,6 +56,7 @@ export default {
 }
 
 #beer-image {
+    width: 20vw;
     grid-area: 'image';
     padding: .5vw;
 }

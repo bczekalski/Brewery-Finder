@@ -1,7 +1,7 @@
 <template>
 <div id="beer-form">
   <form class="container-add-beer container-blur" v-on:submit.prevent="addNewBeer()">
-      <div id="add-beer">Add beer: </div><br>
+      <h2 id="add-beer">Add beer: </h2><br>
           <div class="form-element">
               <label for="name">Beer name: </label><br>
               <input id="name" type="text" v-model="newBeer.name" />
@@ -33,8 +33,8 @@
               <input placeholder="https://" id="image" type="text" v-model="newBeer.imageLink" />
           </div>
           <br>
-          <input type="submit" value="Save">
-          <input type="button" value="Cancel" v-on:click.prevent="resetForm()">
+          <input class="form-btns" type="submit" value="Save">
+          <input class="form-btns" type="button" value="Cancel" v-on:click.prevent="resetForm()">
           </form>
 </div>
 </template>
@@ -73,33 +73,10 @@ export default {
 </script>
 
 <style>
-#add-beer{
-    font-family: 'Poppins', sans-serif;
-    font-size: 40px;
-}
-#name{
-    font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
-
-#description{
-    font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
-
-#beer-type{
-    font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
-
-#abv{
-    font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
 
 .container-add-beer {
   font-family: 'Poppins', sans-serif;
-  font-size: 25px;
+  font-size: 2vw;
   text-align: left;
   display: block;
   border-radius:3vw;

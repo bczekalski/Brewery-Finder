@@ -35,7 +35,7 @@
         required
       />
       <br>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="form-btns" type="submit">
         Create Account
       </button>
       <br>
