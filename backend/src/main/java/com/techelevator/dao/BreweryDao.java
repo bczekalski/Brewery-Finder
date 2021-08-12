@@ -20,8 +20,6 @@ public interface BreweryDao {
 
     void updateBrewery(Brewery aBrewery);
 
-    List<Brewery> getAllBreweriesWithGFBeer();
-
     List<Food> getFoodList();
 
     void updateBrewer(Brewery brewery);

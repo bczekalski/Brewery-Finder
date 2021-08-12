@@ -1,6 +1,7 @@
 <template>
 <div id="brewery-form">
     <form class="container-add-brewery container-blur" v-on:submit.prevent="addNewBrewery">
+        <router-link class="link-in-black" v-bind:to="{ name: 'my-account-display' }">Return to account menu</router-link>
         <h2 id="add-brew">Add a brewery: </h2>
         <br>
         <div class="form-element">

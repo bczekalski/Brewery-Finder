@@ -1,7 +1,13 @@
 <template>
   <div>
-    <div class="review-container container-blur">
-            <div id="add-review" v-if="$store.state.token != ''">
+      <div class="center-nav review-container container-blur">
+        <router-link id="brewery-details-button" class="link-in-black" v-bind:to="{ name: 'beer-display', params: {breweryId: this.$route.params.breweryId, beerId: this.$route.params.beerId } }">Back to Beer</router-link>
+    </div>
+      <div class="review-container container-blur" v-if="$store.state.token == '' && allReviews.length==0">
+            <h2>There are no reviews on this beer yet. Log in to an account to add one!</h2>
+    </div>
+    <div class="review-container container-blur" v-if="$store.state.token != ''">
+            <div id="add-review" >
                 <div class="center-button">
                     <button class="form-btns" v-if="showForm === false" v-on:click.prevent="showForm = true">Click here to add a review!</button>
                 </div>

@@ -1,5 +1,6 @@
 <template>
   <div id='edit-brewery' class="container-edit-brewery container-blur">
+      <router-link id="brewery-button" class="link-in-black" v-bind:to="{ name: 'brewer-brewery-display', params: {breweryId: editedBrewery.id } }">Return to brewery</router-link>
       <form v-on:submit.prevent="updateBrewery">
           <div id="update-brewery">Update Brewery Info: </div><br>
           <div class="form-element">

@@ -1,5 +1,6 @@
 <template>
   <form class="container-assign-brewer container-blur" v-on:submit.prevent="updateBrewer">
+      <router-link id="admin-button" class="link-in-black" v-bind:to="{ name: 'admin-display' }" >Return to Admin Menu </router-link>
       <div class="form-element">
             <label for="brewery-selector">Select a brewery: </label><br>
             <select type="text" v-model="breweryToUpdate">

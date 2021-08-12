@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div class="container-blur nav-container">
+            <router-link class="link-in-black" v-bind:to="{ name: 'my-account-display' }" v-if="$store.state.token != ''">My Account</router-link>
+            <h2 v-if="!allReviews.length">You currently have no reviews written. Get out there and rate!</h2>
+            </div>
         <div class="container-blur beer-reviews-container" v-for="review in allReviews" v-bind:key="review.id">
             <h2> "{{ review.title }}" </h2>      
             <h3> By: {{ review.name }} </h3>
@@ -56,5 +60,21 @@ height: 7vw;
     margin-left: 20vw;
     margin-right: 20vw;
 }
+
+.nav-container {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3vw;
+    text-align: center;
+    display: block;
+    border-radius:3vw;
+    padding: 3vw;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
+
 
 </style>

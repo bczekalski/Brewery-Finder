@@ -1,5 +1,6 @@
 <template>
 <div class="container-events container-blur">
+    <router-link id="brewery-events-button" class="link-in-black" v-bind:to="{ name: 'manage-brewery-events', params: {breweryId: this.$route.params.breweryId } }">Back to events</router-link><br>
   <form id="edit-review-form" v-on:submit.prevent="updateEvent">
     <div class="form-element">
         <label for="title">Name for the event:</label>

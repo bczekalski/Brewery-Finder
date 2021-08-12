@@ -14,8 +14,6 @@ public interface BeerDao {
 
     void deleteBeersByBrewery(int breweryId);
 
-    //List<Beer> getAllGlutenFreeBeers();
-
     List<Beer> getBeersByBreweryId(int breweryId);
 
     void updateBeer(Beer beerToUpdate);

@@ -21,8 +21,6 @@ public interface ReviewDao {
 
     List<Review> getAllReviewsByUserId(long userId);
 
-    //List<Beer> topRatedBeers();
-
     void deleteBeerReviews(long id);
 
     void deleteBreweryReviews(long id);
