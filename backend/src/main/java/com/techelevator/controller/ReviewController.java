@@ -49,6 +49,7 @@ public class ReviewController {
 
     @DeleteMapping(path="/account/reviews")
     @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteReviews(@PathVariable int userId) {
         reviewDao.deleteReviews(userId);
     }

@@ -24,7 +24,6 @@
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
                 
                 <div><a :href="brewery.website"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
-            <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
             </div>
             <br><br><br>
         </div>
@@ -52,17 +51,6 @@ export default {
         activateBrewery(brewery){
             brewery.active = true;
             breweryService.updateBrewery(brewery);
-            /*var allActive = true;
-            for (let i = 0; i<this.allBreweries.length; i++){
-                if (this.allBreweries[i].active == false){
-                    allActive = false;
-                }
-            }
-            if(allActive){
-                this.$router.push('/')
-            }else{
-                window.location.reload();
-            }*/
         },
         splitJoin(time){
             return time.split(', ')

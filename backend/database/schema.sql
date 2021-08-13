@@ -152,14 +152,14 @@ INSERT INTO beers (beer_name, beer_type, beer_description, abv, image, gluten_fr
 ;
 
 INSERT INTO reviews (reviewer_name, review_title, review_text, review_stars, review_type, user_id, target_id) VALUES
-('Brandon Czekalski', 'I love this place', 'Hitchhiker is a really cool brewery.', 4, 'Brewery', 4, 9),
-('Brandon Czekalski', 'This place is okay', 'Eleventh Hour has really interesting beers, but the atmosphere in the tap room sucks.', 3, 'Brewery', 4, 1),
-('Brandon Czekalski', 'Amazing place', 'Church Brew has a really cool design. The beer is good too.', 5, 'Brewery', 4, 6),
-('Celeste', 'Worst service ever', 'Church Brew sucks.', 1, 'Brewery', 5, 10),
-('Brandon Czekalski', 'Do not recommend', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 3),
-('Brandon Czekalski', 'Heavy improvments', 'This years installment of Paper Birds is much better than last years', 4, 'Beer', 4, 6),
-('Brandon Czekalski', 'Top tier beer', 'This Tropical Seltzer is the greatest beer ever', 5, 'Beer', 4, 8),
-('Celeste', 'I have no taste buds', 'This IPA could use some work', 1, 'Beer', 5, 9);
+('Bartholomew', 'I love this place', 'Hitchhiker is a really cool brewery.', 4, 'Brewery', 4, 9),
+('Jack', 'This place is okay', 'Eleventh Hour has really interesting beers, but the atmosphere in the tap room sucks.', 3, 'Brewery', 4, 1),
+('Craig', 'Amazing place', 'Church Brew has a really cool design. The beer is good too.', 5, 'Brewery', 4, 6),
+('Sally', 'Worst service ever', 'Church Brew sucks.', 1, 'Brewery', 5, 10),
+('John', 'Do not recommend', 'Cosmic Void tastes okay.', 2, 'Beer', 4, 3),
+('Jimmy', 'Heavy improvments', 'This years installment of Paper Birds is much better than last years', 4, 'Beer', 4, 6),
+('John', 'Top tier beer', 'This Tropical Seltzer is the greatest beer ever', 5, 'Beer', 4, 8),
+('Sally', 'I have no taste buds', 'This IPA could use some work', 1, 'Beer', 5, 9);
 
 INSERT INTO brewery_reviews (review_id, brewery_id) 
 VALUES (1, 1), (2, 2), (3, 3), (4, 3);

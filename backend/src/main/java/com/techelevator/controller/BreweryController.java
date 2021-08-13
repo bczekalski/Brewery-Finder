@@ -39,7 +39,6 @@ public class BreweryController {
     }
 
     @GetMapping(path = "/breweries/{id}")
-    @PreAuthorize("permitAll()")
     public Brewery getBreweryById(@PathVariable int id) {
         return breweryDao.getBreweryById(id);
     }
@@ -51,6 +50,7 @@ public class BreweryController {
     }
 
     @DeleteMapping(path = "account/breweries")
+    @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasRole('ROLE_BREWER')")
     public void deleteBrewery(@RequestParam int id) {
         breweryDao.deleteBrewery(id);
@@ -58,20 +58,16 @@ public class BreweryController {
 
     @PutMapping(path = "account/breweries/{breweryId}/edit")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     public void updateBrewery(@RequestBody Brewery breweryToUpdate) {
         breweryDao.updateBrewery(breweryToUpdate);
     }
 
     @PostMapping(path = {"/account/admin/add"})
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("isAuthenticated()")
     public long addBrewery(@RequestBody Brewery newBrewery) {
         return breweryDao.createBrewery(newBrewery);
-    }
-
-    @GetMapping(path = "/breweries/glutenfree")
-    public List<Brewery> getAllBreweriesWithGFBeer() {
-        List<Brewery> glutenFreeBeers = breweryDao.getAllBreweriesWithGFBeer();
-        return glutenFreeBeers;
     }
 
     @GetMapping(path = "/breweries/{breweryId}/edit")
@@ -91,9 +87,6 @@ public class BreweryController {
     }
 
     private long getId(Principal principal){
-        if(principal == null){
-            return 0L;
-        }
         return userDao.findIdByUsername(principal.getName());
     }
 

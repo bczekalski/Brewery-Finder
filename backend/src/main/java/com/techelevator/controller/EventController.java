@@ -38,12 +38,13 @@ public class EventController {
     }
 
     @PutMapping(path="/account/breweries/{breweryId}/events/edit")
+    @ResponseStatus(HttpStatus.OK)
     public void updateEvent(@RequestBody Event e){
         eventDao.updateEvent(e);
     }
 
     @DeleteMapping(path="/account/breweries/{breweryId}/events")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public void deleteEvent(@RequestParam long id){
         eventDao.deleteEvent(id);
     }

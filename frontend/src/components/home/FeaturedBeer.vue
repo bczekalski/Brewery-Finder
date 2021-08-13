@@ -1,5 +1,6 @@
 <template>
     <div class="container-featured-beer container-blur">
+        <router-link id="home" class="link-in-black" v-bind:to="{ name: 'home' }">Back Home</router-link>
             <h2>Featured Beer:</h2>        
                 <div id='grid-featured-beer'>
                     <div><img id='beer-image' :src="featuredBeer.image_url" ></div>                    

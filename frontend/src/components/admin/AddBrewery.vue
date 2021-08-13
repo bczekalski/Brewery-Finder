@@ -1,6 +1,7 @@
 <template>
 <div id="brewery-form">
   <form class="container-add-brewery-in-admin container-blur" v-on:submit.prevent="addNewBrewery">
+      <router-link id="admin-button" class="link-in-black" v-bind:to="{ name: 'admin-display' }" >Return to Admin Menu </router-link>
       <div class="add-brewery-admin">Add a new brewery: </div><br>
           <div class="form-element">
               <label for="name">Name: </label><br>

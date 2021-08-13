@@ -5,8 +5,8 @@
 <script>
 import AddBeer from '../../components/brewer/AddBeer'
 export default {
-  components: { AddBeer },
-  name: 'add-beer-display'
+  name: 'add-beer-display',
+  components: { AddBeer }
 }
 </script>
 

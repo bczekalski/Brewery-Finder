@@ -1,6 +1,8 @@
 <template>
 <div id="beer-form">
+    
   <form class="container-add-beer container-blur" v-on:submit.prevent="updateBeer()">
+      <router-link id="brewery-beers" class="link-in-black" v-bind:to="{name: 'user-beers-display', params: {breweryId: this.$route.params.breweryId } }">Return to beer list</router-link> <br>
       <div id="update-beer">Update beer: </div><br>
           <div class="form-element">
               <label for="name">Beer name: </label><br>

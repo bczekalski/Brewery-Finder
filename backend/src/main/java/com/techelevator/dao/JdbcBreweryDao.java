@@ -114,17 +114,6 @@ public class JdbcBreweryDao implements BreweryDao{
     }
 
     @Override
-    public List<Brewery> getAllBreweriesWithGFBeer() {
-        List<Brewery> gfList = new ArrayList<>();
-        String sqlGetGfree = "SELECT * FROM breweries JOIN beers ON beers.brewery_id = breweries.brewery_id WHERE beers.gluten_free = ?";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetGfree, true);
-        while(result.next()) {
-            gfList.add(mapRowSetToBrewery(result));
-        }
-        return gfList;
-    }
-
-    @Override
     public List<Food> getFoodList(){
         List<Food> foods = new ArrayList<>();
         String sql = "SELECT * FROM food;";

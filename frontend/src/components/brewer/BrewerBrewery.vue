@@ -2,6 +2,7 @@
   <div id="breweries">
     <div class="brewery-list">
         <div class="container-breweries-brewer container-blur">
+            <router-link id="breweries-button" class="link-in-black" v-bind:to="{ name: 'user-breweries-display' }"><br>Return to brewery list </router-link>
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
                 <h2 v-if="!brewery.active">This brewery is still pending admin approval</h2>
@@ -22,8 +23,8 @@
                 <div class="address-line-2"> 
                     </div>
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div><br>
-                <div><a class="brewery-website a link-in-black" :href="brewery.website" target="_blank" :alt="brewery-website" >Brewery Website</a></div><br><br>
-                <div><img class="logo-image a" :src="brewery.image" alt="Brewery Logo"></div>
+                    <div> Type of food served: {{brewery.food}} </div>
+            <div><a :href="brewery.website" target="_blank" class="link-in-black"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
             <router-link id="reviews-button" class="link-in-black" v-bind:to="{ name: 'brewery-review-display', params: {breweryId: brewery.id } }">View reviews</router-link>
             </div>
         </div>

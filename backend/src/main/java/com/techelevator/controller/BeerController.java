@@ -7,6 +7,7 @@ import com.techelevator.dao.ReviewDao;
 import com.techelevator.model.FeaturedBeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.techelevator.dao.BeerDao;
@@ -36,22 +37,21 @@ public class BeerController {
 
     @PostMapping(path= "/account/breweries/{breweryId}/beers/create")
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     public void addBeer(@RequestBody Beer b) {
         beerDao.addBeer(b);
     }
 
     @DeleteMapping(path="/account/breweries/{breweryId}/beers")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     public void deleteBeer(@RequestParam long beerId) {
         beerDao.deleteBeer(beerId);
     }
 
-    @DeleteMapping(path="/beers/{breweryId}")
-    public void deleteBeersByBrewery(@PathVariable int id) {
-        beerDao.deleteBeer(id);
-    }
-
     @PutMapping(path="/account/breweries/{breweryId}/beers/{beerId}/edit")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ROLE_BREWER')")
     public void updateBeer(@RequestBody Beer b) {
         beerDao.updateBeer(b);
     }

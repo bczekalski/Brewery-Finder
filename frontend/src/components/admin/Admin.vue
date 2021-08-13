@@ -1,14 +1,16 @@
 <template>
   <div id='admin-menu'>
     <div class="container-admin-function container-blur">
-    <router-link id="map-button" class="link-in-black" v-bind:to="{ name: 'manage-brewers-display' }">Map Brewer to Brewery</router-link>
-    </div>
-    
-    <div class="container-admin-function container-blur">
-    <router-link id="add-button" class="link-in-black" v-bind:to="{ name: 'add-brewery-display' }">Add New Brewery</router-link>
+      <router-link class="link-in-black" v-bind:to="{ name: 'my-account-display' }">My Account</router-link>
     </div>
     <div class="container-admin-function container-blur">
-    <router-link id="add-button" class="link-in-black" v-bind:to="{ name: 'brewery-requests-display' }">View Brewery Requests</router-link>
+      <router-link id="map-button" class="link-in-black" v-bind:to="{ name: 'manage-brewers-display' }">Map Brewer to Brewery</router-link>
+    </div>
+    <div class="container-admin-function container-blur">
+      <router-link id="add-button" class="link-in-black" v-bind:to="{ name: 'add-brewery-display' }">Add New Brewery</router-link>
+    </div>
+    <div class="container-admin-function container-blur">
+      <router-link id="add-button" class="link-in-black" v-bind:to="{ name: 'brewery-requests-display' }">View Brewery Requests</router-link>
     </div>
   </div>
 </template>
