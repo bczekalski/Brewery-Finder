@@ -7,7 +7,7 @@
         </div>
         <div v-for="brewery in allBreweries" v-bind:key="brewery.id">
         <div class="container-brewery container-blur" v-if="brewery.active == false">
-            <button v-on:click.prevent="activateBrewery(brewery)">Approve this brewery request?</button>
+            <button class="form-btns" v-on:click.prevent="activateBrewery(brewery)">Approve this brewery request?</button>
             <h2 class="brewery-name">{{ brewery.name }}</h2>
             <div class="brewery-details">
                 <div class="brewery-history a">History: {{ brewery.history }}</div>
@@ -23,7 +23,7 @@
                     </div>
                     {{brewery.city}},  {{brewery.state}}  {{brewery.zipCode}}  </div>
                 
-                <div><a :href="brewery.website"><img class="logo-image a" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
+                <div><a :href="brewery.website"><img class="logo-image a link-in-black" :src="brewery.image" alt="Brewery Logo" :href="brewery.website"></a></div>
             </div>
             <br><br><br>
         </div>

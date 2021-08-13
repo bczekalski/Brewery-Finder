@@ -2,7 +2,7 @@
 <div>
     <div class="container-events container-blur">
         <router-link id="brewery-details-button" class="link-in-black" v-bind:to="{ name: 'user-breweries-display' }">Back to Breweries</router-link><br>
-        <button v-if="showAddForm === false" v-on:click.prevent="showAddForm = true">Add Event</button>
+        <button class="form-btns" v-if="showAddForm === false" v-on:click.prevent="showAddForm = true">Add Event</button>
         <form id="add-review-form" v-if="showAddForm===true" v-on:submit.prevent="addNewEvent">
             <div class="form-element">
                 <label for="title">Name for the event: </label>
@@ -40,7 +40,7 @@
         <h2>{{convertDate(event.date)}}</h2>
         <h2 v-for='(l,i) in convertLocation(event.location)' :key="i">{{l}}</h2>
         <router-link id="edit-event" class="link-in-black" v-bind:to="{ name: 'edit-event', params: {breweryId: brewery.id, eventId: event.id} }">Edit Event </router-link><br>
-        <button v-on:click.prevent="deleteEvent(event.id, ind)">Delete Event</button>
+        <button class="form-btns" v-on:click.prevent="deleteEvent(event.id, ind)">Delete Event</button>
         
 
     </div>
